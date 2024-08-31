@@ -6,6 +6,7 @@ const USERNAME = import.meta.env.VITE_USERNAME
 const PASSWORD = import.meta.env.VITE_PASSWORD
 console.log(USERNAME)
 console.log(PASSWORD)
+console.log("test")
 function DoctorList() {
 	const [token, setToken] = useState<string | null>(null)
 	const [doctors, setDoctors] = useState<any[]>([])
