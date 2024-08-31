@@ -23,6 +23,7 @@ jobs:
 
       - name: Build project
         run: |
+          npm install
           npm run build
 
       - name: Deploy to Beget via FTP
