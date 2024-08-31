@@ -21,13 +21,11 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Clear npm cache
-        run: npm cache clean --force
+      - name: Install dependencies
+        run: yarn install
 
       - name: Build project
-        run: |
-          yarn install
-          yarn build build
+        run: yarn build
 
       - name: Deploy to Beget via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
