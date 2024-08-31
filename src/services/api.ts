@@ -13,7 +13,7 @@ export const getToken = async (
 			password,
 		})
 		return response.data.token
-	} catch (error) {
+	} catch {
 		throw new Error("Ошибка при получении токена")
 	}
 }
@@ -26,7 +26,7 @@ export const getDoctors = async (token: string) => {
 			},
 		})
 		return response.data
-	} catch (error) {
+	} catch {
 		throw new Error("Ошибка при получении списка докторов")
 	}
 }
