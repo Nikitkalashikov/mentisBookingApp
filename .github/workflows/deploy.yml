@@ -26,8 +26,8 @@ jobs:
 
       - name: Build project
         run: |
-          npm install
-          npm run build
+          yarn install
+          yarn build build
 
       - name: Deploy to Beget via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
