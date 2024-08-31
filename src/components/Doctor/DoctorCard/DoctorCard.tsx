@@ -4,8 +4,8 @@ interface IDoctorCard {
 	children: React.ReactNode
 }
 
-function DoctorCard({ children }: IDoctorCard) {
-	return <DoctorCardWrapper>{children}</DoctorCardWrapper>
+function DoctorCard({ children, ...props }: IDoctorCard) {
+	return <DoctorCardWrapper {...props}>{children}</DoctorCardWrapper>
 }
 
 export { DoctorCard }

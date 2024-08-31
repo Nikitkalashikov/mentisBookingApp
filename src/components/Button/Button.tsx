@@ -4,8 +4,8 @@ interface IButton {
 
 import { ButtonWrapper } from "./styled"
 
-function Button({ children }: IButton) {
-	return <ButtonWrapper>{children}</ButtonWrapper>
+function Button({ children, ...props }: IButton) {
+	return <ButtonWrapper {...props}>{children}</ButtonWrapper>
 }
 
 export { Button }

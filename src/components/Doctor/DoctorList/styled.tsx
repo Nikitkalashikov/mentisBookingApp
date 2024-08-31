@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { DoctorCard } from "../DoctorCard"
+import { Button } from "../../Button"
 
 export const DoctorListWrapper = styled.div`
 	display: flex;
@@ -8,9 +9,9 @@ export const DoctorListWrapper = styled.div`
 `
 
 export const DoctorListCard = styled(DoctorCard)`
-	margin-bottom: 10px;
+	margin-bottom: 16px;
+`
 
-	&:last-child {
-		margin-bottom: 0;
-	}
+export const DoctorListButton = styled(Button)`
+	margin: 10px auto 0;
 `

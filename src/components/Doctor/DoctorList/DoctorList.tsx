@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { DoctorListWrapper, DoctorListCard } from "./styled"
+import { DoctorListWrapper, DoctorListCard, DoctorListButton } from "./styled"
 import { getDoctors, getToken } from "../../../services/api"
 
 const USERNAME = import.meta.env.VITE_USERNAME
@@ -53,7 +53,10 @@ function DoctorList() {
 	return (
 		<DoctorListWrapper>
 			{doctors.map(doctor => (
-				<DoctorListCard key={doctor.id}>{doctor.title}</DoctorListCard>
+				<DoctorListCard key={doctor.id}>
+					{doctor.title}
+					<DoctorListButton>Записаться</DoctorListButton>
+				</DoctorListCard>
 			))}
 		</DoctorListWrapper>
 	)
