@@ -3,10 +3,11 @@ import react from "@vitejs/plugin-react"
 
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd())
+
 	return {
 		plugins: [react()],
 		define: {
-			__APP_ENV__: env.VITE_APP_ENV,
+			__USERNAME__: JSON.stringify(env.VITE_USERNAME),
 		},
 	}
 })
