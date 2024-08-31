@@ -1,7 +1,7 @@
 import axios from "axios"
 
-const DOCTOR_POINT = import.meta.env.VITE_DOCTORS_URL
-const TOKEN_URL = import.meta.env.VITE_TOKEN_URL
+const DOCTOR_POINT = process.env.VITE_DOCTORS_URL
+const TOKEN_URL = process.env.VITE_TOKEN_URL
 
 export const getToken = async (
 	username: string,
