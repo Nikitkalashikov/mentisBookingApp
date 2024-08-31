@@ -36,6 +36,3 @@ jobs:
           server-dir: /
           method: ftp
           dangerous-clean-slate: false
-          exclude:
-            - .env
-            - "**/node_modules/**"
