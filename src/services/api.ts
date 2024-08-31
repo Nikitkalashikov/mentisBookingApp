@@ -13,8 +13,8 @@ export const getToken = async (
 			password,
 		})
 		return response.data.token
-	} catch {
-		throw new Error("Ошибка при получении токена")
+	} catch (error: any) {
+		throw new Error(`Ошибка при получении токена: ${error.message}`)
 	}
 }
 
