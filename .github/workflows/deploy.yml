@@ -28,9 +28,6 @@ jobs:
       - name: Clear npm cache
         run: npm cache clean --force
 
-      - name: Output npm error log
-        run: cat /home/runner/.npm/_logs/2024-08-31T17_17_26_302Z-debug-0.log
-
       - name: Build project
         run: |
           npm install
