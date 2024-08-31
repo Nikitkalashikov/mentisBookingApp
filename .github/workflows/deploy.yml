@@ -36,3 +36,4 @@ jobs:
           server-dir: /
           method: ftp
           dangerous-clean-slate: true
+          exclude: .env
