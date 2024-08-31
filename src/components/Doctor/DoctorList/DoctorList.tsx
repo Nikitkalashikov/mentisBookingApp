@@ -4,7 +4,8 @@ import { getDoctors, getToken } from "../../../services/api"
 
 const USERNAME = import.meta.env.VITE_USERNAME
 const PASSWORD = import.meta.env.VITE_PASSWORD
-
+console.log(USERNAME)
+console.log(PASSWORD)
 function DoctorList() {
 	const [token, setToken] = useState<string | null>(null)
 	const [doctors, setDoctors] = useState<any[]>([])
