@@ -27,7 +27,7 @@ function DoctorList() {
 		fetchToken()
 	}, [])
 
-	useEffect(() => 
+	useEffect(() => {
 		const fetchDoctors = async () => {
 			if (!token) return
 
