@@ -27,8 +27,7 @@ function DoctorList() {
 		fetchToken()
 	}, [])
 
-	useEffect(() => {
-		// Получение списка докторов после получения токена
+	useEffect(() => 
 		const fetchDoctors = async () => {
 			if (!token) return
 
