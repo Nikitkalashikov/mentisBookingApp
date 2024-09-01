@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 import { DoctorListWrapper, DoctorListCard, DoctorListButton } from "./styled"
 import { getDoctors, getToken } from "../../../services/api"
 
-const USERNAME = import.meta.env.VITE_USERNAME
-const PASSWORD = import.meta.env.VITE_PASSWORD
+const USERNAME = import.meta.env.MENTIS_USERNAME
+const PASSWORD = import.meta.env.MENTIS_PASSWORD
 
 function DoctorList() {
 	const [token, setToken] = useState<string | null>(null)
