@@ -53,10 +53,7 @@ function DoctorList() {
 	return (
 		<DoctorListWrapper>
 			{doctors.map(doctor => (
-				<DoctorListCard key={doctor.id}>
-					{doctor.title}
-					<DoctorListButton>Записаться</DoctorListButton>
-				</DoctorListCard>
+				<DoctorListCard key={doctor.id} doctor={doctor} />
 			))}
 		</DoctorListWrapper>
 	)

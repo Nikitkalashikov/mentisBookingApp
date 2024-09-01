@@ -1,11 +1,12 @@
 import "./App.css"
+import { Container } from "./components/Container"
 import { DoctorList } from "./components/Doctor"
 
 function App() {
 	return (
-		<div className="App">
+		<Container>
 			<DoctorList />
-		</div>
+		</Container>
 	)
 }
 

@@ -1,9 +1,15 @@
 import styled from "styled-components"
 
 export const DoctorCardWrapper = styled.div`
-	width: 460px;
-	border: 1px solid #ccc;
+	width: 100%;
+	max-width: 375px;
 	padding: 16px;
+	display: flex;
+	flex-direction: column;
 	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	background-color: var(--white-color);
 `
+
+export const DoctorThumbnail = styled.div``
+
+export const DoctorBody = styled.div``
