@@ -10,6 +10,7 @@ interface IDoctorCard {
 		price_sale: string
 	}
 	doctor_categories: { name: string; slug: string }[]
+	className: string
 }
 
 export type { IDoctorCard }

@@ -1,3 +1,4 @@
+import ArrowIcon from "../../../assets/icons/Arrow"
 import {
 	DoctorCardBody,
 	DoctorCardButton,
@@ -23,7 +24,10 @@ function DoctorCard({
 		<DoctorCardWrapper {...props}>
 			<DoctorCardThumbnail>
 				<img src={thumbnail_url} alt={fio} />
-				<DoctorCardLink>Подробнее</DoctorCardLink>
+				<DoctorCardLink>
+					Подробнее
+					<ArrowIcon />
+				</DoctorCardLink>
 			</DoctorCardThumbnail>
 			<DoctorCardBody>
 				<DoctorCardTitle>{fio}</DoctorCardTitle>
@@ -37,14 +41,14 @@ function DoctorCard({
 					<DoctorCardPayment>
 						{first_pay && (
 							<DoctorCardPaymentItem>
-								Первичный прием:
-								{first_pay.price}
+								<span>Первичный прием:</span>
+								<p>{first_pay.price} ₽</p>
 							</DoctorCardPaymentItem>
 						)}
 						{second_pay && (
 							<DoctorCardPaymentItem>
-								Повторный прием:
-								{second_pay.price}
+								<span>Повторный прием:</span>
+								<p>{second_pay.price} ₽</p>
 							</DoctorCardPaymentItem>
 						)}
 					</DoctorCardPayment>

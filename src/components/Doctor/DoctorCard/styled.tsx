@@ -10,6 +10,12 @@ export const DoctorCardWrapper = styled.div`
 	border-radius: 24px;
 	overflow: hidden;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+	transition: background-color 0.3s ease;
+
+	&.active {
+		background-color: var(--primary-color);
+		transition: background-color 0.3s ease;
+	}
 `
 
 export const DoctorCardLink = styled.div`
@@ -17,10 +23,18 @@ export const DoctorCardLink = styled.div`
 	padding: 2px 10px;
 	bottom: 8px;
 	right: 8px;
+	display: flex;
+	align-items: center;
 	color: var(--secondary-color);
 	background-color: var(--white-color);
 	border-radius: 4px 4px 16px 4px;
 	overflow: hidden;
+
+	svg {
+		margin-left: 4px;
+		width: 18px;
+		height: 18px;
+	}
 `
 
 export const DoctorCardThumbnail = styled.a`
@@ -47,12 +61,34 @@ export const DoctorCardTitle = styled.p`
 export const DoctorCardPayment = styled.div`
 	margin-top: 16px;
 	display: flex;
+	justify-content: space-between;
 	flex-direction: row;
 `
 
 export const DoctorCardPaymentItem = styled.div`
+	margin-right: 8px;
+	width: calc(100% / 2 - 8px);
+	padding: 4px;
 	display: flex;
 	flex-direction: column;
+	align-items: end;
+	background-color: var(--gray-color);
+	border-radius: 4px;
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+	span {
+		font-size: 14px;
+		line-height: 22px;
+	}
+
+	p {
+		font-size: 16px;
+		line-height: 24px;
+		font-weight: 500;
+	}
 `
 
 export const DoctorCardCategories = styled.p`
@@ -64,7 +100,6 @@ export const DoctorCardCategories = styled.p`
 
 export const DoctorCardBody = styled.div`
 	padding: 16px;
-	background-color: var(--white-color);
 `
 
 export const DoctorCardButton = styled(Button)`
