@@ -25,6 +25,11 @@ jobs:
         run: yarn install
 
       - name: Build project
+        env:
+          MENTIS_DOCTORS_URL: ${{ secrets.MENTIS_DOCTORS_URL }}
+          MENTIS_TOKEN_URL: ${{ secrets.MENTIS_TOKEN_URL }}
+          MENTIS_USERNAME: ${{ secrets.MENTIS_USERNAME }}
+          MENTIS_PASSWORD: ${{ secrets.MENTIS_PASSWORD }}
         run: yarn build
 
       - name: Deploy to Beget via FTP

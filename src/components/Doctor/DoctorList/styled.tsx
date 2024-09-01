@@ -10,6 +10,10 @@ export const DoctorListWrapper = styled.div`
 
 export const DoctorListCard = styled(DoctorCard)`
 	margin-bottom: 16px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
 `
 
 export const DoctorListButton = styled(Button)`
