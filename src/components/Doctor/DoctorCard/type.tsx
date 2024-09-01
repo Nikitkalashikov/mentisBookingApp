@@ -9,8 +9,7 @@ interface IDoctorCard {
 		price: string
 		price_sale: string
 	}
-	doctor_categories: []
-	children: React.ReactNode
+	doctor_categories: { name: string; slug: string }[]
 }
 
 export type { IDoctorCard }

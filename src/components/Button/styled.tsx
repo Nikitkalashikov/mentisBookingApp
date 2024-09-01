@@ -11,7 +11,7 @@ export const ButtonWrapper = styled.button`
 	transition: 0.5s ease;
 	background-color: var(--primary-color);
 	border: 0;
-	border-radius: 24px;
+	border-radius: 16px;
 
 	&:hover {
 		transition: 0.5s ease;
