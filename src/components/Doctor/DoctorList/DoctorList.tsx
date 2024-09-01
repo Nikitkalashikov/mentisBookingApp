@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { DoctorListWrapper, DoctorListCard, DoctorListButton } from "./styled"
+import { DoctorListWrapper, DoctorListCard } from "./styled"
 import { getDoctors, getToken } from "../../../services/api"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
@@ -53,7 +53,7 @@ function DoctorList() {
 	return (
 		<DoctorListWrapper>
 			{doctors.map(doctor => (
-				<DoctorListCard key={doctor.id} doctor={doctor} />
+				<DoctorListCard key={doctor.id} {...doctor} />
 			))}
 		</DoctorListWrapper>
 	)

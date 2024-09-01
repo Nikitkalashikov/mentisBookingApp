@@ -15,9 +15,9 @@ interface IDoctorCard {
 	children: React.ReactNode
 }
 
-function DoctorCard({ fio, thumbnail_url, children, ...props }: IDoctorCard) {
+function DoctorCard({ fio, thumbnail_url, children }: IDoctorCard) {
 	return (
-		<DoctorCardWrapper {...props}>
+		<DoctorCardWrapper>
 			<DoctorThumbnail>
 				<img src={thumbnail_url} alt={fio} />
 			</DoctorThumbnail>
