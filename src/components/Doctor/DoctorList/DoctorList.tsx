@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { DoctorListWrapper, DoctorListCard } from "./styled"
 import { getDoctors, getToken } from "../../../services/api"
+import { IDoctorCard } from "../DoctorCard"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -52,8 +53,8 @@ function DoctorList() {
 
 	return (
 		<DoctorListWrapper>
-			{doctors.map(doctor => (
-				<DoctorListCard key={doctor.id} {...doctor} />
+			{doctors.map((doctor: IDoctorCard, index) => (
+				<DoctorListCard key={index} {...doctor} />
 			))}
 		</DoctorListWrapper>
 	)

@@ -1,29 +1,21 @@
-import { DoctorBody, DoctorCardWrapper, DoctorThumbnail } from "./styled"
+import {
+	DoctorBody,
+	DoctorButton,
+	DoctorCardWrapper,
+	DoctorThumbnail,
+	DoctorTitle,
+} from "./styled"
+import { IDoctorCard } from "./type"
 
-interface IDoctorCard {
-	fio: string
-	thumbnail_url: string
-	first_pay: {
-		price: string
-		price_sale: string
-	}
-	second_pay: {
-		price: string
-		price_sale: string
-	}
-	doctor_categories: []
-	children: React.ReactNode
-}
-
-function DoctorCard({ fio, thumbnail_url, children }: IDoctorCard) {
+function DoctorCard({ fio, thumbnail_url, ...props }: IDoctorCard) {
 	return (
-		<DoctorCardWrapper>
+		<DoctorCardWrapper {...props}>
 			<DoctorThumbnail>
 				<img src={thumbnail_url} alt={fio} />
 			</DoctorThumbnail>
 			<DoctorBody>
-				<p className="h2">{fio}</p>
-				{children}
+				<DoctorTitle>{fio}</DoctorTitle>
+				<DoctorButton>Записаться</DoctorButton>
 			</DoctorBody>
 		</DoctorCardWrapper>
 	)
