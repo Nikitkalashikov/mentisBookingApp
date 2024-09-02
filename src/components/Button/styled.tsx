@@ -13,6 +13,13 @@ export const ButtonWrapper = styled.button`
 	border: 0;
 	border-radius: 16px;
 
+	&.stroke {
+		color: var(--color-secondary);
+		transition: 0.5s ease;
+		background: none;
+		border: 1px solid var(--primary-color);
+	}
+
 	&:hover {
 		transition: 0.5s ease;
 		background-color: var(--primary-hover-color);

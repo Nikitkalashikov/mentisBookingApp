@@ -3,15 +3,20 @@ import { useParams } from "react-router-dom"
 import {
 	DoctorPageBackLink,
 	DoctorPageBlock,
+	DoctorPageBlockContent,
+	DoctorPageBlockTitle,
+	DoctorPageBody,
 	DoctorPageButton,
 	DoctorPageCategories,
+	DoctorPageDirections,
+	DoctorPageDirectionsItem,
+	DoctorPageGallery,
 	DoctorPageThumbnail,
 	DoctorPageTitle,
 } from "./styled"
 import { getDoctorByID, getToken } from "../../services/api"
 import ArrowIcon from "../../assets/icons/Arrow"
 import { Container } from "../../components/Container"
-import { Body } from "../../components/Body"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -64,7 +69,7 @@ function DoctorPage() {
 
 	console.log(doctor)
 	return (
-		<Body>
+		<DoctorPageBody>
 			<Container>
 				{!doctor ? (
 					<div>Loading...</div>
@@ -75,7 +80,7 @@ function DoctorPage() {
 							<DoctorPageButton>Записаться</DoctorPageButton>
 						</DoctorPageThumbnail>
 
-						<DoctorPageBlock>
+						<DoctorPageBlock className="focus">
 							<DoctorPageTitle>{doctor.fio}</DoctorPageTitle>
 							{doctor.doctor_categories && (
 								<DoctorPageCategories>
@@ -86,13 +91,51 @@ function DoctorPage() {
 							)}
 						</DoctorPageBlock>
 
+						{doctor.directions && (
+							<DoctorPageBlock>
+								<DoctorPageBlockTitle>
+									Работает с запросами:
+								</DoctorPageBlockTitle>
+								<DoctorPageDirections>
+									{doctor.directions.map(
+										(direction: { name: string }, index: number) => (
+											<DoctorPageDirectionsItem key={index}>
+												{direction.name}
+											</DoctorPageDirectionsItem>
+										)
+									)}
+								</DoctorPageDirections>
+							</DoctorPageBlock>
+						)}
+
+						{doctor.education.text && (
+							<DoctorPageBlock>
+								<DoctorPageBlockTitle>Образование:</DoctorPageBlockTitle>
+								<DoctorPageBlockContent
+									dangerouslySetInnerHTML={{ __html: doctor.education.text }}
+								/>
+							</DoctorPageBlock>
+						)}
+
+						{doctor.sertificates && (
+							<DoctorPageGallery
+								galleryId="sertificates"
+								gallery={doctor.sertificates.map(
+									(item: { url: string; alt: string }) => ({
+										url: item.url,
+										alt: item.alt,
+									})
+								)}
+							/>
+						)}
+
 						<DoctorPageBackLink to={"/"}>
 							<ArrowIcon /> К списку врачей
 						</DoctorPageBackLink>
 					</>
 				)}
 			</Container>
-		</Body>
+		</DoctorPageBody>
 	)
 }
 

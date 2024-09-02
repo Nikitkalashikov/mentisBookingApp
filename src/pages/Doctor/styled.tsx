@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { Button } from "../../components/Button"
+import { Tag } from "../../components/Tag"
+import { Body } from "../../components/Body"
+import { Gallery } from "../../components/Gallery"
+
+export const DoctorPageBody = styled(Body)`
+	padding-bottom: 80px;
+`
 
 export const DoctorPageTitle = styled.p`
 	font-size: 26px;
@@ -30,18 +37,66 @@ export const DoctorPageButton = styled(Button)`
 	justify-content: center;
 `
 
-export const DoctorPageBlock = styled.div`
-	padding: 16px;
-	border-radius: 24px;
-	background-color: var(--white-color);
-	box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-`
-
 export const DoctorPageCategories = styled.p`
 	margin-top: 8px;
 	font-size: 16px;
 	line-height: 24px;
 	color: var(--focus-color);
+`
+
+export const DoctorPageBlock = styled.div`
+	padding: 16px;
+	border-radius: 24px;
+	background-color: var(--white-color);
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+
+	&.focus {
+		background-color: var(--primary-color);
+
+		& > ${DoctorPageTitle}, & > ${DoctorPageCategories} {
+			color: var(--white-color);
+		}
+	}
+
+	& + & {
+		margin-top: 24px;
+	}
+`
+
+export const DoctorPageGallery = styled(Gallery)`
+	margin-top: 24px;
+`
+
+export const DoctorPageBlockTitle = styled.p`
+	font-size: 20px;
+	line-height: 28px;
+	font-weight: 500;
+	margin-bottom: 24px;
+`
+
+export const DoctorPageBlockContent = styled.div`
+	font-size: 16px;
+	line-height: 24px;
+
+	p {
+		margin-bottom: 12px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+`
+
+export const DoctorPageDirections = styled.div`
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: -4px;
+`
+
+export const DoctorPageDirectionsItem = styled(Tag)`
+	display: block;
+	margin: 4px;
 `
 
 export const DoctorPageBackLink = styled(Link)`
@@ -52,17 +107,18 @@ export const DoctorPageBackLink = styled(Link)`
 	display: flex;
 	align-items: center;
 	width: 100%;
-	max-width: 480px;
+	max-width: 456px;
 	margin: 0 auto;
 	padding: 12px;
 	justify-content: center;
 	text-align: center;
-	color: var(--white-color);
+	color: var(--secondary-color);
 	font-size: 16px;
 	line-height: 24px;
 	transition: 0.5s ease;
-	background-color: var(--primary-color);
+	background-color: var(--thirdy-color);
 	border-radius: 8px;
+	z-index: 10;
 
 	&:hover {
 		color: var(--white-color);
