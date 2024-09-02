@@ -9,7 +9,7 @@ export const DoctorCardWrapper = styled.div`
 	background-color: var(--white-color);
 	border-radius: 24px;
 	overflow: hidden;
-	box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 	transition: background-color 0.3s ease;
 
 	&.active {

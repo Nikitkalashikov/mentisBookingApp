@@ -1,12 +1,19 @@
 import "./App.css"
+import { Body } from "./components/Body"
 import { Container } from "./components/Container"
 import { DoctorList } from "./components/Doctor"
+import { Header } from "./components/Header"
 
 function App() {
 	return (
-		<Container>
-			<DoctorList />
-		</Container>
+		<>
+			<Header />
+			<Body>
+				<Container>
+					<DoctorList />
+				</Container>
+			</Body>
+		</>
 	)
 }
 
