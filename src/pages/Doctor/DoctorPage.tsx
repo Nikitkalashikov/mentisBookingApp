@@ -5,7 +5,8 @@ import {
 	DoctorPageTitle,
 	DoctorPageWrapper,
 } from "./styled"
-import { getDoctorByID, getToken } from "../services/api"
+import { getDoctorByID, getToken } from "../../services/api"
+import ArrowIcon from "../../assets/icons/Arrow"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -62,7 +63,9 @@ function DoctorPage() {
 	return (
 		<DoctorPageWrapper>
 			<DoctorPageTitle>{doctor.title.rendered}</DoctorPageTitle>
-			<DoctorPageBackLink to={"/"}>Назад к списку врачей</DoctorPageBackLink>
+			<DoctorPageBackLink to={"/"}>
+				<ArrowIcon /> К списку врачей
+			</DoctorPageBackLink>
 		</DoctorPageWrapper>
 	)
 }

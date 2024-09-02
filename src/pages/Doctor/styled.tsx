@@ -13,20 +13,34 @@ export const DoctorPageTitle = styled.p`
 
 export const DoctorPageBackLink = styled(Link)`
 	position: fixed;
-	bottom: 0;
-	left: 0;
+	bottom: 16px;
+	left: auto;
+	right: auto;
+	display: flex;
+	align-items: center;
 	width: 100%;
+	max-width: 480px;
+	margin: 0 auto;
 	padding: 12px;
+	justify-content: center;
 	text-align: center;
 	color: var(--white-color);
 	font-size: 16px;
 	line-height: 24px;
 	transition: 0.5s ease;
 	background-color: var(--primary-color);
+	border-radius: 8px;
 
 	&:hover {
 		color: var(--white-color);
 		transition: 0.5s ease;
 		background-color: var(--primary-hover-color);
+	}
+
+	svg {
+		margin-right: 6px;
+		width: 24px;
+		height: 24px;
+		transform: rotate(180deg);
 	}
 `
