@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { Button } from "../../Button"
+import { Link } from "react-router-dom"
 
 export const DoctorCardWrapper = styled.div`
 	width: 100%;
@@ -39,7 +40,7 @@ export const DoctorCardLink = styled.div`
 	}
 `
 
-export const DoctorCardThumbnail = styled.a`
+export const DoctorCardThumbnail = styled(Link)`
 	position: relative;
 	width: 100%;
 	height: 280px;

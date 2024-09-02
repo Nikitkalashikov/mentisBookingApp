@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react"
-import { DoctorListWrapper, DoctorListCard } from "./styled"
-import { getDoctors, getToken } from "../../../services/api"
-import { IDoctorCard } from "../DoctorCard"
+import { useParams } from "react-router-dom"
+import {
+	DoctorPageBackLink,
+	DoctorPageTitle,
+	DoctorPageWrapper,
+} from "./styled"
+import { getDoctorByID, getToken } from "../services/api"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
 
-function DoctorList() {
+function DoctorPage() {
+	const { id } = useParams<{ id: string }>()
 	const [token, setToken] = useState<string | null>(null)
-	const [doctors, setDoctors] = useState<any[]>([])
+	const [doctor, setDoctor] = useState<any>(null)
 	const [error, setError] = useState<string | null>(null)
 
 	useEffect(() => {
@@ -29,12 +34,12 @@ function DoctorList() {
 	}, [])
 
 	useEffect(() => {
-		const fetchDoctors = async () => {
+		const fetchDoctor = async () => {
 			if (!token) return
-
 			try {
-				const doctorsList = await getDoctors(token)
-				setDoctors(doctorsList)
+				if (!id) throw new Error("ID доктора не найден")
+				const doctor = await getDoctorByID(token, id)
+				setDoctor(doctor)
 			} catch (err: unknown) {
 				if (err instanceof Error) {
 					setError(err.message)
@@ -44,20 +49,22 @@ function DoctorList() {
 			}
 		}
 
-		fetchDoctors()
-	}, [token])
+		fetchDoctor()
+	}, [token, id])
 
 	if (error) {
 		return <div>{error}</div>
 	}
 
+	if (!doctor) return <div>Loading...</div>
+
+	console.log(doctor)
 	return (
-		<DoctorListWrapper>
-			{doctors.map((doctor: IDoctorCard) => (
-				<DoctorListCard key={doctor.id} {...doctor} />
-			))}
-		</DoctorListWrapper>
+		<DoctorPageWrapper>
+			<DoctorPageTitle>{doctor.title.rendered}</DoctorPageTitle>
+			<DoctorPageBackLink to={"/"}>Назад к списку врачей</DoctorPageBackLink>
+		</DoctorPageWrapper>
 	)
 }
 
-export { DoctorList }
+export { DoctorPage }

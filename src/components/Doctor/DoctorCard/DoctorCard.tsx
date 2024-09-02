@@ -13,6 +13,7 @@ import {
 import { IDoctorCard } from "./type"
 
 function DoctorCard({
+	id,
 	fio,
 	thumbnail_url,
 	doctor_categories,
@@ -22,7 +23,7 @@ function DoctorCard({
 }: IDoctorCard) {
 	return (
 		<DoctorCardWrapper {...props}>
-			<DoctorCardThumbnail>
+			<DoctorCardThumbnail to={`doctor/${id}`}>
 				<img src={thumbnail_url} alt={fio} />
 				<DoctorCardLink>
 					Подробнее

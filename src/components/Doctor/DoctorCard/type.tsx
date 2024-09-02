@@ -1,4 +1,5 @@
 interface IDoctorCard {
+	id: string
 	fio: string
 	thumbnail_url: string
 	first_pay: {

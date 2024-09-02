@@ -1,6 +1,7 @@
 import axios from "axios"
 
-const DOCTOR_POINT = import.meta.env.MENTIS_DOCTORS_URL
+const DOCTORS_POINT = import.meta.env.MENTIS_DOCTORS_URL
+const DOCTOR_POINT = import.meta.env.MENTIS_DOCTOR_URL
 const TOKEN_URL = import.meta.env.MENTIS_TOKEN_URL
 
 export const getToken = async (
@@ -20,7 +21,7 @@ export const getToken = async (
 
 export const getDoctors = async (token: string) => {
 	try {
-		const response = await axios.get(DOCTOR_POINT, {
+		const response = await axios.get(DOCTORS_POINT, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
@@ -28,5 +29,18 @@ export const getDoctors = async (token: string) => {
 		return response.data
 	} catch {
 		throw new Error("Ошибка при получении списка докторов")
+	}
+}
+
+export const getDoctorByID = async (token: string, id: string) => {
+	try {
+		const response = await axios.get(`${DOCTOR_POINT}${id}`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		})
+		return response.data
+	} catch {
+		throw new Error("Ошибка при получении доктора")
 	}
 }
