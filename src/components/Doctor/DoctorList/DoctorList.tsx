@@ -50,7 +50,7 @@ function DoctorList() {
 	if (error) {
 		return <div>{error}</div>
 	}
-
+	console.log(doctors)
 	return (
 		<DoctorListWrapper>
 			{doctors.map((doctor: IDoctorCard) => (

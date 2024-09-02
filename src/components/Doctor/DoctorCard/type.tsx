@@ -10,6 +10,7 @@ interface IDoctorCard {
 		price: string
 		price_sale: string
 	}
+	experience: string
 	doctor_categories: { name: string; slug: string }[]
 	className: string
 }

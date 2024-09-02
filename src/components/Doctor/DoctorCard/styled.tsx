@@ -69,6 +69,12 @@ export const DoctorCardTitle = styled.p`
 	font-weight: 500;
 `
 
+export const DoctorCardExperience = styled.p`
+	font-size: 18px;
+	line-height: 26px;
+	font-weight: 400;
+`
+
 export const DoctorCardPayment = styled.div`
 	margin-top: 16px;
 	display: flex;

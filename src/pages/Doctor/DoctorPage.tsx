@@ -2,11 +2,16 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import {
 	DoctorPageBackLink,
+	DoctorPageBlock,
+	DoctorPageButton,
+	DoctorPageCategories,
+	DoctorPageThumbnail,
 	DoctorPageTitle,
-	DoctorPageWrapper,
 } from "./styled"
 import { getDoctorByID, getToken } from "../../services/api"
 import ArrowIcon from "../../assets/icons/Arrow"
+import { Container } from "../../components/Container"
+import { Body } from "../../components/Body"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -57,16 +62,37 @@ function DoctorPage() {
 		return <div>{error}</div>
 	}
 
-	if (!doctor) return <div>Loading...</div>
-
 	console.log(doctor)
 	return (
-		<DoctorPageWrapper>
-			<DoctorPageTitle>{doctor.title.rendered}</DoctorPageTitle>
-			<DoctorPageBackLink to={"/"}>
-				<ArrowIcon /> К списку врачей
-			</DoctorPageBackLink>
-		</DoctorPageWrapper>
+		<Body>
+			<Container>
+				{!doctor ? (
+					<div>Loading...</div>
+				) : (
+					<>
+						<DoctorPageThumbnail>
+							<img src={doctor.thumbnail_url} alt={doctor.fio} />
+							<DoctorPageButton>Записаться</DoctorPageButton>
+						</DoctorPageThumbnail>
+
+						<DoctorPageBlock>
+							<DoctorPageTitle>{doctor.fio}</DoctorPageTitle>
+							{doctor.doctor_categories && (
+								<DoctorPageCategories>
+									{doctor.doctor_categories
+										.map((category: { name: string }) => category.name)
+										.join(", ")}
+								</DoctorPageCategories>
+							)}
+						</DoctorPageBlock>
+
+						<DoctorPageBackLink to={"/"}>
+							<ArrowIcon /> К списку врачей
+						</DoctorPageBackLink>
+					</>
+				)}
+			</Container>
+		</Body>
 	)
 }
 

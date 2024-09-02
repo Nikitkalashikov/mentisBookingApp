@@ -9,6 +9,7 @@ import {
 	DoctorCardCategories,
 	DoctorCardPaymentItem,
 	DoctorCardPayment,
+	DoctorCardExperience,
 } from "./styled"
 import { IDoctorCard } from "./type"
 
@@ -19,6 +20,7 @@ function DoctorCard({
 	doctor_categories,
 	first_pay,
 	second_pay,
+	experience,
 	...props
 }: IDoctorCard) {
 	return (
@@ -36,6 +38,10 @@ function DoctorCard({
 					<DoctorCardCategories>
 						{doctor_categories.map(category => category.name).join(", ")}
 					</DoctorCardCategories>
+				)}
+
+				{experience && (
+					<DoctorCardExperience>{experience}</DoctorCardExperience>
 				)}
 
 				{(first_pay || second_pay) && (
