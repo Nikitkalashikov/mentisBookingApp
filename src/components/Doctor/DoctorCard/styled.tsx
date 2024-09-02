@@ -24,11 +24,13 @@ export const DoctorCardLink = styled.div`
 	bottom: 8px;
 	right: 8px;
 	display: flex;
+	font-weight: 400;
 	align-items: center;
-	color: var(--secondary-color);
-	background-color: var(--white-color);
+	color: var(--white-color);
+	background-color: var(--primary-color);
 	border-radius: 4px 4px 16px 4px;
 	overflow: hidden;
+	transition: 0.5s ease;
 
 	svg {
 		margin-left: 4px;
@@ -44,6 +46,14 @@ export const DoctorCardThumbnail = styled.a`
 	cursor: pointer;
 	overflow: hidden;
 	border-radius: 24px;
+
+	&:hover {
+		${DoctorCardLink} {
+			transition: 0.5s ease;
+			color: var(--primary-color);
+			background-color: var(--white-color);
+		}
+	}
 
 	img {
 		width: 100%;
