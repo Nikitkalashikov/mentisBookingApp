@@ -1,7 +1,6 @@
 import axios from "axios"
 
 const DOCTORS_POINT = import.meta.env.MENTIS_DOCTORS_URL
-const DOCTOR_POINT = import.meta.env.MENTIS_DOCTOR_URL
 const TOKEN_URL = import.meta.env.MENTIS_TOKEN_URL
 
 export const getToken = async (
@@ -34,7 +33,7 @@ export const getDoctors = async (token: string) => {
 
 export const getDoctorByID = async (token: string, id: string) => {
 	try {
-		const response = await axios.get(`${DOCTOR_POINT}${id}`, {
+		const response = await axios.get(`${DOCTORS_POINT}/${id}`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},

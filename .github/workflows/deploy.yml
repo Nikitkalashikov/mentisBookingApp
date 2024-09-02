@@ -26,7 +26,6 @@ jobs:
 
       - name: Build project
         env:
-          MENTIS_DOCTOR_URL: ${{ secrets.MENTIS_DOCTOR_URL }}
           MENTIS_DOCTORS_URL: ${{ secrets.MENTIS_DOCTORS_URL }}
           MENTIS_TOKEN_URL: ${{ secrets.MENTIS_TOKEN_URL }}
           MENTIS_USERNAME: ${{ secrets.MENTIS_USERNAME }}
