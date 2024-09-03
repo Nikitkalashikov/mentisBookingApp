@@ -35,7 +35,7 @@ function DoctorCard({
 			</DoctorCardThumbnail>
 			<DoctorCardBody>
 				<DoctorCardTitle>{fio}</DoctorCardTitle>
-				{doctor_categories.length !== 0 && (
+				{doctor_categories && (
 					<DoctorCardCategories>
 						{doctor_categories.map(category => category.name).join(", ")}
 					</DoctorCardCategories>
@@ -59,7 +59,7 @@ function DoctorCard({
 						)}
 					</DoctorCardPayment>
 				)}
-				<DoctorCardButton>Записаться</DoctorCardButton>
+				<DoctorCardButton desc={`Доктор: ${fio}`}>Записаться</DoctorCardButton>
 			</DoctorCardBody>
 		</DoctorCardWrapper>
 	)

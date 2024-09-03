@@ -7,7 +7,7 @@ import {
 	DoctorPageBlockInner,
 	DoctorPageBlockTitle,
 	DoctorPageBody,
-	DoctorPageButton,
+	DoctorPageButtonBooking,
 	DoctorPageCategories,
 	DoctorPageDirections,
 	DoctorPageDirectionsItem,
@@ -18,8 +18,7 @@ import {
 import { getDoctorByID, getToken } from "../../services/api"
 import ArrowIcon from "../../assets/icons/Arrow"
 import { Container } from "../../components/Container"
-import { Box, Modal } from "@mui/material"
-import { FormBooking, FormContainer } from "../../components/Form"
+import { IDoctorCard } from "../../components/Doctor"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -27,9 +26,37 @@ const PASSWORD = import.meta.env.MENTIS_PASSWORD
 function DoctorPage() {
 	const { id } = useParams<{ id: string }>()
 	const [token, setToken] = useState<string | null>(null)
-	const [doctor, setDoctor] = useState<any>(null)
+	const [doctor, setDoctor] = useState<IDoctorCard>({
+		id: "",
+		fio: "",
+		thumbnail_url: "",
+		first_pay: {
+			price: "",
+			price_sale: "",
+		},
+		second_pay: {
+			price: "",
+			price_sale: "",
+		},
+		directions: [
+			{
+				name: "",
+				slug: "",
+			},
+		],
+		education: {
+			text: "",
+		},
+		sertificates: [
+			{
+				url: "",
+				alt: "",
+			},
+		],
+		experience: "",
+		className: "",
+	})
 	const [error, setError] = useState<string | null>(null)
-	const [isModalOpen, setModalOpen] = useState<boolean>(false)
 
 	useEffect(() => {
 		const fetchToken = async () => {
@@ -67,19 +94,10 @@ function DoctorPage() {
 		fetchDoctor()
 	}, [token, id])
 
-	const handleOpen = () => {
-		setModalOpen(true)
-	}
-
-	const handleClose = () => {
-		setModalOpen(false)
-	}
-
 	if (error) {
 		return <div>{error}</div>
 	}
 
-	console.log(doctor)
 	return (
 		<DoctorPageBody>
 			<Container>
@@ -89,9 +107,9 @@ function DoctorPage() {
 					<>
 						<DoctorPageThumbnail>
 							<img src={doctor.thumbnail_url} alt={doctor.fio} />
-							<DoctorPageButton onClick={handleOpen}>
+							<DoctorPageButtonBooking desc={`Доктор: ${doctor.fio}`}>
 								Записаться
-							</DoctorPageButton>
+							</DoctorPageButtonBooking>
 						</DoctorPageThumbnail>
 
 						<DoctorPageBlock className="focus">
@@ -151,26 +169,6 @@ function DoctorPage() {
 					</>
 				)}
 			</Container>
-			{isModalOpen && (
-				<Modal open={isModalOpen} onClose={handleClose}>
-					<Box
-						sx={{
-							position: "absolute",
-							top: 0,
-							bottom: 0,
-							left: 0,
-							right: 0,
-							width: 460,
-							height: "fit-content",
-							margin: "auto",
-						}}
-					>
-						<FormContainer>
-							<FormBooking desc={`Доктор: ${doctor.fio}`} />
-						</FormContainer>
-					</Box>
-				</Modal>
-			)}
 		</DoctorPageBody>
 	)
 }

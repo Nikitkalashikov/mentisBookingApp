@@ -11,8 +11,16 @@ interface IDoctorCard {
 		price_sale: string
 	}
 	experience: string
-	doctor_categories: { name: string; slug: string }[]
+	doctor_categories?: { name: string; slug: string }[]
 	className: string
+	education: {
+		text: string
+	}
+	sertificates: {
+		url: string
+		alt: string
+	}[]
+	directions?: { name: string; slug: string }[]
 }
 
 export type { IDoctorCard }

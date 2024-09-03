@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import { Button } from "../../components/Button"
 import { Tag } from "../../components/Tag"
 import { Body } from "../../components/Body"
 import { Gallery } from "../../components/Gallery"
 import Wave1 from "../../assets/images/wave-1.svg"
+import { ButtonBooking } from "../../components/Button/ButtonBooking"
 
 export const DoctorPageBody = styled(Body)`
 	padding-bottom: 80px;
@@ -36,7 +36,7 @@ export const DoctorPageWave = styled.div`
 	right: 0;
 `
 
-export const DoctorPageButton = styled(Button)`
+export const DoctorPageButtonBooking = styled(ButtonBooking)`
 	position: absolute;
 	bottom: 16px;
 	left: 16px;
@@ -126,12 +126,12 @@ export const DoctorPageDirectionsItem = styled(Tag)`
 
 export const DoctorPageBackLink = styled(Link)`
 	position: fixed;
-	bottom: 16px;
-	left: auto;
-	right: auto;
+	bottom: 0;
+	left: -16px;
+	right: -16px;
 	display: flex;
 	align-items: center;
-	width: 100%;
+	width: 100vw;
 	max-width: 456px;
 	margin: 0 auto;
 	padding: 12px;

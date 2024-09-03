@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import { Button } from "../../Button"
 import { Link } from "react-router-dom"
+import { ButtonBooking } from "../../Button/ButtonBooking"
 
 export const DoctorCardWrapper = styled.div`
 	width: 100%;
@@ -119,7 +119,7 @@ export const DoctorCardBody = styled.div`
 	padding: 16px;
 `
 
-export const DoctorCardButton = styled(Button)`
+export const DoctorCardButton = styled(ButtonBooking)`
 	margin-top: 14px;
 	width: 100%;
 	justify-content: center;
