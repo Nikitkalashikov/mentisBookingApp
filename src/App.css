@@ -8,11 +8,15 @@
 
 	--primary-color: #1597bb;
 	--primary-hover-color: #10738f;
-	--secondary-color: #21407a;
+
+	--secondary-color: #0047bb;
+
 	--thirdy-color: #c4d3ff;
+
 	--fifthy-color: #ecf3ff;
 
 	--gray-color: #f8f8f8;
+	--gray-dark-color: #a3a2a2;
 
 	--focus-color: #2a97ff;
 }

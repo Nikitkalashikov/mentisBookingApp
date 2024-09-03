@@ -1,4 +1,5 @@
 import { DoctorCard } from "./DoctorCard"
+import { DoctorCardSkeleton } from "./DoctorCardSkeleton"
 import { IDoctorCard } from "./type"
 
-export { DoctorCard, type IDoctorCard }
+export { DoctorCard, DoctorCardSkeleton, type IDoctorCard }

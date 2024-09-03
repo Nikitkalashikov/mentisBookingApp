@@ -8,6 +8,7 @@ export const GallerySlide = styled(SwiperSlide)`
 	background-color: var(--primary-color);
 	border-radius: 24px;
 	height: 160px;
+	overflow: hidden;
 
 	img {
 		width: auto;

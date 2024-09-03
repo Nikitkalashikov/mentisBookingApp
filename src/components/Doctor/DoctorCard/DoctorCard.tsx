@@ -27,6 +27,7 @@ function DoctorCard({
 		<DoctorCardWrapper {...props}>
 			<DoctorCardThumbnail to={`doctor/${id}`}>
 				<img src={thumbnail_url} alt={fio} />
+
 				<DoctorCardLink>
 					Подробнее
 					<ArrowIcon />
@@ -34,16 +35,14 @@ function DoctorCard({
 			</DoctorCardThumbnail>
 			<DoctorCardBody>
 				<DoctorCardTitle>{fio}</DoctorCardTitle>
-				{doctor_categories && (
+				{doctor_categories.length !== 0 && (
 					<DoctorCardCategories>
 						{doctor_categories.map(category => category.name).join(", ")}
 					</DoctorCardCategories>
 				)}
-
 				{experience && (
 					<DoctorCardExperience>{experience}</DoctorCardExperience>
 				)}
-
 				{(first_pay || second_pay) && (
 					<DoctorCardPayment>
 						{first_pay && (

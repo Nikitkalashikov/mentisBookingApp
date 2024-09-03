@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react"
-import { DoctorListWrapper, DoctorListCard } from "./styled"
+import {
+	DoctorListWrapper,
+	DoctorListCard,
+	DoctorListCardSkeleton,
+} from "./styled"
 import { getDoctors, getToken } from "../../../services/api"
 import { IDoctorCard } from "../DoctorCard"
 
@@ -50,12 +54,21 @@ function DoctorList() {
 	if (error) {
 		return <div>{error}</div>
 	}
-	console.log(doctors)
+
 	return (
 		<DoctorListWrapper>
-			{doctors.map((doctor: IDoctorCard) => (
-				<DoctorListCard key={doctor.id} {...doctor} />
-			))}
+			{doctors.length === 0 ? (
+				<>
+					<DoctorListCardSkeleton />
+					<DoctorListCardSkeleton />
+					<DoctorListCardSkeleton />
+					<DoctorListCardSkeleton />
+				</>
+			) : (
+				doctors.map((doctor: IDoctorCard) => (
+					<DoctorListCard key={doctor.id} {...doctor} />
+				))
+			)}
 		</DoctorListWrapper>
 	)
 }
