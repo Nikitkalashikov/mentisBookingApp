@@ -4,6 +4,7 @@ import {
 	DoctorPageBackLink,
 	DoctorPageBlock,
 	DoctorPageBlockContent,
+	DoctorPageBlockInner,
 	DoctorPageBlockTitle,
 	DoctorPageBody,
 	DoctorPageButton,
@@ -105,19 +106,21 @@ function DoctorPage() {
 						</DoctorPageBlock>
 
 						{doctor.directions && (
-							<DoctorPageBlock>
-								<DoctorPageBlockTitle>
-									Работает с запросами:
-								</DoctorPageBlockTitle>
-								<DoctorPageDirections>
-									{doctor.directions.map(
-										(direction: { name: string }, index: number) => (
-											<DoctorPageDirectionsItem key={index}>
-												{direction.name}
-											</DoctorPageDirectionsItem>
-										)
-									)}
-								</DoctorPageDirections>
+							<DoctorPageBlock className="wave1">
+								<DoctorPageBlockInner>
+									<DoctorPageBlockTitle>
+										Работает с запросами:
+									</DoctorPageBlockTitle>
+									<DoctorPageDirections>
+										{doctor.directions.map(
+											(direction: { name: string }, index: number) => (
+												<DoctorPageDirectionsItem key={index}>
+													{direction.name}
+												</DoctorPageDirectionsItem>
+											)
+										)}
+									</DoctorPageDirections>
+								</DoctorPageBlockInner>
 							</DoctorPageBlock>
 						)}
 

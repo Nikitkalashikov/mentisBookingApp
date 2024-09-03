@@ -4,6 +4,7 @@ import { Button } from "../../components/Button"
 import { Tag } from "../../components/Tag"
 import { Body } from "../../components/Body"
 import { Gallery } from "../../components/Gallery"
+import Wave1 from "../../assets/images/wave-1.svg"
 
 export const DoctorPageBody = styled(Body)`
 	padding-bottom: 80px;
@@ -29,6 +30,12 @@ export const DoctorPageThumbnail = styled.div`
 	}
 `
 
+export const DoctorPageWave = styled.div`
+	position: absolute;
+	top: 0;
+	right: 0;
+`
+
 export const DoctorPageButton = styled(Button)`
 	position: absolute;
 	bottom: 16px;
@@ -44,11 +51,29 @@ export const DoctorPageCategories = styled.p`
 	color: var(--focus-color);
 `
 
+export const DoctorPageBlockInner = styled.div`
+	position: relative;
+	z-index: 1;
+`
 export const DoctorPageBlock = styled.div`
+	position: relative;
 	padding: 16px;
 	border-radius: 24px;
 	background-color: var(--white-color);
 	box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+
+	&.wave1 {
+		&:after {
+			position: absolute;
+			right: 0;
+			top: 0;
+			content: "";
+			width: 130%;
+			height: 180%;
+			background-image: url(${Wave1});
+		}
+	}
 
 	&.focus {
 		background-color: var(--primary-color);
