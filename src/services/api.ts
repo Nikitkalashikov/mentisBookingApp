@@ -2,6 +2,7 @@ import axios from "axios"
 
 const DOCTORS_POINT = import.meta.env.MENTIS_DOCTORS_URL
 const TOKEN_URL = import.meta.env.MENTIS_TOKEN_URL
+const SEND_EMAIL_URL = import.meta.env.MENTIS_SEND_EMAIL_URL
 
 export const getToken = async (
 	username: string,
@@ -28,6 +29,27 @@ export const getDoctors = async (token: string) => {
 		return response.data
 	} catch {
 		throw new Error("Ошибка при получении списка докторов")
+	}
+}
+
+export const sendEmail = async (
+	token: string,
+	emailData: { subject: string; fio: string; tel: string }
+) => {
+	try {
+		const formData = new FormData()
+		formData.append("subject", emailData.subject)
+		formData.append("fio", emailData.fio)
+		formData.append("tel", emailData.tel)
+
+		const response = await axios.post(SEND_EMAIL_URL, formData, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		})
+		return response.data
+	} catch {
+		throw new Error("Ошибка при отправке email")
 	}
 }
 

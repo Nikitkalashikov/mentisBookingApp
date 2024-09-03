@@ -14,12 +14,15 @@
     "@emotion/styled": "^11.13.0",
     "@fancyapps/ui": "^5.0.36",
     "@mui/material": "^6.0.2",
+    "@react-input/mask": "^1.2.5",
+    "add": "^2.0.6",
     "axios": "^1.7.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1",
     "styled-components": "^6.1.13",
-    "swiper": "^11.1.12"
+    "swiper": "^11.1.12",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
