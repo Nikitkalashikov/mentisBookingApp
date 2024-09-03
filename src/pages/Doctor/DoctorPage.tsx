@@ -19,6 +19,7 @@ import { getDoctorByID, getToken } from "../../services/api"
 import ArrowIcon from "../../assets/icons/Arrow"
 import { Container } from "../../components/Container"
 import { IDoctorCard } from "../../components/Doctor"
+import { Skeleton } from "@mui/material"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -101,73 +102,105 @@ function DoctorPage() {
 	return (
 		<DoctorPageBody>
 			<Container>
-				{!doctor ? (
-					<p>Loading</p>
-				) : (
-					<>
-						<DoctorPageThumbnail>
-							<img src={doctor.thumbnail_url} alt={doctor.fio} />
-							<DoctorPageButtonBooking desc={`Доктор: ${doctor.fio}`}>
-								Записаться
-							</DoctorPageButtonBooking>
-						</DoctorPageThumbnail>
+				<DoctorPageThumbnail>
+					{doctor.thumbnail_url ? (
+						<img src={doctor.thumbnail_url} alt={doctor.fio} />
+					) : (
+						<Skeleton variant="rounded" width="100%" height={460} />
+					)}
+					<DoctorPageButtonBooking desc={`Доктор: ${doctor.fio}`}>
+						Записаться
+					</DoctorPageButtonBooking>
+				</DoctorPageThumbnail>
 
-						<DoctorPageBlock className="focus">
-							<DoctorPageTitle>{doctor.fio}</DoctorPageTitle>
-							{doctor.doctor_categories && (
-								<DoctorPageCategories>
-									{doctor.doctor_categories
-										.map((category: { name: string }) => category.name)
-										.join(", ")}
-								</DoctorPageCategories>
-							)}
+				<DoctorPageBlock className="focus">
+					<DoctorPageTitle>
+						{doctor.fio ? (
+							doctor.fio
+						) : (
+							<Skeleton variant="text" width="100%" height={46} />
+						)}
+					</DoctorPageTitle>
+					{doctor.doctor_categories && (
+						<DoctorPageCategories>
+							{doctor.doctor_categories
+								.map((category: { name: string }) => category.name)
+								.join(", ")}
+						</DoctorPageCategories>
+					)}
+				</DoctorPageBlock>
+
+				{doctor.directions ? (
+					doctor.directions && (
+						<DoctorPageBlock className="wave1">
+							<DoctorPageBlockInner>
+								<DoctorPageBlockTitle>
+									Работает с запросами:
+								</DoctorPageBlockTitle>
+								<DoctorPageDirections>
+									{doctor.directions.map(
+										(direction: { name: string }, index: number) => (
+											<DoctorPageDirectionsItem key={index}>
+												{direction.name}
+											</DoctorPageDirectionsItem>
+										)
+									)}
+								</DoctorPageDirections>
+							</DoctorPageBlockInner>
 						</DoctorPageBlock>
-
-						{doctor.directions && (
-							<DoctorPageBlock className="wave1">
-								<DoctorPageBlockInner>
-									<DoctorPageBlockTitle>
-										Работает с запросами:
-									</DoctorPageBlockTitle>
-									<DoctorPageDirections>
-										{doctor.directions.map(
-											(direction: { name: string }, index: number) => (
-												<DoctorPageDirectionsItem key={index}>
-													{direction.name}
-												</DoctorPageDirectionsItem>
-											)
-										)}
-									</DoctorPageDirections>
-								</DoctorPageBlockInner>
-							</DoctorPageBlock>
-						)}
-
-						{doctor.education.text && (
-							<DoctorPageBlock>
-								<DoctorPageBlockTitle>Образование:</DoctorPageBlockTitle>
-								<DoctorPageBlockContent
-									dangerouslySetInnerHTML={{ __html: doctor.education.text }}
-								/>
-							</DoctorPageBlock>
-						)}
-
-						{doctor.sertificates && (
-							<DoctorPageGallery
-								galleryId="sertificates"
-								gallery={doctor.sertificates.map(
-									(item: { url: string; alt: string }) => ({
-										url: item.url,
-										alt: item.alt,
-									})
-								)}
-							/>
-						)}
-
-						<DoctorPageBackLink to={"/"}>
-							<ArrowIcon /> К списку врачей
-						</DoctorPageBackLink>
-					</>
+					)
+				) : (
+					<DoctorPageBlock className="wave1">
+						<Skeleton variant="text" width="100%" height={40} />
+						<Skeleton variant="text" width="100%" height={40} />
+						<Skeleton variant="text" width="100%" height={40} />
+						<Skeleton variant="text" width="100%" height={40} />
+					</DoctorPageBlock>
 				)}
+
+				{doctor.education.text ? (
+					doctor.education.text && (
+						<DoctorPageBlock>
+							<DoctorPageBlockTitle>Образование:</DoctorPageBlockTitle>
+							<DoctorPageBlockContent
+								dangerouslySetInnerHTML={{ __html: doctor.education.text }}
+							/>
+						</DoctorPageBlock>
+					)
+				) : (
+					<DoctorPageBlock>
+						<Skeleton variant="text" width="100%" height={40} />
+						<Skeleton variant="text" width="100%" height={40} />
+						<Skeleton variant="text" width="100%" height={40} />
+						<Skeleton variant="text" width="100%" height={40} />
+						<Skeleton variant="text" width="100%" height={40} />
+						<Skeleton variant="text" width="100%" height={40} />
+						<Skeleton variant="text" width="100%" height={40} />
+						<Skeleton variant="text" width="100%" height={40} />
+						<Skeleton variant="text" width="100%" height={40} />
+						<Skeleton variant="text" width="100%" height={40} />
+					</DoctorPageBlock>
+				)}
+
+				{doctor.sertificates ? (
+					doctor.sertificates && (
+						<DoctorPageGallery
+							galleryId="sertificates"
+							gallery={doctor.sertificates.map(
+								(item: { url: string; alt: string }) => ({
+									url: item.url,
+									alt: item.alt,
+								})
+							)}
+						/>
+					)
+				) : (
+					<Skeleton variant="rounded" width="100%" height={160} />
+				)}
+
+				<DoctorPageBackLink to={"/"}>
+					<ArrowIcon /> К списку врачей
+				</DoctorPageBackLink>
 			</Container>
 		</DoctorPageBody>
 	)
