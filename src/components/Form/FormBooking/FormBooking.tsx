@@ -1,26 +1,38 @@
-import { useState } from "react"
 import { Input } from "../../Input"
 import { Form } from "../Form"
 import { FormButton, FormRow, FormTitle, FormDesc, FormHead } from "../styled"
-import { IFormBooking } from "./type"
+import { IFormBooking, IFormInput } from "./type"
+import { useForm, SubmitHandler } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as Yup from "yup"
+
 import { getToken, sendEmail } from "../../../services/api"
+import { useState } from "react"
+import { FormMessage } from "./styled"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
 
+const schema = Yup.object().shape({
+	name: Yup.string().required("Имя обязательно"),
+	tel: Yup.string().required("Телефон обязателен"),
+})
+
 function FormBooking({ desc }: IFormBooking) {
-	const [name, setName] = useState("")
-	const [tel, setTel] = useState("")
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		reset,
+	} = useForm<IFormInput>({
+		resolver: yupResolver(schema),
+	})
 
-	const formReset = () => {
-		setName("")
-		setTel("")
-	}
+	const [isMessage, setMessage] = useState(false)
+	const [response, setResponse] = useState("")
 
-	const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault()
-
-		if (!name || !tel) {
+	const onSubmit: SubmitHandler<IFormInput> = async data => {
+		if (!data.name || !data.tel) {
 			console.error("Поля не могут быть пустыми")
 			return
 		}
@@ -30,12 +42,14 @@ function FormBooking({ desc }: IFormBooking) {
 
 			const response = await sendEmail(token, {
 				subject: "Новая заявка из Telegram приложения",
-				fio: name,
-				tel: tel,
+				fio: data.name,
+				tel: data.tel,
 			})
 
 			if (response.status === true) {
-				formReset()
+				reset()
+				setMessage(true)
+				setResponse(response.message)
 				console.log("Ответ на заявку:", response.message)
 			}
 		} catch (error) {
@@ -44,34 +58,28 @@ function FormBooking({ desc }: IFormBooking) {
 	}
 
 	return (
-		<Form onSubmit={handleFormSubmit}>
+		<Form onSubmit={handleSubmit(onSubmit)}>
 			<FormHead>
 				<FormTitle>Записаться на прием</FormTitle>
 				{desc && <FormDesc>{desc}</FormDesc>}
 			</FormHead>
 			<FormRow>
 				<Input
-					type="text"
-					name="fio"
-					onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-						setName(e.target.value)
-					}
-					value={name}
+					{...register("name")}
+					error={errors.name?.message}
 					placeholder="Имя"
 				/>
 			</FormRow>
 			<FormRow>
 				<Input
 					type="tel"
-					name="tel"
-					onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-						setTel(e.target.value)
-					}
-					value={tel}
+					{...register("tel")}
+					error={errors.tel?.message}
 					placeholder="Телефон"
 				/>
 			</FormRow>
 			<FormButton>Отправить</FormButton>
+			{isMessage && <FormMessage>{response}</FormMessage>}
 		</Form>
 	)
 }

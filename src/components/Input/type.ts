@@ -1,7 +1,6 @@
 interface IInput {
-	type: string
-	name: string
-	value?: string
+	type?: string
+	error?: string
 	placeholder?: string
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }

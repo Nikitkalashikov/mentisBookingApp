@@ -11,9 +11,14 @@ export const InputField = styled.input`
 	line-height: 26px;
 	border-radius: 8px;
 	border: 1px solid var(--gray-dark-color);
+
+	&:focus {
+		outline: none;
+	}
 `
 
 export const InputError = styled.span`
-	font-size: 16px;
-	line-height: 24px;
+	font-size: 14px;
+	line-height: 18px;
+	color: var(--error-color);
 `

@@ -2,4 +2,9 @@ interface IFormBooking {
 	desc?: string
 }
 
-export type { IFormBooking }
+interface IFormInput {
+	name: string
+	tel: string
+}
+
+export type { IFormBooking, IFormInput }
