@@ -4,7 +4,6 @@ import { ButtonBooking } from "../../Button/ButtonBooking"
 
 export const DoctorCardWrapper = styled.div`
 	width: 100%;
-	max-width: 375px;
 	display: flex;
 	flex-direction: column;
 	background-color: var(--white-color);
@@ -112,7 +111,7 @@ export const DoctorCardCategories = styled.p`
 	margin-top: 8px;
 	font-size: 16px;
 	line-height: 24px;
-	color: var(--focus-color);
+	color: var(--secondary-color);
 `
 
 export const DoctorCardBody = styled.div`

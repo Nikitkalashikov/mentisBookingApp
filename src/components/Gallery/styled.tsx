@@ -11,10 +11,10 @@ export const GallerySlide = styled(SwiperSlide)`
 	overflow: hidden;
 
 	img {
-		width: auto;
+		width: 100%;
 		height: 100%;
 		cursor: pointer;
 		border-radius: 12px;
-		object-fit: contain;
+		object-fit: cover;
 	}
 `
