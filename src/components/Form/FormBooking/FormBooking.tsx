@@ -1,54 +1,41 @@
-import { Input } from "../../Input"
 import { Form } from "../Form"
-import { FormButton, FormRow, FormTitle, FormDesc, FormHead } from "../styled"
-import { IFormBooking, IFormInput } from "./type"
-import { useForm, SubmitHandler } from "react-hook-form"
-import { yupResolver } from "@hookform/resolvers/yup"
-import * as Yup from "yup"
+import {
+	FormButton,
+	FormTitle,
+	FormDesc,
+	FormHead,
+	FormMessage,
+} from "../styled"
+import { IFormBooking } from "./type"
+import { InputMask, type MaskEvent } from "@react-input/mask"
+import { validationSchema } from "../../../utils/validationSchema"
 
 import { getToken, sendEmail } from "../../../services/api"
 import { useState } from "react"
-import { FormMessage } from "./styled"
+import { FormInput } from "../FormIpnut"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
 
-const schema = Yup.object().shape({
-	name: Yup.string().required("Имя обязательно"),
-	tel: Yup.string().required("Телефон обязателен"),
-})
-
 function FormBooking({ desc }: IFormBooking) {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		reset,
-	} = useForm<IFormInput>({
-		resolver: yupResolver(schema),
-	})
+	const [formData, setFormData] = useState({ name: "", tel: "" })
+	const [errors, setErrors] = useState({ name: "", tel: "" })
+	const [isSubmitted, setIsSubmitted] = useState(false)
+	const [response, setResponse] = useState(false)
 
-	const [isMessage, setMessage] = useState(false)
-	const [response, setResponse] = useState("")
-
-	const onSubmit: SubmitHandler<IFormInput> = async data => {
-		if (!data.name || !data.tel) {
-			console.error("Поля не могут быть пустыми")
-			return
-		}
-
+	const sendMessage = async () => {
 		try {
 			const token = await getToken(USERNAME, PASSWORD)
 
 			const response = await sendEmail(token, {
 				subject: "Новая заявка из Telegram приложения",
-				fio: data.name,
-				tel: data.tel,
+				fio: formData.name,
+				tel: formData.tel,
 			})
 
 			if (response.status === true) {
-				reset()
-				setMessage(true)
+				setFormData({ name: "", tel: "" })
+				setIsSubmitted(true)
 				setResponse(response.message)
 				console.log("Ответ на заявку:", response.message)
 			}
@@ -57,29 +44,63 @@ function FormBooking({ desc }: IFormBooking) {
 		}
 	}
 
+	const handleChange = (event: MaskEvent) => {
+		const { name, value } = event.target
+
+		setFormData({
+			...formData,
+			[name]: value,
+		})
+	}
+
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault()
+
+		try {
+			setErrors({ name: "", tel: "" })
+
+			await validationSchema.validate(formData, { abortEarly: false })
+
+			sendMessage()
+		} catch (err: any) {
+			const newErrors: any = {}
+
+			if (err.inner) {
+				err.inner.forEach((validationError: any) => {
+					newErrors[validationError.path] = validationError.message
+				})
+			}
+
+			setErrors(newErrors)
+		}
+	}
+
 	return (
-		<Form onSubmit={handleSubmit(onSubmit)}>
+		<Form onSubmit={handleSubmit}>
 			<FormHead>
 				<FormTitle>Записаться на прием</FormTitle>
 				{desc && <FormDesc>{desc}</FormDesc>}
 			</FormHead>
-			<FormRow>
-				<Input
-					{...register("name")}
-					error={errors.name?.message}
-					placeholder="Имя"
-				/>
-			</FormRow>
-			<FormRow>
-				<Input
-					type="tel"
-					{...register("tel")}
-					error={errors.tel?.message}
-					placeholder="Телефон"
-				/>
-			</FormRow>
+			<FormInput
+				type="text"
+				placeholder="Имя"
+				name="name"
+				error={errors.name}
+				// onChange={handleChange}
+			/>
+
+			<InputMask
+				component={FormInput}
+				mask="+7 (___) ___-__-__"
+				replacement={{ _: /\d/ }}
+				name="tel"
+				type="tel"
+				showMask
+				error={errors.tel}
+				onMask={handleChange}
+			/>
 			<FormButton>Отправить</FormButton>
-			{isMessage && <FormMessage>{response}</FormMessage>}
+			{isSubmitted && <FormMessage>{response}</FormMessage>}
 		</Form>
 	)
 }

@@ -26,7 +26,7 @@ function DoctorCard({
 	return (
 		<DoctorCardWrapper {...props}>
 			<DoctorCardThumbnail to={`doctor/${id}`}>
-				<img src={thumbnail_url} alt={fio} />
+				{thumbnail_url && <img src={thumbnail_url} alt={fio} />}
 
 				<DoctorCardLink>
 					Подробнее

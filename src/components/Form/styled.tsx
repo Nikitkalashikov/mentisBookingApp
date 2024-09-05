@@ -6,14 +6,6 @@ export const FormHtml = styled.form`
 	flex-direction: column;
 `
 
-export const FormRow = styled.div`
-	margin-bottom: 16px;
-
-	&:last-of-type {
-		margin-bottom: 0;
-	}
-`
-
 export const FormHead = styled.div`
 	margin-bottom: 24px;
 `
@@ -43,4 +35,11 @@ export const FormContainer = styled.div`
 	padding: 24px;
 	border-radius: 24px;
 	background-color: var(--white-color);
+`
+
+export const FormMessage = styled.p`
+	margin-top: 24px;
+	text-align: center;
+	font-size: 16px;
+	line-height: 24px;
 `

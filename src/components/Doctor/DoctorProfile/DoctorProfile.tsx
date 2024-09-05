@@ -1,32 +1,32 @@
 import { useEffect, useState } from "react"
-import { getDoctorByID, getToken } from "../../services/api"
+import { getDoctorByID, getToken } from "../../../services/api"
 import {
-	UserBlock,
-	UserBlockContent,
-	UserBlockInner,
-	UserButtonBooking,
-	UserCategory,
-	UserDirections,
-	UserDirectionsItem,
-	UserGallery,
-	UserThumbnail,
-	UserTitle,
-	UserName,
-	UserWrapper,
-	UserPrice,
-	UserPrices,
-	UserList,
-	UserExperience,
-	UserGalleryWrapper,
+	DoctorProfileBlock,
+	DoctorProfileBlockContent,
+	DoctorProfileBlockInner,
+	DoctorProfileButtonBooking,
+	DoctorProfileCategory,
+	DoctorProfileDirections,
+	DoctorProfileDirectionsItem,
+	DoctorProfileGallery,
+	DoctorProfileThumbnail,
+	DoctorProfileTitle,
+	DoctorProfileName,
+	DoctorProfileWrapper,
+	DoctorProfilePrice,
+	DoctorProfilePrices,
+	DoctorProfileList,
+	DoctorProfileExperience,
+	DoctorProfileGalleryWrapper,
 } from "./styled"
-import { IDoctorCard } from "../../components/Doctor"
+import { IDoctorCard } from "../DoctorCard"
 import { Skeleton } from "@mui/material"
-import { IUser } from "./type"
+import { IDoctorProfile } from "./type"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
 
-function User({ id }: IUser) {
+function DoctorProfile({ id }: IDoctorProfile) {
 	const [token, setToken] = useState<string | null>(null)
 	const [doctor, setDoctor] = useState<IDoctorCard>({
 		id: "",
@@ -102,88 +102,90 @@ function User({ id }: IUser) {
 
 	console.log(doctor)
 	return (
-		<UserWrapper>
-			<UserThumbnail>
+		<DoctorProfileWrapper>
+			<DoctorProfileThumbnail>
 				{doctor.thumbnail_url ? (
 					<img src={doctor.thumbnail_url} alt={doctor.fio} />
 				) : (
 					<Skeleton variant="rounded" width="100%" height={460} />
 				)}
-			</UserThumbnail>
+			</DoctorProfileThumbnail>
 
-			<UserBlock className="focus info">
-				<UserName>
+			<DoctorProfileBlock className="focus info">
+				<DoctorProfileName>
 					{doctor.fio ? (
 						doctor.fio
 					) : (
 						<Skeleton variant="text" width="100%" height={68} />
 					)}
-				</UserName>
+				</DoctorProfileName>
 				{(doctor.doctor_categories || doctor.experience) && (
-					<UserList>
+					<DoctorProfileList>
 						{doctor.doctor_categories &&
 							doctor.doctor_categories.map(
 								(category: { name: string }, index) => (
-									<UserCategory key={index}>
+									<DoctorProfileCategory key={index}>
 										{category.name}
 										{doctor.doctor_categories &&
 											index < doctor.doctor_categories.length - 1 &&
 											","}
-									</UserCategory>
+									</DoctorProfileCategory>
 								)
 							)}
 						{doctor.experience && (
-							<UserExperience>стаж {doctor.experience}</UserExperience>
+							<DoctorProfileExperience>
+								стаж {doctor.experience}
+							</DoctorProfileExperience>
 						)}
-					</UserList>
+					</DoctorProfileList>
 				)}
-			</UserBlock>
+			</DoctorProfileBlock>
 
 			{(doctor.first_pay.price || doctor.second_pay.price) && (
-				<UserPrices>
+				<DoctorProfilePrices>
 					{doctor.first_pay.price && (
-						<UserPrice>
+						<DoctorProfilePrice>
 							<span>Первичный прием</span>
 							{doctor.first_pay.price} ₽
-						</UserPrice>
+						</DoctorProfilePrice>
 					)}
 					{doctor.second_pay.price && (
-						<UserPrice>
+						<DoctorProfilePrice>
 							<span>Повторный прием</span>
 							{doctor.second_pay.price} ₽
-						</UserPrice>
+						</DoctorProfilePrice>
 					)}
-				</UserPrices>
+				</DoctorProfilePrices>
 			)}
 
 			{doctor.directions && (
-				<UserBlock className="wave1">
-					<UserBlockInner>
-						<UserTitle>Работает с запросами:</UserTitle>
-						<UserDirections>
+				<DoctorProfileBlock className="wave1">
+					<DoctorProfileBlockInner>
+						<DoctorProfileTitle>Работает с запросами:</DoctorProfileTitle>
+						<DoctorProfileDirections>
 							{doctor.directions.map(
 								(direction: { name: string }, index: number) => (
-									<UserDirectionsItem key={index}>
+									<DoctorProfileDirectionsItem key={index}>
 										{direction.name}
-									</UserDirectionsItem>
+									</DoctorProfileDirectionsItem>
 								)
 							)}
-						</UserDirections>
-					</UserBlockInner>
-				</UserBlock>
+						</DoctorProfileDirections>
+					</DoctorProfileBlockInner>
+				</DoctorProfileBlock>
 			)}
 
 			{doctor.education.text ? (
 				doctor.education.text && (
-					<UserBlock>
-						<UserTitle>Образование:</UserTitle>
-						<UserBlockContent
+					<DoctorProfileBlock>
+						<DoctorProfileTitle>Образование:</DoctorProfileTitle>
+						<DoctorProfileBlockContent
 							dangerouslySetInnerHTML={{ __html: doctor.education.text }}
 						/>
-					</UserBlock>
+					</DoctorProfileBlock>
 				)
 			) : (
-				<UserBlock>
+				<DoctorProfileBlock>
 					<Skeleton variant="text" width="100%" height={40} />
 					<Skeleton variant="text" width="100%" height={40} />
 					<Skeleton variant="text" width="100%" height={40} />
@@ -194,14 +196,14 @@ function User({ id }: IUser) {
 					<Skeleton variant="text" width="100%" height={40} />
 					<Skeleton variant="text" width="100%" height={40} />
 					<Skeleton variant="text" width="100%" height={40} />
-				</UserBlock>
+				</DoctorProfileBlock>
 			)}
 
 			{doctor.sertificates ? (
 				doctor.sertificates && (
-					<UserGalleryWrapper>
-						<UserTitle>Сертификаты</UserTitle>
-						<UserGallery
+					<DoctorProfileGalleryWrapper>
+						<DoctorProfileTitle>Сертификаты</DoctorProfileTitle>
+						<DoctorProfileGallery
 							galleryId="sertificates"
 							gallery={doctor.sertificates.map(
 								(item: { url: string; alt: string }) => ({
@@ -210,7 +212,7 @@ function User({ id }: IUser) {
 								})
 							)}
 						/>
-					</UserGalleryWrapper>
+					</DoctorProfileGalleryWrapper>
 				)
 			) : (
 				<>
@@ -218,11 +220,11 @@ function User({ id }: IUser) {
 					<Skeleton variant="rounded" width="50%" height={160} />
 				</>
 			)}
-			<UserButtonBooking desc={`Доктор: ${doctor.fio}`}>
+			<DoctorProfileButtonBooking desc={`Доктор: ${doctor.fio}`}>
 				Записаться
-			</UserButtonBooking>
-		</UserWrapper>
+			</DoctorProfileButtonBooking>
+		</DoctorProfileWrapper>
 	)
 }
 
-export { User }
+export { DoctorProfile }

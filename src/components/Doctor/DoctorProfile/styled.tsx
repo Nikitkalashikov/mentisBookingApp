@@ -1,16 +1,16 @@
 import styled from "styled-components"
 
-import { Tag } from "../../components/Tag"
-import { Gallery } from "../../components/Gallery"
-import Wave1 from "../../assets/images/wave-1.svg"
-import { ButtonBooking } from "../../components/Button/ButtonBooking"
+import { Tag } from "../../Tag"
+import { Gallery } from "../../Gallery"
+import Wave1 from "../../../assets/images/wave-1.svg"
+import { ButtonBooking } from "../../Button/ButtonBooking"
 
-export const UserWrapper = styled.div`
+export const DoctorProfileWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 `
 
-export const UserThumbnail = styled.div`
+export const DoctorProfileThumbnail = styled.div`
 	position: relative;
 	margin-bottom: 24px;
 	width: 100%;
@@ -25,32 +25,32 @@ export const UserThumbnail = styled.div`
 	}
 `
 
-export const UserName = styled.p`
+export const DoctorProfileName = styled.p`
 	font-size: 26px;
 	line-height: 34px;
 	font-weight: 600;
 `
 
-export const UserTitle = styled.p`
+export const DoctorProfileTitle = styled.p`
 	font-size: 26px;
 	line-height: 34px;
 	font-weight: 500;
 `
 
-export const UserWave = styled.div`
+export const DoctorProfileWave = styled.div`
 	position: absolute;
 	top: 0;
 	right: 0;
 `
 
-export const UserPrices = styled.div`
+export const DoctorProfilePrices = styled.div`
 	margin: 24px 0 32px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 `
 
-export const UserPrice = styled.p`
+export const DoctorProfilePrice = styled.p`
 	padding: 0 16px;
 	display: flex;
 	flex-direction: column;
@@ -67,11 +67,13 @@ export const UserPrice = styled.p`
 	}
 `
 
-export const UserButtonBooking = styled(ButtonBooking)`
+export const DoctorProfileButtonBooking = styled(ButtonBooking)`
 	position: fixed;
 	bottom: 16px;
 	left: 16px;
 	right: 16px;
+	max-width: 375px;
+	margin: auto;
 	padding-top: 12px;
 	padding-bottom: 12px;
 	font-size: 18px;
@@ -81,7 +83,7 @@ export const UserButtonBooking = styled(ButtonBooking)`
 	background-color: var(--primary-hover-color);
 `
 
-export const UserCategory = styled.span`
+export const DoctorProfileCategory = styled.span`
 	padding-right: 4px;
 	font-size: 16px;
 	line-height: 24px;
@@ -92,12 +94,12 @@ export const UserCategory = styled.span`
 	}
 `
 
-export const UserBlockInner = styled.div`
+export const DoctorProfileBlockInner = styled.div`
 	position: relative;
 	z-index: 1;
 `
 
-export const UserExperience = styled.span`
+export const DoctorProfileExperience = styled.span`
 	position: relative;
 	font-size: 16px;
 	line-height: 24px;
@@ -116,7 +118,7 @@ export const UserExperience = styled.span`
 	}
 `
 
-export const UserBlock = styled.div`
+export const DoctorProfileBlock = styled.div`
 	position: relative;
 	padding: 16px;
 	border-radius: 24px;
@@ -124,7 +126,7 @@ export const UserBlock = styled.div`
 	box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 	overflow: hidden;
 
-	${UserTitle} {
+	${DoctorProfileTitle} {
 		margin-bottom: 24px;
 	}
 
@@ -147,7 +149,7 @@ export const UserBlock = styled.div`
 	&.focus {
 		background-color: var(--primary-color);
 
-		${UserName}, ${UserCategory}, ${UserExperience} {
+		${DoctorProfileName}, ${DoctorProfileCategory}, ${DoctorProfileExperience} {
 			color: var(--white-color);
 		}
 	}
@@ -157,30 +159,30 @@ export const UserBlock = styled.div`
 	}
 `
 
-export const UserList = styled.div`
+export const DoctorProfileList = styled.div`
 	margin-top: 12px;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 `
 
-export const UserGalleryWrapper = styled.div`
+export const DoctorProfileGalleryWrapper = styled.div`
 	margin-top: 24px;
 `
 
-export const UserGallery = styled(Gallery)`
+export const DoctorProfileGallery = styled(Gallery)`
 	width: 100%;
 	margin-top: 24px;
 `
 
-export const UserBlockTitle = styled.p`
+export const DoctorProfileBlockTitle = styled.p`
 	font-size: 20px;
 	line-height: 28px;
 	font-weight: 500;
 	margin-bottom: 24px;
 `
 
-export const UserBlockContent = styled.div`
+export const DoctorProfileBlockContent = styled.div`
 	font-size: 16px;
 	line-height: 24px;
 
@@ -193,14 +195,14 @@ export const UserBlockContent = styled.div`
 	}
 `
 
-export const UserDirections = styled.div`
+export const DoctorProfileDirections = styled.div`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	margin: -4px;
 `
 
-export const UserDirectionsItem = styled(Tag)`
+export const DoctorProfileDirectionsItem = styled(Tag)`
 	display: block;
 	margin: 4px;
 `
