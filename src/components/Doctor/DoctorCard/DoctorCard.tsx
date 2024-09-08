@@ -35,7 +35,7 @@ function DoctorCard({
 				<DoctorCardTitle>{fio}</DoctorCardTitle>
 				{(doctor_categories || experience) && (
 					<DoctorCardInfo
-						categories={doctor_categories ?? ""}
+						categories={doctor_categories ?? [{ name: "", slug: "" }]}
 						experience={experience ?? ""}
 					/>
 				)}

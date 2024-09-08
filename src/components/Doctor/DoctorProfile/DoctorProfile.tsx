@@ -52,7 +52,7 @@ function DoctorProfile({ id }: IDoctorProfile) {
 				{doctor.fio && <DoctorProfileName>{doctor.fio}</DoctorProfileName>}
 				{(doctor.doctor_categories || doctor.experience) && (
 					<DoctorProfileInfo
-						categories={doctor.doctor_categories ?? ""}
+						categories={doctor.doctor_categories ?? [{ name: "", slug: "" }]}
 						experience={doctor.experience ?? ""}
 					/>
 				)}

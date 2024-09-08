@@ -1,5 +1,8 @@
 interface IDoctorInfo {
-	categories: []
+	categories: {
+		name: string
+		slug: string
+	}[]
 	experience: string
 }
 
