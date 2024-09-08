@@ -1,4 +1,6 @@
 import ArrowIcon from "../../../assets/icons/Arrow"
+import { Price } from "../../Price"
+import { Prices } from "../../Price/Prices"
 import {
 	DoctorCardBody,
 	DoctorCardButton,
@@ -6,10 +8,7 @@ import {
 	DoctorCardWrapper,
 	DoctorCardThumbnail,
 	DoctorCardTitle,
-	DoctorCardCategories,
-	DoctorCardPaymentItem,
-	DoctorCardPayment,
-	DoctorCardExperience,
+	DoctorCardInfo,
 } from "./styled"
 import { IDoctorCard } from "./type"
 
@@ -27,7 +26,6 @@ function DoctorCard({
 		<DoctorCardWrapper {...props}>
 			<DoctorCardThumbnail to={`doctor/${id}`}>
 				{thumbnail_url && <img src={thumbnail_url} alt={fio} />}
-
 				<DoctorCardLink>
 					Подробнее
 					<ArrowIcon />
@@ -35,29 +33,21 @@ function DoctorCard({
 			</DoctorCardThumbnail>
 			<DoctorCardBody>
 				<DoctorCardTitle>{fio}</DoctorCardTitle>
-				{doctor_categories && (
-					<DoctorCardCategories>
-						{doctor_categories.map(category => category.name).join(", ")}
-					</DoctorCardCategories>
-				)}
-				{experience && (
-					<DoctorCardExperience>{experience}</DoctorCardExperience>
+				{(doctor_categories || experience) && (
+					<DoctorCardInfo
+						categories={doctor_categories ?? ""}
+						experience={experience ?? ""}
+					/>
 				)}
 				{(first_pay || second_pay) && (
-					<DoctorCardPayment>
+					<Prices>
 						{first_pay && (
-							<DoctorCardPaymentItem>
-								<span>Первичный прием:</span>
-								<p>{first_pay.price} ₽</p>
-							</DoctorCardPaymentItem>
+							<Price label="Первичный прием:" price={first_pay.price} />
 						)}
 						{second_pay && (
-							<DoctorCardPaymentItem>
-								<span>Повторный прием:</span>
-								<p>{second_pay.price} ₽</p>
-							</DoctorCardPaymentItem>
+							<Price label="Повторный прием:" price={second_pay.price} />
 						)}
-					</DoctorCardPayment>
+					</Prices>
 				)}
 				<DoctorCardButton desc={`Доктор: ${fio}`}>Записаться</DoctorCardButton>
 			</DoctorCardBody>

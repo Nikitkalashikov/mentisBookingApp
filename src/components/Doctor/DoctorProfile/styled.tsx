@@ -4,6 +4,7 @@ import { Tag } from "../../Tag"
 import { Gallery } from "../../Gallery"
 import Wave1 from "../../../assets/images/wave-1.svg"
 import { ButtonBooking } from "../../Button/ButtonBooking"
+import { DoctorInfo } from "../DoctorInfo"
 
 export const DoctorProfileWrapper = styled.div`
 	display: flex;
@@ -25,6 +26,10 @@ export const DoctorProfileThumbnail = styled.div`
 	}
 `
 
+export const DoctorProfileInfo = styled(DoctorInfo)`
+	color: var(--white-color);
+`
+
 export const DoctorProfileName = styled.p`
 	font-size: 26px;
 	line-height: 34px;
@@ -43,30 +48,6 @@ export const DoctorProfileWave = styled.div`
 	right: 0;
 `
 
-export const DoctorProfilePrices = styled.div`
-	margin: 24px 0 32px;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-`
-
-export const DoctorProfilePrice = styled.p`
-	padding: 0 16px;
-	display: flex;
-	flex-direction: column;
-	font-size: 28px;
-	line-height: 36px;
-	font-weight: 600;
-	color: var(--text-color);
-
-	span {
-		font-size: 14px;
-		line-height: 20px;
-		font-weight: 500;
-		color: var(--gray-dark-color);
-	}
-`
-
 export const DoctorProfileButtonBooking = styled(ButtonBooking)`
 	position: fixed;
 	bottom: 16px;
@@ -83,39 +64,9 @@ export const DoctorProfileButtonBooking = styled(ButtonBooking)`
 	background-color: var(--primary-hover-color);
 `
 
-export const DoctorProfileCategory = styled.span`
-	padding-right: 4px;
-	font-size: 16px;
-	line-height: 24px;
-	color: var(--secondary-color);
-
-	&:last-of-type {
-		padding-right: 0;
-	}
-`
-
 export const DoctorProfileBlockInner = styled.div`
 	position: relative;
 	z-index: 1;
-`
-
-export const DoctorProfileExperience = styled.span`
-	position: relative;
-	font-size: 16px;
-	line-height: 24px;
-	padding-left: 18px;
-
-	&:before {
-		content: "";
-		position: absolute;
-		display: block;
-		width: 5px;
-		height: 5px;
-		left: 6px;
-		top: 10px;
-		border-radius: 50%;
-		background-color: var(--white-color);
-	}
 `
 
 export const DoctorProfileBlock = styled.div`
@@ -149,7 +100,7 @@ export const DoctorProfileBlock = styled.div`
 	&.focus {
 		background-color: var(--primary-color);
 
-		${DoctorProfileName}, ${DoctorProfileCategory}, ${DoctorProfileExperience} {
+		${DoctorProfileName} {
 			color: var(--white-color);
 		}
 	}
@@ -157,13 +108,6 @@ export const DoctorProfileBlock = styled.div`
 	& + & {
 		margin-top: 24px;
 	}
-`
-
-export const DoctorProfileList = styled.div`
-	margin-top: 12px;
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
 `
 
 export const DoctorProfileGalleryWrapper = styled.div`

@@ -3,7 +3,6 @@ import {
 	DoctorProfileBlockContent,
 	DoctorProfileBlockInner,
 	DoctorProfileButtonBooking,
-	DoctorProfileCategory,
 	DoctorProfileDirections,
 	DoctorProfileDirectionsItem,
 	DoctorProfileGallery,
@@ -11,16 +10,15 @@ import {
 	DoctorProfileTitle,
 	DoctorProfileName,
 	DoctorProfileWrapper,
-	DoctorProfilePrice,
-	DoctorProfilePrices,
-	DoctorProfileList,
-	DoctorProfileExperience,
 	DoctorProfileGalleryWrapper,
+	DoctorProfileInfo,
 } from "./styled"
 
 import { IDoctorProfile } from "./type"
 import { useDoctorByID } from "../../../hooks/useDoctorByID"
 import { DoctorProfileSkeleton } from "./DoctorProfileSkeleton"
+import { Price } from "../../Price"
+import { Prices } from "../../Price/Prices"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -53,42 +51,22 @@ function DoctorProfile({ id }: IDoctorProfile) {
 			<DoctorProfileBlock className="focus info">
 				{doctor.fio && <DoctorProfileName>{doctor.fio}</DoctorProfileName>}
 				{(doctor.doctor_categories || doctor.experience) && (
-					<DoctorProfileList>
-						{doctor.doctor_categories &&
-							doctor.doctor_categories.map(
-								(category: { name: string }, index: number) => (
-									<DoctorProfileCategory key={index}>
-										{category.name}
-										{doctor.doctor_categories &&
-											index < doctor.doctor_categories.length - 1 &&
-											","}
-									</DoctorProfileCategory>
-								)
-							)}
-						{doctor.experience && (
-							<DoctorProfileExperience>
-								стаж {doctor.experience}
-							</DoctorProfileExperience>
-						)}
-					</DoctorProfileList>
+					<DoctorProfileInfo
+						categories={doctor.doctor_categories ?? ""}
+						experience={doctor.experience ?? ""}
+					/>
 				)}
 			</DoctorProfileBlock>
 
 			{(doctor.first_pay.price || doctor.second_pay.price) && (
-				<DoctorProfilePrices>
+				<Prices>
 					{doctor.first_pay.price && (
-						<DoctorProfilePrice>
-							<span>Первичный прием</span>
-							{doctor.first_pay.price} ₽
-						</DoctorProfilePrice>
+						<Price label="Первичный прием" price={doctor.first_pay.price} />
 					)}
 					{doctor.second_pay.price && (
-						<DoctorProfilePrice>
-							<span>Повторный прием</span>
-							{doctor.second_pay.price} ₽
-						</DoctorProfilePrice>
+						<Price label="Повторный прием" price={doctor.second_pay.price} />
 					)}
-				</DoctorProfilePrices>
+				</Prices>
 			)}
 
 			{doctor.directions && (
