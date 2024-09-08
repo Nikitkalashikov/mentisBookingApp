@@ -1,5 +1,5 @@
 interface IDoctorProfile {
-	id: string | undefined
+	id: string
 }
 
 export type { IDoctorProfile }

@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react"
-import { getDoctorByID, getToken } from "../../../services/api"
 import {
 	DoctorProfileBlock,
 	DoctorProfileBlockContent,
@@ -19,111 +17,46 @@ import {
 	DoctorProfileExperience,
 	DoctorProfileGalleryWrapper,
 } from "./styled"
-import { IDoctorCard } from "../DoctorCard"
-import { Skeleton } from "@mui/material"
+
 import { IDoctorProfile } from "./type"
+import { useDoctorByID } from "../../../hooks/useDoctorByID"
+import { DoctorProfileSkeleton } from "./DoctorProfileSkeleton"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
 
 function DoctorProfile({ id }: IDoctorProfile) {
-	const [token, setToken] = useState<string | null>(null)
-	const [doctor, setDoctor] = useState<IDoctorCard>({
-		id: "",
-		fio: "",
-		thumbnail_url: "",
-		first_pay: {
-			price: "",
-			price_sale: "",
-		},
-		second_pay: {
-			price: "",
-			price_sale: "",
-		},
-		directions: [
-			{
-				name: "",
-				slug: "",
-			},
-		],
-		education: {
-			text: "",
-		},
-		sertificates: [
-			{
-				url: "",
-				alt: "",
-			},
-		],
-		experience: "",
-		className: "",
-	})
-	const [error, setError] = useState<string | null>(null)
+	const {
+		data: doctor,
+		isLoading,
+		isError,
+		error,
+	} = useDoctorByID(USERNAME, PASSWORD, id)
 
-	useEffect(() => {
-		const fetchToken = async () => {
-			try {
-				const token = await getToken(USERNAME, PASSWORD)
-				setToken(token)
-			} catch (err: unknown) {
-				if (err instanceof Error) {
-					setError(err.message)
-				} else {
-					setError("Неизвестная ошибка")
-				}
-			}
-		}
+	if (isError) {
+		return <div>{error.message}</div>
+	}
 
-		fetchToken()
-	}, [])
-
-	useEffect(() => {
-		const fetchDoctor = async () => {
-			if (!token) return
-			try {
-				if (!id) throw new Error("ID доктора не найден")
-				const doctor = await getDoctorByID(token, id)
-				setDoctor(doctor)
-			} catch (err: unknown) {
-				if (err instanceof Error) {
-					setError(err.message)
-				} else {
-					setError("Неизвестная ошибка")
-				}
-			}
-		}
-
-		fetchDoctor()
-	}, [token, id])
-
-	if (error) {
-		return <div>{error}</div>
+	if (isLoading || !doctor) {
+		return <DoctorProfileSkeleton />
 	}
 
 	console.log(doctor)
 	return (
 		<DoctorProfileWrapper>
-			<DoctorProfileThumbnail>
-				{doctor.thumbnail_url ? (
-					<img src={doctor.thumbnail_url} alt={doctor.fio} />
-				) : (
-					<Skeleton variant="rounded" width="100%" height={460} />
-				)}
-			</DoctorProfileThumbnail>
+			{doctor.thumbnail_url && (
+				<DoctorProfileThumbnail>
+					{<img src={doctor.thumbnail_url} alt={doctor.fio} />}
+				</DoctorProfileThumbnail>
+			)}
 
 			<DoctorProfileBlock className="focus info">
-				<DoctorProfileName>
-					{doctor.fio ? (
-						doctor.fio
-					) : (
-						<Skeleton variant="text" width="100%" height={68} />
-					)}
-				</DoctorProfileName>
+				{doctor.fio && <DoctorProfileName>{doctor.fio}</DoctorProfileName>}
 				{(doctor.doctor_categories || doctor.experience) && (
 					<DoctorProfileList>
 						{doctor.doctor_categories &&
 							doctor.doctor_categories.map(
-								(category: { name: string }, index) => (
+								(category: { name: string }, index: number) => (
 									<DoctorProfileCategory key={index}>
 										{category.name}
 										{doctor.doctor_categories &&
@@ -175,54 +108,34 @@ function DoctorProfile({ id }: IDoctorProfile) {
 				</DoctorProfileBlock>
 			)}
 
-			{doctor.education.text ? (
-				doctor.education.text && (
-					<DoctorProfileBlock>
-						<DoctorProfileTitle>Образование:</DoctorProfileTitle>
-						<DoctorProfileBlockContent
-							dangerouslySetInnerHTML={{ __html: doctor.education.text }}
-						/>
-					</DoctorProfileBlock>
-				)
-			) : (
+			{doctor.education.text && (
 				<DoctorProfileBlock>
-					<Skeleton variant="text" width="100%" height={40} />
-					<Skeleton variant="text" width="100%" height={40} />
-					<Skeleton variant="text" width="100%" height={40} />
-					<Skeleton variant="text" width="100%" height={40} />
-					<Skeleton variant="text" width="100%" height={40} />
-					<Skeleton variant="text" width="100%" height={40} />
-					<Skeleton variant="text" width="100%" height={40} />
-					<Skeleton variant="text" width="100%" height={40} />
-					<Skeleton variant="text" width="100%" height={40} />
-					<Skeleton variant="text" width="100%" height={40} />
+					<DoctorProfileTitle>Образование:</DoctorProfileTitle>
+					<DoctorProfileBlockContent
+						dangerouslySetInnerHTML={{ __html: doctor.education.text }}
+					/>
 				</DoctorProfileBlock>
 			)}
 
-			{doctor.sertificates ? (
-				doctor.sertificates && (
-					<DoctorProfileGalleryWrapper>
-						<DoctorProfileTitle>Сертификаты</DoctorProfileTitle>
-						<DoctorProfileGallery
-							galleryId="sertificates"
-							gallery={doctor.sertificates.map(
-								(item: { url: string; alt: string }) => ({
-									url: item.url,
-									alt: item.alt,
-								})
-							)}
-						/>
-					</DoctorProfileGalleryWrapper>
-				)
-			) : (
-				<>
-					<Skeleton variant="rounded" width="50%" height={160} />
-					<Skeleton variant="rounded" width="50%" height={160} />
-				</>
+			{doctor.sertificates && (
+				<DoctorProfileGalleryWrapper>
+					<DoctorProfileTitle>Сертификаты</DoctorProfileTitle>
+					<DoctorProfileGallery
+						galleryId="sertificates"
+						gallery={doctor.sertificates.map(
+							(item: { url: string; alt: string }) => ({
+								url: item.url,
+								alt: item.alt,
+							})
+						)}
+					/>
+				</DoctorProfileGalleryWrapper>
 			)}
-			<DoctorProfileButtonBooking desc={`Доктор: ${doctor.fio}`}>
-				Записаться
-			</DoctorProfileButtonBooking>
+			{doctor.fio && (
+				<DoctorProfileButtonBooking desc={`Доктор: ${doctor.fio}`}>
+					Записаться
+				</DoctorProfileButtonBooking>
+			)}
 		</DoctorProfileWrapper>
 	)
 }

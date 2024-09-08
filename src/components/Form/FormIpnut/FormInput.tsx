@@ -7,7 +7,7 @@ const FormInput = React.forwardRef<HTMLInputElement, IFormInput>(
 	({ error, ...props }, ref) => {
 		return (
 			<FormInputWrapper>
-				<Input ref={ref} {...props} />
+				<Input {...props} ref={ref} />
 				{error && <FormInputError>{error}</FormInputError>}
 			</FormInputWrapper>
 		)

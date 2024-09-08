@@ -5,7 +5,7 @@ const Input = React.forwardRef<
 	HTMLInputElement,
 	React.InputHTMLAttributes<HTMLInputElement>
 >((props, ref) => {
-	return <InputField ref={ref} {...props} />
+	return <InputField {...props} ref={ref} />
 })
 
 export { Input }
