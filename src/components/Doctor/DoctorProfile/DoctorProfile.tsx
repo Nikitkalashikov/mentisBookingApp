@@ -40,6 +40,7 @@ function DoctorProfile({ id }: IDoctorProfile) {
 	}
 
 	console.log(doctor)
+
 	return (
 		<DoctorProfileWrapper>
 			{doctor.thumbnail_url && (
