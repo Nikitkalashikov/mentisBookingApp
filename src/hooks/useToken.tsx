@@ -6,5 +6,6 @@ export const useToken = (username: string, password: string) => {
 		queryKey: ["token", username, password],
 		queryFn: () => getToken(username, password),
 		enabled: !!username && !!password,
+		retry: 1,
 	})
 }

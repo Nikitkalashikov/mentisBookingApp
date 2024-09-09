@@ -4,7 +4,7 @@ import { DoctorCardBody, DoctorCardWrapper } from "./styled"
 function DoctorCardSkeleton({ ...props }) {
 	return (
 		<DoctorCardWrapper {...props}>
-			<Skeleton variant="rounded" width="100%" height={280} />
+			<Skeleton variant="rounded" width="100%" height={380} />
 			<DoctorCardBody>
 				<Skeleton
 					variant="rounded"
@@ -17,12 +17,6 @@ function DoctorCardSkeleton({ ...props }) {
 					width="100%"
 					height={24}
 					sx={{ marginTop: "8px" }}
-				/>
-				<Skeleton
-					variant="rounded"
-					width={90}
-					height={26}
-					sx={{ marginTop: "16px" }}
 				/>
 				<Skeleton
 					variant="rounded"

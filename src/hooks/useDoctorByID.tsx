@@ -14,12 +14,13 @@ export const useDoctorByID = (
 	} = useToken(username, password)
 
 	return useQuery({
-		queryKey: ["doctor", token],
+		queryKey: ["doctor", id],
 		queryFn: () => {
 			if (!token || tokenError) throw new Error("Token is not available")
 			return getDoctorByID(token, id)
 		},
+		staleTime: 1000 * 60 * 10,
 		enabled: !!token && !tokenLoading,
-		retry: false,
+		retry: 2,
 	})
 }
