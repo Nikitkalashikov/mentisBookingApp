@@ -25,8 +25,8 @@ function ButtonBooking({ children, desc, ...props }: IButtonBooking) {
 					<Box
 						sx={{
 							position: "absolute",
-							top: 0,
-							bottom: 0,
+							top: 16,
+							bottom: "auto",
 							left: 0,
 							right: 0,
 							width: "90%",

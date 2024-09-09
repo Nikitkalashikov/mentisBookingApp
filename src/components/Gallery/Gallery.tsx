@@ -1,25 +1,34 @@
 import { GallerySlider, GallerySlide } from "./styled"
 import { IGallery } from "./type"
 import { Fancybox } from "@fancyapps/ui"
-import "swiper/swiper-bundle.css"
-import "@fancyapps/ui/dist/fancybox/fancybox.css"
 import { useEffect } from "react"
-import { Skeleton } from "@mui/material"
+import { Scrollbar } from "swiper/modules"
+
+import "@fancyapps/ui/dist/fancybox/fancybox.css"
+import "swiper/swiper-bundle.css"
 
 function Gallery({ gallery, galleryId, ...props }: IGallery) {
 	useEffect(() => {
-		Fancybox.bind("[data-fancybox]", {})
+		Fancybox.bind("[data-fancybox]", {
+			Toolbar: {
+				enabled: false,
+			},
+		})
 	}, [])
 
+	const filteredGallery = gallery.filter(gallery => gallery.url)
+
 	return (
-		<GallerySlider {...props} spaceBetween={16} slidesPerView={2}>
-			{gallery.map((image, index) => (
+		<GallerySlider
+			{...props}
+			modules={[Scrollbar]}
+			spaceBetween={16}
+			scrollbar={{ draggable: true }}
+			slidesPerView={1.5}
+		>
+			{filteredGallery.map((image, index) => (
 				<GallerySlide key={index}>
-					{image.url ? (
-						<img src={image.url} alt={image.alt} data-fancybox={galleryId} />
-					) : (
-						<Skeleton variant="rounded" width="100%" height={160} />
-					)}
+					<img src={image.url} alt={image.alt} data-fancybox={galleryId} />
 				</GallerySlide>
 			))}
 		</GallerySlider>

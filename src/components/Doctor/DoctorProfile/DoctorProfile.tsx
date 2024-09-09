@@ -39,8 +39,6 @@ function DoctorProfile({ id }: IDoctorProfile) {
 		return <DoctorProfileSkeleton />
 	}
 
-	console.log(doctor)
-
 	return (
 		<DoctorProfileWrapper>
 			{doctor.thumbnail_url && (
@@ -96,7 +94,7 @@ function DoctorProfile({ id }: IDoctorProfile) {
 				</DoctorProfileBlock>
 			)}
 
-			{doctor.sertificates && (
+			{doctor.sertificates.length > 0 && (
 				<DoctorProfileGalleryWrapper>
 					<DoctorProfileTitle>Сертификаты</DoctorProfileTitle>
 					<DoctorProfileGallery
