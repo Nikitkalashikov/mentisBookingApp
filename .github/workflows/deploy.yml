@@ -31,6 +31,7 @@ jobs:
           MENTIS_TOKEN_URL: ${{ secrets.MENTIS_TOKEN_URL }}
           MENTIS_USERNAME: ${{ secrets.MENTIS_USERNAME }}
           MENTIS_PASSWORD: ${{ secrets.MENTIS_PASSWORD }}
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         run: yarn build
 
       - name: Deploy to Beget via FTP
