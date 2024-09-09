@@ -109,7 +109,7 @@ function DoctorProfile({ id }: IDoctorProfile) {
 				</DoctorProfileGalleryWrapper>
 			)}
 			{doctor.fio && (
-				<DoctorProfileButtonBooking desc={`Доктор: ${doctor.fio}`}>
+				<DoctorProfileButtonBooking desc={doctor.fio}>
 					Записаться
 				</DoctorProfileButtonBooking>
 			)}

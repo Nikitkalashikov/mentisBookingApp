@@ -29,12 +29,14 @@ export const getDoctors = async (token: string) => {
 
 export const sendEmail = async (
 	token: string,
-	emailData: { subject: string; fio: string; tel: string }
+	emailData: { subject: string; fio: string; tel: string; message: string }
 ) => {
 	const formData = new FormData()
 	formData.append("subject", emailData.subject)
 	formData.append("fio", emailData.fio)
 	formData.append("tel", emailData.tel)
+	formData.append("message", emailData.message)
+	formData.append("url", "https://t.me/StatusMentisBot/clinic")
 
 	const response = await axios.post(SEND_EMAIL_URL, formData, {
 		headers: {

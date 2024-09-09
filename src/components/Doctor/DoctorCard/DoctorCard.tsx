@@ -49,7 +49,7 @@ function DoctorCard({
 						)}
 					</Prices>
 				)}
-				<DoctorCardButton desc={`Доктор: ${fio}`}>Записаться</DoctorCardButton>
+				<DoctorCardButton desc={fio}>Записаться</DoctorCardButton>
 			</DoctorCardBody>
 		</DoctorCardWrapper>
 	)

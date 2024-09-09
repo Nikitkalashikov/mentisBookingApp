@@ -37,8 +37,6 @@ function FormBooking({ desc }: IFormBooking) {
 	const [response, setResponse] = useState("")
 
 	const onSubmit: SubmitHandler<IFormBookingInputs> = async formData => {
-		console.log(formData)
-
 		try {
 			const token = await getToken(USERNAME, PASSWORD)
 
@@ -46,6 +44,7 @@ function FormBooking({ desc }: IFormBooking) {
 				subject: "Новая заявка из Telegram приложения",
 				fio: formData.name,
 				tel: formData.tel,
+				message: `Запись на прием к ${desc}`,
 			})
 
 			if (response.status === true) {
@@ -63,7 +62,7 @@ function FormBooking({ desc }: IFormBooking) {
 		<Form onSubmit={handleSubmit(onSubmit)}>
 			<FormHead>
 				<FormTitle>Записаться на прием</FormTitle>
-				{desc && <FormDesc>{desc}</FormDesc>}
+				{desc && <FormDesc>Доктор: {desc}</FormDesc>}
 			</FormHead>
 			<Controller
 				control={control}
@@ -73,7 +72,10 @@ function FormBooking({ desc }: IFormBooking) {
 						value: 3,
 						message: "Имя должно содержаить больше 3 символов",
 					},
-					pattern: /^[А-Яа-я]+$/i,
+					pattern: {
+						value: /^[А-Яа-я]+$/i,
+						message: "Имя должно быть написано кириллицей",
+					},
 					required: "Введите имя",
 				}}
 				render={({ field }) => (
