@@ -1,17 +1,14 @@
-import { useTelegram } from "../../hooks/useTelegram"
-import { Container } from "../Container"
+import { Label } from "../Label"
 import { Logo } from "../Logo"
-import { HeaderWrapper } from "./styled"
+import { HeaderContainer, HeaderWrapper } from "./styled"
 
 function Header() {
-	const { user } = useTelegram()
-
 	return (
 		<HeaderWrapper>
-			<Container>
+			<HeaderContainer>
 				<Logo />
-				{user && <p>Привет {user.first_name}</p>}
-			</Container>
+				<Label>Сервис записи на прием</Label>
+			</HeaderContainer>
 		</HeaderWrapper>
 	)
 }

@@ -20,6 +20,9 @@ export const getDoctors = async (token: string) => {
 		headers: {
 			Authorization: `Bearer ${token}`,
 		},
+		params: {
+			per_page: 25,
+		},
 	})
 	return response.data
 }

@@ -12,11 +12,14 @@ import { IFormBooking, IFormBookingInputs } from "./type"
 import { getToken, sendEmail } from "../../../services/api"
 import { FormInput } from "../FormIpnut"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import { useTelegram } from "../../../hooks/useTelegram"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
 
 function FormBooking({ desc }: IFormBooking) {
+	const { user } = useTelegram()
+
 	const {
 		formState: { errors },
 		control,
@@ -25,7 +28,7 @@ function FormBooking({ desc }: IFormBooking) {
 	} = useForm<IFormBookingInputs>({
 		mode: "onChange",
 		defaultValues: {
-			name: "",
+			name: user?.first_name ?? "",
 			tel: "",
 		},
 	})
