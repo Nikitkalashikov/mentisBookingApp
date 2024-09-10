@@ -1,5 +1,6 @@
 interface IFilter {
-	data: []
+	children: React.ReactNode
+	className?: string
 }
 
 export type { IFilter }

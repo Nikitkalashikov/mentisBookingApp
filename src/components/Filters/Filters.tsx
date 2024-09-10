@@ -1,8 +1,8 @@
 import { FiltersWrapper } from "./styled"
 import { IFilters } from "./type"
 
-function Filters({ children }: IFilters) {
-	return <FiltersWrapper>{children}</FiltersWrapper>
+function Filters({ children, ...props }: IFilters) {
+	return <FiltersWrapper {...props}>{children}</FiltersWrapper>
 }
 
 export { Filters }

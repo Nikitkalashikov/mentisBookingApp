@@ -1,3 +1,4 @@
 import { Button } from "./Button"
+import { ButtonBooking } from "./ButtonBooking"
 
-export { Button }
+export { Button, ButtonBooking }

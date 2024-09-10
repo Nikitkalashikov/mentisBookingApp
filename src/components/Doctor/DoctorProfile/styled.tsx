@@ -49,18 +49,12 @@ export const DoctorProfileWave = styled.div`
 `
 
 export const DoctorProfileButtonBooking = styled(ButtonBooking)`
-	position: fixed;
-	bottom: 16px;
-	left: 16px;
-	right: 16px;
-	max-width: 375px;
-	margin: auto;
+	width: 100%;
 	padding-top: 12px;
 	padding-bottom: 12px;
 	font-size: 18px;
 	line-height: 26px;
 	justify-content: center;
-	z-index: 10;
 	background-color: var(--primary-hover-color);
 `
 

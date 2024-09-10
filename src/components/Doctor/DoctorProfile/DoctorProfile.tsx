@@ -19,6 +19,7 @@ import { useDoctorByID } from "../../../hooks/useDoctorByID"
 import { DoctorProfileSkeleton } from "./DoctorProfileSkeleton"
 import { Price } from "../../Price"
 import { Prices } from "../../Price/Prices"
+import { Footer } from "../../Footer"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -109,9 +110,11 @@ function DoctorProfile({ id }: IDoctorProfile) {
 				</DoctorProfileGalleryWrapper>
 			)}
 			{doctor.fio && (
-				<DoctorProfileButtonBooking desc={doctor.fio}>
-					Записаться
-				</DoctorProfileButtonBooking>
+				<Footer>
+					<DoctorProfileButtonBooking desc={doctor.fio}>
+						Записаться
+					</DoctorProfileButtonBooking>
+				</Footer>
 			)}
 		</DoctorProfileWrapper>
 	)

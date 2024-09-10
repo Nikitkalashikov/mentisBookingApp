@@ -19,7 +19,7 @@ export const useDoctorByID = (
 			if (!token || tokenError) throw new Error("Token is not available")
 			return getDoctorByID(token, id)
 		},
-		staleTime: 1000 * 60 * 10,
+		staleTime: 1000 * 60 * 30,
 		enabled: !!token && !tokenLoading,
 		retry: 2,
 	})

@@ -15,7 +15,7 @@ export const useDoctors = (username: string, password: string) => {
 			if (!token || tokenError) throw new Error("Token is not available")
 			return getDoctors(token)
 		},
-		staleTime: 1000 * 60 * 10,
+		staleTime: 1000 * 60 * 30,
 		enabled: !!token && !tokenLoading,
 		retry: 2,
 	})
