@@ -22,3 +22,13 @@ export const DoctorListCardSkeleton = styled(DoctorCardSkeleton)`
 		margin-bottom: 0;
 	}
 `
+
+export const DoctorListLabel = styled.p`
+	margin-bottom: 16px;
+	font-size: 16px;
+	line-height: 22px;
+
+	span {
+		font-weight: 600;
+	}
+`

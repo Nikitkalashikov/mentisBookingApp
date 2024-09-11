@@ -1,5 +1,6 @@
 import { Container } from "../../components/Container"
 import { DoctorList } from "../../components/Doctor"
+import { Filters } from "../../components/Filters"
 import { Header } from "../../components/Header"
 import { CreatedByWrapper, HomePageBody } from "./styled"
 
@@ -13,6 +14,7 @@ function HomePage() {
 					<CreatedByWrapper />
 				</Container>
 			</HomePageBody>
+			<Filters />
 		</>
 	)
 }

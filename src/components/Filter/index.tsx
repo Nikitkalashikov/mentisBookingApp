@@ -1,5 +1,4 @@
 import { Filter } from "./Filter"
-import { FilterProfile } from "./FilterProfile"
-import { FilterPrice } from "./FilterPrice"
+import { FilterCategory } from "./FilterCategory"
 
-export { Filter, FilterProfile, FilterPrice }
+export { Filter, FilterCategory }

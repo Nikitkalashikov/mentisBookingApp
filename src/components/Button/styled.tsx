@@ -20,7 +20,8 @@ export const ButtonWrapper = styled.button`
 		border: 1px solid var(--primary-color);
 	}
 
-	&:hover {
+	&:hover,
+	&.active {
 		transition: 0.5s ease;
 		background-color: var(--primary-hover-color);
 	}

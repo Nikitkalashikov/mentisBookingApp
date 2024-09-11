@@ -1,58 +1,45 @@
-import { DoctorListWrapper, DoctorListCard } from "./styled"
+import { DoctorListWrapper, DoctorListCard, DoctorListLabel } from "./styled"
 import { IDoctorCard } from "../DoctorCard"
-import { useDoctors } from "../../../hooks/useDoctors"
-// import { FiltersDoctor } from "../../Filters"
-// import { Footer } from "../../Footer"
 import { DoctorListSkeleton } from "./DoctorListSkeleton"
-// import { useState } from "react"
-
-const USERNAME = import.meta.env.MENTIS_USERNAME
-const PASSWORD = import.meta.env.MENTIS_PASSWORD
+import { useFilter } from "../../../hooks/useFilter"
+import { useDoctorsWithCategories } from "../../../hooks/useDoctorWithCategories"
 
 function DoctorList() {
-	const {
-		data: doctors,
-		isLoading,
-		isError,
-		error,
-	} = useDoctors(USERNAME, PASSWORD)
+	const { doctors, isLoading, isError, error } = useDoctorsWithCategories()
 
-	// const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-
-	// const handleCategoryChange = (category: string | null) => {
-	// 	setSelectedCategory(category)
-	// }
-
-	// const filteredDoctors = doctors?.filter((doctor: IDoctorCard) => {
-	// 	const matchesCategory = selectedCategory
-	// 		? doctor.doctor_categories?.some(
-	// 				category => category.slug === selectedCategory
-	// 		  )
-	// 		: true
-	// 	return matchesCategory
-	// })
+	const { category } = useFilter()
 
 	if (isError) {
-		return <div>{error.message}</div>
+		return <div>{error?.message}</div>
 	}
 
 	if (isLoading || !doctors) {
 		return <DoctorListSkeleton />
 	}
 
+	const filteredDoctors = doctors.filter((doctor: IDoctorCard) => {
+		const matchesCategory = category
+			? doctor.doctor_categories?.some(
+					(cat: { name: string; slug: string }) => cat.name === category
+			  )
+			: true
+		// const matchesPrice = price ? doctor.price <= price : true
+		// return matchesCategory && matchesPrice
+		return matchesCategory
+	})
+
 	return (
 		<>
+			{category && (
+				<DoctorListLabel>
+					Специализация: <span>{category}</span>
+				</DoctorListLabel>
+			)}
 			<DoctorListWrapper>
-				{doctors.map((doctor: IDoctorCard) => (
+				{filteredDoctors.map((doctor: IDoctorCard) => (
 					<DoctorListCard key={doctor.id} {...doctor} />
 				))}
 			</DoctorListWrapper>
-			{/* <Footer>
-				<FiltersDoctor
-					selectedCategory={selectedCategory}
-					onCategoryChange={handleCategoryChange}
-				/>
-			</Footer> */}
 		</>
 	)
 }

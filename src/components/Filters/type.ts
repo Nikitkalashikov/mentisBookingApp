@@ -1,5 +1,5 @@
 interface IFilters {
-	children: React.ReactNode
+	children?: React.ReactNode
 }
 
 export type { IFilters }
