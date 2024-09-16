@@ -1,3 +1,4 @@
+import { Skeleton } from "@mui/material"
 import { useDoctorsCategories } from "../../../hooks/useDoctorCategories"
 import { useFilter } from "../../../hooks/useFilter"
 import {
@@ -30,7 +31,42 @@ function FilterCategory({ clickHandle }: IFilterCategory) {
 	}
 
 	if (isLoading || !doctorsCategories) {
-		return <div>Skeleton</div>
+		return (
+			<>
+				<Skeleton
+					variant="rounded"
+					style={{
+						marginBottom: "6px",
+					}}
+					width="100%"
+					height={44}
+				></Skeleton>
+				<Skeleton
+					variant="rounded"
+					style={{
+						marginBottom: "6px",
+					}}
+					width="100%"
+					height={44}
+				></Skeleton>
+				<Skeleton
+					variant="rounded"
+					style={{
+						marginBottom: "6px",
+					}}
+					width="100%"
+					height={44}
+				></Skeleton>
+				<Skeleton
+					variant="rounded"
+					style={{
+						marginBottom: "6px",
+					}}
+					width="100%"
+					height={44}
+				></Skeleton>
+			</>
+		)
 	}
 
 	return (

@@ -4,7 +4,7 @@ const ContainerWrapper = styled.div`
 	max-width: 375px;
 	width: 100%;
 	margin: 0 auto;
-	padding: 0 16px;
+	padding: 0;
 	box-sizing: border-box;
 `
 

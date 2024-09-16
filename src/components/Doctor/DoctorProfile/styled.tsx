@@ -106,6 +106,7 @@ export const DoctorProfileBlock = styled.div`
 
 export const DoctorProfileGalleryWrapper = styled.div`
 	margin-top: 24px;
+	padding: 0 8px;
 `
 
 export const DoctorProfileGallery = styled(Gallery)`
