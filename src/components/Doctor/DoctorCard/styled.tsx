@@ -55,7 +55,7 @@ export const DoctorCardInfo = styled(DoctorInfo)`
 export const DoctorCardThumbnail = styled(Link)`
 	position: relative;
 	width: 100%;
-	height: 380px;
+	height: 480px;
 	cursor: pointer;
 	overflow: hidden;
 	border-radius: 24px;

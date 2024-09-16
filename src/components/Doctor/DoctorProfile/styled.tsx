@@ -15,7 +15,7 @@ export const DoctorProfileThumbnail = styled.div`
 	position: relative;
 	margin-bottom: 24px;
 	width: 100%;
-	height: 460px;
+	height: 480px;
 	border-radius: 24px;
 	overflow: hidden;
 
