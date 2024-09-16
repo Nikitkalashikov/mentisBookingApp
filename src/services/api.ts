@@ -1,6 +1,7 @@
 import axios from "axios"
 
 const DOCTORS_POINT = import.meta.env.MENTIS_DOCTORS_URL
+const DOCTORS_CATEGORIES_POINT = import.meta.env.MENTIS_DOCTORS_CATEGORIES_URL
 const TOKEN_URL = import.meta.env.MENTIS_TOKEN_URL
 const SEND_EMAIL_URL = import.meta.env.MENTIS_SEND_EMAIL_URL
 
@@ -21,6 +22,20 @@ export const getDoctors = async (token: string) => {
 			Authorization: `Bearer ${token}`,
 		},
 		params: {
+			per_page: 25,
+		},
+	})
+	return response.data
+}
+
+export const getDoctorsCategories = async (token: string) => {
+	const response = await axios.get(DOCTORS_CATEGORIES_POINT, {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+		params: {
+			hide_empty: true,
+			_fields: "name, slug",
 			per_page: 25,
 		},
 	})

@@ -2,10 +2,18 @@ import { DoctorListWrapper, DoctorListCard, DoctorListLabel } from "./styled"
 import { IDoctorCard } from "../DoctorCard"
 import { DoctorListSkeleton } from "./DoctorListSkeleton"
 import { useFilter } from "../../../hooks/useFilter"
-import { useDoctorsWithCategories } from "../../../hooks/useDoctorWithCategories"
+import { useDoctors } from "../../../hooks/useDoctors"
+
+const USERNAME = import.meta.env.MENTIS_USERNAME
+const PASSWORD = import.meta.env.MENTIS_PASSWORD
 
 function DoctorList() {
-	const { doctors, isLoading, isError, error } = useDoctorsWithCategories()
+	const {
+		data: doctors,
+		isLoading,
+		isError,
+		error,
+	} = useDoctors(USERNAME, PASSWORD)
 
 	const { category } = useFilter()
 
