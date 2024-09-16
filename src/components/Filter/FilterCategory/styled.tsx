@@ -1,14 +1,23 @@
 import styled from "styled-components"
 import { Button } from "../../Button"
+import { Swiper, SwiperSlide } from "swiper/react"
 
 export const FilterCategoryList = styled.div`
 	display: flex;
 	flex-direction: column;
 `
 
+export const FilterCategorySlider = styled(Swiper)`
+	width: 100%;
+`
+
+export const FilterCategorySlide = styled(SwiperSlide)`
+	width: fit-content;
+`
+
 export const FilterCategoryButton = styled(Button)`
 	margin-bottom: 6px;
-	border-radius: 4px;
+	border-radius: 50px;
 	color: var(--text-color);
 	background-color: var(--secondary-color);
 

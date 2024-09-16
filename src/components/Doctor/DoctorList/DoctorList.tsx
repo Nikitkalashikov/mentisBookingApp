@@ -1,4 +1,4 @@
-import { DoctorListWrapper, DoctorListCard, DoctorListLabel } from "./styled"
+import { DoctorListWrapper, DoctorListCard } from "./styled"
 import { IDoctorCard } from "../DoctorCard"
 import { DoctorListSkeleton } from "./DoctorListSkeleton"
 import { useFilter } from "../../../hooks/useFilter"
@@ -37,18 +37,11 @@ function DoctorList() {
 	})
 
 	return (
-		<>
-			{category && (
-				<DoctorListLabel>
-					Специализация: <span>{category}</span>
-				</DoctorListLabel>
-			)}
-			<DoctorListWrapper>
-				{filteredDoctors.map((doctor: IDoctorCard) => (
-					<DoctorListCard key={doctor.id} {...doctor} />
-				))}
-			</DoctorListWrapper>
-		</>
+		<DoctorListWrapper>
+			{filteredDoctors.map((doctor: IDoctorCard) => (
+				<DoctorListCard key={doctor.id} {...doctor} />
+			))}
+		</DoctorListWrapper>
 	)
 }
 

@@ -9,5 +9,5 @@ export const CreatedByWrapper = styled(CreatedBy)`
 `
 
 export const HomePageBody = styled(Body)`
-	padding-bottom: 50px;
+	padding-bottom: 90px;
 `

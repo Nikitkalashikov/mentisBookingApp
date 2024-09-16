@@ -4,15 +4,16 @@ import { useFilter } from "../../../hooks/useFilter"
 import {
 	FilterCategoryButton,
 	FilterCategoryList,
-	FilterCategoryTitle,
+	FilterCategorySlide,
+	FilterCategorySlider,
 } from "./styled"
 
-import { IFilterCategory } from "./type"
+import "swiper/swiper-bundle.css"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
 
-function FilterCategory({ clickHandle }: IFilterCategory) {
+function FilterCategory() {
 	const { category, setCategory } = useFilter()
 	const {
 		data: doctorsCategories,
@@ -22,7 +23,6 @@ function FilterCategory({ clickHandle }: IFilterCategory) {
 	} = useDoctorsCategories(USERNAME, PASSWORD)
 
 	const handleClick = (category: string) => {
-		clickHandle()
 		setCategory(category)
 	}
 
@@ -32,60 +32,34 @@ function FilterCategory({ clickHandle }: IFilterCategory) {
 
 	if (isLoading || !doctorsCategories) {
 		return (
-			<>
-				<Skeleton
-					variant="rounded"
-					style={{
-						marginBottom: "6px",
-					}}
-					width="100%"
-					height={44}
-				></Skeleton>
-				<Skeleton
-					variant="rounded"
-					style={{
-						marginBottom: "6px",
-					}}
-					width="100%"
-					height={44}
-				></Skeleton>
-				<Skeleton
-					variant="rounded"
-					style={{
-						marginBottom: "6px",
-					}}
-					width="100%"
-					height={44}
-				></Skeleton>
-				<Skeleton
-					variant="rounded"
-					style={{
-						marginBottom: "6px",
-					}}
-					width="100%"
-					height={44}
-				></Skeleton>
-			</>
+			<Skeleton
+				variant="rounded"
+				style={{
+					marginBottom: "6px",
+				}}
+				width="100%"
+				height={44}
+			></Skeleton>
 		)
 	}
 
 	return (
-		<>
-			<FilterCategoryTitle>Специализация:</FilterCategoryTitle>
-			<FilterCategoryList>
+		<FilterCategoryList>
+			<FilterCategorySlider spaceBetween={8} slidesPerView="auto">
 				{doctorsCategories.map(
-					(item: { name: string; slug: string }, key: string) => (
-						<FilterCategoryButton
-							key={key}
-							className={category == item.name ? "active" : ""}
-							onClick={() => handleClick(item.name)}
-						>
-							{item.name}
-						</FilterCategoryButton>
+					(item: { name: string; slug: string }, index: string) => (
+						<FilterCategorySlide key={index}>
+							<FilterCategoryButton
+								className={category == item.name ? "active" : ""}
+								onClick={() => handleClick(item.name)}
+							>
+								{item.name}
+							</FilterCategoryButton>
+						</FilterCategorySlide>
 					)
 				)}
-			</FilterCategoryList>
-		</>
+			</FilterCategorySlider>
+		</FilterCategoryList>
 	)
 }
 
