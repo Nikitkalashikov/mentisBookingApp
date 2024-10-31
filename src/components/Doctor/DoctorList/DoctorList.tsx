@@ -20,7 +20,6 @@ function DoctorList() {
 	if (isError) {
 		return <div>{error?.message}</div>
 	}
-
 	if (isLoading || !doctors) {
 		return <DoctorListSkeleton />
 	}

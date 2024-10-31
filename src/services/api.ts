@@ -35,7 +35,7 @@ export const getDoctorsCategories = async (token: string) => {
 		},
 		params: {
 			hide_empty: true,
-			_fields: "name, slug",
+			N: "name, slug",
 			per_page: 25,
 		},
 	})
