@@ -4,10 +4,22 @@ import { DoctorPage } from "./pages/Doctor/DoctorPage"
 import { HomePage } from "./pages/Home"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { FilterProvider } from "./utils/providers"
+import { useTelegram } from "@hooks/useTelegram"
+import { useAnalytics } from "@hooks/useAnalytics"
 
 const queryClient = new QueryClient()
 
 function App() {
+	const { tg } = useTelegram()
+
+	if (!tg.isExpanded) {
+		tg.expand()
+	}
+
+	tg.ready()
+
+	useAnalytics()
+
 	return (
 		<QueryClientProvider client={queryClient}>
 			<FilterProvider>
