@@ -5,7 +5,7 @@ export const useAnalytics = () => {
 	const { tg, user } = useTelegram()
 
 	if (tg && user) {
-		const GOOGLESHEETS = import.meta.env.FTMA_GOOGLESHEETS
+		const GOOGLESHEETS = import.meta.env.MENTIS_GOOGLESHEETS
 
 		const startParam = tg.initDataUnsafe?.start_param
 
