@@ -35,7 +35,6 @@ function FormBooking({ desc }: IFormBooking) {
 
 	const [isSubmitted, setIsSubmitted] = useState(false)
 	const [response, setResponse] = useState("")
-
 	const onSubmit: SubmitHandler<IFormBookingInputs> = async formData => {
 		try {
 			const token = await getToken(USERNAME, PASSWORD)
