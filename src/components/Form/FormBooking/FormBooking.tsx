@@ -9,8 +9,8 @@ import {
 } from "../styled"
 import { IFormBooking, IFormBookingInputs } from "./type"
 
-import { getToken, sendEmail } from "../../../services/api"
-import { FormInput } from "../FormIpnut"
+import { getToken, sendEmail } from "@services/api"
+import { FormInput, FormInputPhone } from "../FormIpnut"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTelegram } from "../../../hooks/useTelegram"
 
@@ -71,9 +71,13 @@ function FormBooking({ desc }: IFormBooking) {
 						value: 3,
 						message: "Имя должно содержаить больше 3 символов",
 					},
+					maxLength: {
+						value: 18,
+						message: "Поле не может содержать больше 18 символов",
+					},
 					pattern: {
-						value: /^[А-Яа-я]+$/i,
-						message: "Имя должно быть написано кириллицей",
+						value: /^[А-Яа-я]+(\s[А-Яа-я]+)?$/i,
+						message: "Поле может содержать одно или два слова (Кириллицей)",
 					},
 					required: "Введите имя",
 				}}
@@ -92,13 +96,12 @@ function FormBooking({ desc }: IFormBooking) {
 				rules={{
 					required: "Введите телефон",
 					pattern: {
-						value:
-							/^(\+7|8)?[\s-]?(\(\d{3}\)|\d{3})[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/,
+						value: /^\+7\s?\(\d{3}\)\s?\d{3}-\d{2}-\d{2}$/,
 						message: "Введите корректный номер телефона",
 					},
 				}}
 				render={({ field }) => (
-					<FormInput
+					<FormInputPhone
 						type="tel"
 						error={errors.tel?.message}
 						placeholder="+7 (000) 000 00 00"

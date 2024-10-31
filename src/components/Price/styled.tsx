@@ -1,12 +1,11 @@
 import styled from "styled-components"
 
 export const PriceWrapper = styled.p`
-	padding: 0 16px;
 	display: flex;
 	flex-direction: column;
-	font-size: 28px;
-	line-height: 36px;
-	font-weight: 600;
+	font-size: 26px;
+	line-height: 34px;
+	font-weight: 500;
 	color: var(--text-color);
 
 	span {

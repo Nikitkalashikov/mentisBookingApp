@@ -1,3 +1,4 @@
+import { getMinMax } from "@utils/helpers/getMinMax"
 import ArrowIcon from "../../../assets/icons/Arrow"
 import { Price } from "../../Price"
 import { Prices } from "../../Price/Prices"
@@ -17,11 +18,11 @@ function DoctorCard({
 	fio,
 	thumbnail_url,
 	doctor_categories,
-	first_pay,
-	second_pay,
+	prices,
 	experience,
 	...props
 }: IDoctorCard) {
+	const prices_list = getMinMax(prices)
 	return (
 		<DoctorCardWrapper {...props}>
 			<DoctorCardThumbnail to={`doctor/${id}`}>
@@ -39,13 +40,19 @@ function DoctorCard({
 						experience={experience ?? ""}
 					/>
 				)}
-				{(first_pay || second_pay) && (
+				{prices_list && (
 					<Prices>
-						{first_pay && (
-							<Price label="Первичный прием:" price={first_pay.price} />
+						{prices_list.first_pay && (
+							<Price
+								label="Первичный прием от "
+								price={prices_list.first_pay}
+							/>
 						)}
-						{second_pay && (
-							<Price label="Повторный прием:" price={second_pay.price} />
+						{prices_list.second_pay && (
+							<Price
+								label="Повторный прием от "
+								price={prices_list.second_pay}
+							/>
 						)}
 					</Prices>
 				)}

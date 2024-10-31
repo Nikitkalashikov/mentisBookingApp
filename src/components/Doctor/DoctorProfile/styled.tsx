@@ -1,9 +1,9 @@
 import styled from "styled-components"
 
-import { Tag } from "../../Tag"
+import { Tag } from "@components/Tag"
 import { Gallery } from "../../Gallery"
-import Wave1 from "../../../assets/images/wave-1.svg"
-import { ButtonBooking } from "../../Button/ButtonBooking"
+import Wave1 from "@img/wave-1.svg"
+import { ButtonBooking } from "@components/Button/ButtonBooking"
 import { DoctorInfo } from "../DoctorInfo"
 
 export const DoctorProfileWrapper = styled.div`
@@ -46,6 +46,27 @@ export const DoctorProfileWave = styled.div`
 	position: absolute;
 	top: 0;
 	right: 0;
+`
+
+export const DoctorProfilePricesContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	margin-top: 16px;
+
+	.title {
+		color: var(--white-color);
+		margin-bottom: 4px;
+		padding-left: 12px;
+		font-size: 16px;
+		line-height: 24px;
+		font-weight: 500;
+	}
+`
+
+export const DoctorProfilePrices = styled.div`
+	padding: 6px 12px;
+	border-radius: 12px;
+	background-color: var(--white-color);
 `
 
 export const DoctorProfileButtonBooking = styled(ButtonBooking)`

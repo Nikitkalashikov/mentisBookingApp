@@ -8,6 +8,4 @@ export const CreatedByWrapper = styled(CreatedBy)`
 	justify-content: center;
 `
 
-export const HomePageBody = styled(Body)`
-	padding-bottom: 90px;
-`
+export const HomePageBody = styled(Body)``

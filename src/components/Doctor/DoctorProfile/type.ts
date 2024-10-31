@@ -1,5 +1,3 @@
-interface IDoctorProfile {
+export interface IDoctorProfile {
 	id: string
 }
-
-export type { IDoctorProfile }

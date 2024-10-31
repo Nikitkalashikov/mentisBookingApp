@@ -4,7 +4,7 @@ import ArrowIcon from "../../assets/icons/Arrow"
 import { Container } from "../../components/Container"
 
 import { useParams } from "react-router-dom"
-import { DoctorProfile } from "../../components/Doctor/DoctorProfile"
+import { DoctorProfile } from "@components/Doctor/DoctorProfile"
 import { useEffect } from "react"
 
 function DoctorPage() {

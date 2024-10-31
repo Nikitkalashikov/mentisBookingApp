@@ -15,7 +15,7 @@
 		"@fancyapps/ui": "^5.0.36",
 		"@hookform/resolvers": "^3.9.0",
 		"@mui/material": "^6.0.2",
-		"@react-input/mask": "^1.2.5",
+		"@react-input/mask": "^1.2.11",
 		"@tanstack/react-query": "^5.55.1",
 		"axios": "^1.7.6",
 		"react": "^18.3.1",

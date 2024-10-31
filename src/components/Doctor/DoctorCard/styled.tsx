@@ -41,6 +41,7 @@ export const DoctorCardLink = styled.div`
 `
 
 export const DoctorCardInfo = styled(DoctorInfo)`
+	margin-bottom: 16px;
 	color: var(--text-color);
 
 	span {

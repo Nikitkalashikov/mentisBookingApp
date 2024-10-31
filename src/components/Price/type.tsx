@@ -1,5 +1,5 @@
 interface IPrice {
-	price: string
+	price: string | number
 	label: string
 }
 

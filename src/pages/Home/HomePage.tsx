@@ -1,7 +1,6 @@
 import { Container } from "../../components/Container"
 import { DoctorList } from "../../components/Doctor"
 import { Filters } from "../../components/Filters"
-import { Footer } from "../../components/Footer"
 import { Header } from "../../components/Header"
 import { CreatedByWrapper, HomePageBody } from "./styled"
 
@@ -17,9 +16,7 @@ function HomePage() {
 					<DoctorList />
 				</Container>
 			</HomePageBody>
-			<Footer>
-				<CreatedByWrapper />
-			</Footer>
+			<CreatedByWrapper />
 		</>
 	)
 }

@@ -12,6 +12,8 @@ import {
 	DoctorProfileWrapper,
 	DoctorProfileGalleryWrapper,
 	DoctorProfileInfo,
+	DoctorProfilePrices,
+	DoctorProfilePricesContainer,
 } from "./styled"
 
 import { IDoctorProfile } from "./type"
@@ -56,18 +58,29 @@ function DoctorProfile({ id }: IDoctorProfile) {
 						experience={doctor.experience ?? ""}
 					/>
 				)}
+				{doctor.prices &&
+					[doctor.prices].map(
+						(price: {
+							profile: string
+							first_pay: string
+							second_pay: string
+						}) => (
+							<DoctorProfilePricesContainer>
+								{price.profile && <p className="title">{price.profile}</p>}
+								<DoctorProfilePrices>
+									<Prices>
+										{price.first_pay && (
+											<Price label="Первичный прием" price={price.first_pay} />
+										)}
+										{price.second_pay && (
+											<Price label="Повторный прием" price={price.second_pay} />
+										)}
+									</Prices>
+								</DoctorProfilePrices>
+							</DoctorProfilePricesContainer>
+						)
+					)}
 			</DoctorProfileBlock>
-
-			{(doctor.first_pay.price || doctor.second_pay.price) && (
-				<Prices>
-					{doctor.first_pay.price && (
-						<Price label="Первичный прием" price={doctor.first_pay.price} />
-					)}
-					{doctor.second_pay.price && (
-						<Price label="Повторный прием" price={doctor.second_pay.price} />
-					)}
-				</Prices>
-			)}
 
 			{doctor.directions && (
 				<DoctorProfileBlock className="wave1">

@@ -30,8 +30,6 @@ function DoctorList() {
 					(cat: { name: string; slug: string }) => cat.name === category
 			  )
 			: true
-		// const matchesPrice = price ? doctor.price <= price : true
-		// return matchesCategory && matchesPrice
 		return matchesCategory
 	})
 

@@ -1,15 +1,16 @@
+type Price = {
+	profile: string
+	first_pay?: number
+	first_pay_sale?: number
+	second_pay?: number
+	second_pay_sale?: number
+}
+
 interface IDoctorCard {
 	id: string
 	fio: string
 	thumbnail_url: string
-	first_pay: {
-		price: string
-		price_sale: string
-	}
-	second_pay: {
-		price: string
-		price_sale: string
-	}
+	prices: Price[]
 	experience: string
 	doctor_categories?: { name: string; slug: string }[]
 	className: string
