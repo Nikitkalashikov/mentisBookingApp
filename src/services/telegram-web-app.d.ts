@@ -28,7 +28,7 @@ interface Window {
 			setHeaderColor: () => VoidFunction
 			requestContact: () => VoidFunction
 			showAlert: (message: string) => VoidFunction
-			BottomButton: {
+			MainButton: {
 				isActive: boolean
 				show: () => VoidFunction
 				setText: (text: string) => void

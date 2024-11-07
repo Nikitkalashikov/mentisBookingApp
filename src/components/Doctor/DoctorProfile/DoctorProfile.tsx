@@ -52,14 +52,16 @@ function DoctorProfile({ id }: IDoctorProfile) {
 
 	tg.ready()
 
-	if (tg && tg.BottomButton) {
-		tg.BottomButton.show()
-		tg.BottomButton.setText("Продолжить")
-		tg.BottomButton.onClick(() => {
-			console.log("Кнопка нажата")
+	console.log(tg)
+
+	if (tg && tg.MainButton) {
+		tg.MainButton.show()
+		tg.MainButton.setText("Продолжить")
+		tg.MainButton.onClick(() => {
+			tg.showAlert("Кнопка нажата")
 		})
 	} else {
-		console.error("BottomButton не доступен")
+		console.error("MainButton не доступен")
 	}
 
 	return (
@@ -160,13 +162,13 @@ function DoctorProfile({ id }: IDoctorProfile) {
 					/>
 				</DoctorProfileGalleryWrapper>
 			)}
-			{doctor.fio && (
+			{/* {doctor.fio && (
 				<Footer>
 					<DoctorProfileButtonBooking desc={doctor.fio}>
 						Записаться
 					</DoctorProfileButtonBooking>
 				</Footer>
-			)}
+			)} */}
 		</DoctorProfileWrapper>
 	)
 }
