@@ -112,10 +112,16 @@ function DoctorProfile({ id }: IDoctorProfile) {
 								<DoctorProfilePrices>
 									<Prices>
 										{price.first_pay && (
-											<Price label="Первичный прием" price={price.first_pay} />
+											<Price
+												label="Первичный прием"
+												price={`от ${price.first_pay}`}
+											/>
 										)}
 										{price.second_pay && (
-											<Price label="Повторный прием" price={price.second_pay} />
+											<Price
+												label="Повторный прием"
+												price={`от ${price.second_pay}`}
+											/>
 										)}
 									</Prices>
 								</DoctorProfilePrices>

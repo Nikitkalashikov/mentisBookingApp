@@ -23,6 +23,10 @@ function FormBooking() {
 		(state: RootState) => state.form
 	)
 
+	const formCloseHandle = () => {
+		dispatch(closeForm())
+	}
+
 	const {
 		formState: { errors },
 		control,
@@ -59,11 +63,45 @@ function FormBooking() {
 		}
 	}
 
+	const originalHeight = window.innerHeight
+
+	// Функция для корректировки положения формы
+	function adjustForKeyboard() {
+		const isKeyboardOpen = window.innerHeight < originalHeight
+		const formElement = document.getElementById("formOrder")
+
+		if (formElement) {
+			if (isKeyboardOpen) {
+				// Прокрутка формы в видимую область, если клавиатура открыта
+				formElement.scrollIntoView({ behavior: "smooth", block: "center" })
+			} else {
+				// Вернуть форму в исходное положение, если клавиатура закрыта
+				formElement.style.transform = "translateY(0)"
+			}
+		}
+	}
+
+	function initKeyboardAdjustment() {
+		// Обработка события viewportChanged от Telegram Web App
+		tg.onEvent("viewportChanged", adjustForKeyboard)
+
+		// Дополнительная обработка событий resize и focus
+		window.addEventListener("resize", adjustForKeyboard)
+		document.querySelectorAll("input").forEach(input => {
+			input.addEventListener("focus", adjustForKeyboard)
+			input.addEventListener("blur", adjustForKeyboard)
+		})
+	}
+
+	// Вызов функции инициализации
+	initKeyboardAdjustment()
+
 	if (!isOpen) return null
 
 	return (
-		<Modal open={isOpen}>
+		<Modal open={isOpen} onClose={formCloseHandle}>
 			<Box
+				id="formOrder"
 				sx={{
 					position: "absolute",
 					top: 16,
@@ -74,6 +112,9 @@ function FormBooking() {
 					maxWidth: 480,
 					height: "fit-content",
 					margin: "auto",
+					background: "#ffffff",
+					borderRadius: "24px",
+					padding: "24px",
 				}}
 			>
 				<Form onSubmit={handleSubmit(onSubmit)}>

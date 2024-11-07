@@ -48,20 +48,12 @@ interface Window {
 				setItem: (key: string, value: string, callback?: () => void) => void
 			}
 			onEvent(
-				eventType: "contactRequested",
-				eventHandler: (
-					eventData:
-						| RequestContactCallBack["Cancelled"]
-						| RequestContactCallBack["Sent"]
-				) => void
+				eventType: "contactRequested" | "viewportChanged",
+				eventHandler: (eventData: unknown) => void
 			): void
 			offEvent(
-				eventType: "contactRequested",
-				eventHandler: (
-					eventData:
-						| RequestContactCallBack["cancelled"]
-						| RequestContactCallBack["sent"]
-				) => void
+				eventType: "contactRequested" | "viewportChanged",
+				eventHandler: (eventData: unknown) => void
 			): void
 		}
 		WebView: {

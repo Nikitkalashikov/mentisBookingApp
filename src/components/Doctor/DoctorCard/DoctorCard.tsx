@@ -71,14 +71,14 @@ function DoctorCard({
 					<Prices>
 						{prices_list.first_pay && (
 							<Price
-								label="Первичный прием от "
-								price={prices_list.first_pay}
+								label="Первичный прием"
+								price={`от ${prices_list.first_pay}`}
 							/>
 						)}
 						{prices_list.second_pay && (
 							<Price
-								label="Повторный прием от "
-								price={prices_list.second_pay}
+								label="Повторный прием"
+								price={`от ${prices_list.second_pay}`}
 							/>
 						)}
 					</Prices>

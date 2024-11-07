@@ -74,7 +74,7 @@ export const DoctorProfilePrices = styled.div`
 	}
 
 	span {
-		color: var(--white-color);
+		color: var(--white-color) !important;
 	}
 `
 
