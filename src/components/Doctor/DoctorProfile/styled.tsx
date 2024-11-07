@@ -140,11 +140,11 @@ export const DoctorProfileBlock = styled.div`
 	}
 
 	&.middle {
-		margin-top: -232px;
+		margin-top: -252px;
 	}
 
 	&.gradient {
-		padding-top: 32px;
+		padding-top: 52px;
 		border-radius: 0 0 24px 24px;
 		background: linear-gradient(
 			180deg,
