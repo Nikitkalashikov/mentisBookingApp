@@ -3,6 +3,7 @@ import { IDoctorCard } from "../DoctorCard"
 import { DoctorListSkeleton } from "./DoctorListSkeleton"
 import { useFilter } from "../../../hooks/useFilter"
 import { useDoctors } from "../../../hooks/useDoctors"
+import { useTelegram } from "@hooks/useTelegram"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -16,6 +17,11 @@ function DoctorList() {
 	} = useDoctors(USERNAME, PASSWORD)
 
 	const { category } = useFilter()
+	const { tg } = useTelegram()
+
+	if (tg && tg.MainButton && tg.MainButton.isVisible) {
+		tg.MainButton.hide()
+	}
 
 	if (isError) {
 		return <div>{error?.message}</div>

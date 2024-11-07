@@ -50,13 +50,9 @@ function DoctorProfile({ id }: IDoctorProfile) {
 		return <DoctorProfileSkeleton />
 	}
 
-	tg.ready()
-
-	console.log(tg)
-
 	if (tg && tg.MainButton) {
 		tg.MainButton.show()
-		tg.MainButton.setText("Продолжить")
+		tg.MainButton.setText("Записаться")
 		tg.MainButton.onClick(() => {
 			tg.showAlert("Кнопка нажата")
 		})

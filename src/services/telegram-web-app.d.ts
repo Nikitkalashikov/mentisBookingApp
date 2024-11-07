@@ -30,7 +30,9 @@ interface Window {
 			showAlert: (message: string) => VoidFunction
 			MainButton: {
 				isActive: boolean
+				isVisible: boolean
 				show: () => VoidFunction
+				hide: () => VoidFunction
 				setText: (text: string) => void
 				onClick: (handler: () => void) => VoidFunction
 				setParams: (params: {
