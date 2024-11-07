@@ -2,7 +2,7 @@ import {
 	DoctorProfileBlock,
 	DoctorProfileBlockContent,
 	DoctorProfileBlockInner,
-	DoctorProfileButtonBooking,
+	// DoctorProfileButtonBooking,
 	DoctorProfileDirections,
 	DoctorProfileDirectionsItem,
 	DoctorProfileGallery,
@@ -25,7 +25,7 @@ import { Price } from "../../Price"
 import { Prices } from "../../Price/Prices"
 import OnlineIcon from "@icons/Online"
 import OfflineIcon from "@icons/Offline"
-import { Footer } from "../../Footer"
+// import { Footer } from "../../Footer"
 import { Tag } from "@components/Tag"
 import { useTelegram } from "@hooks/useTelegram"
 
