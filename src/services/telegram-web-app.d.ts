@@ -31,15 +31,21 @@ interface Window {
 			BottomButton: {
 				isActive: boolean
 				show: () => VoidFunction
-				setText: (message: string) => VoidFunction
-				onClick: () => VoidFunction
+				setText: (text: string) => void
+				onClick: (handler: () => void) => VoidFunction
+				setParams: (params: {
+					text?: string
+					color?: string
+					text_color?: string
+					is_active?: boolean
+				}) => void
 			}
 			CloudStorage: {
 				getItem: (key: string, callback: (value: string | null) => void) => void
 				setItem: (key: string, value: string, callback?: () => void) => void
 			}
 			onEvent(
-				eventType: "contactRequested" | "mainButtonClicked",
+				eventType: "contactRequested",
 				eventHandler: (
 					eventData:
 						| RequestContactCallBack["Cancelled"]

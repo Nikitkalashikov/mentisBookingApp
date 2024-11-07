@@ -51,10 +51,16 @@ function DoctorProfile({ id }: IDoctorProfile) {
 	}
 
 	if (tg) {
-		tg.BottomButton.setText("Записаться")
+		tg.BottomButton.show()
 
-		tg.onEvent("mainButtonClicked", () => {
-			console.log("Кнопка нажата!")
+		tg.BottomButton.setParams({
+			text: "Записаться",
+			color: "#1597bb",
+			text_color: "#ffffff",
+		})
+
+		tg.BottomButton.onClick(() => {
+			tg.showAlert("Кнопка нажата")
 		})
 	}
 
