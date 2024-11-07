@@ -63,29 +63,24 @@ function FormBooking() {
 		}
 	}
 
-	const originalHeight = window.innerHeight
-
-	// Функция для корректировки положения формы
 	function adjustForKeyboard() {
+		const originalHeight = window.innerHeight
+
 		const isKeyboardOpen = window.innerHeight < originalHeight
 		const formElement = document.getElementById("formOrder")
 
 		if (formElement) {
 			if (isKeyboardOpen) {
-				// Прокрутка формы в видимую область, если клавиатура открыта
 				formElement.scrollIntoView({ behavior: "smooth", block: "center" })
 			} else {
-				// Вернуть форму в исходное положение, если клавиатура закрыта
 				formElement.style.transform = "translateY(0)"
 			}
 		}
 	}
 
 	function initKeyboardAdjustment() {
-		// Обработка события viewportChanged от Telegram Web App
 		tg.onEvent("viewportChanged", adjustForKeyboard)
 
-		// Дополнительная обработка событий resize и focus
 		window.addEventListener("resize", adjustForKeyboard)
 		document.querySelectorAll("input").forEach(input => {
 			input.addEventListener("focus", adjustForKeyboard)
@@ -93,7 +88,6 @@ function FormBooking() {
 		})
 	}
 
-	// Вызов функции инициализации
 	initKeyboardAdjustment()
 
 	if (!isOpen) return null
