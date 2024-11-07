@@ -28,12 +28,18 @@ interface Window {
 			setHeaderColor: () => VoidFunction
 			requestContact: () => VoidFunction
 			showAlert: (message: string) => VoidFunction
+			BottomButton: {
+				isActive: boolean
+				show: () => VoidFunction
+				setText: (message: string) => VoidFunction
+				onClick: () => VoidFunction
+			}
 			CloudStorage: {
 				getItem: (key: string, callback: (value: string | null) => void) => void
 				setItem: (key: string, value: string, callback?: () => void) => void
 			}
 			onEvent(
-				eventType: "contactRequested",
+				eventType: "contactRequested" | "mainButtonClicked",
 				eventHandler: (
 					eventData:
 						| RequestContactCallBack["Cancelled"]

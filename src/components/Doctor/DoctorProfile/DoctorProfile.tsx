@@ -27,6 +27,7 @@ import OnlineIcon from "@icons/Online"
 import OfflineIcon from "@icons/Offline"
 import { Footer } from "../../Footer"
 import { Tag } from "@components/Tag"
+import { useTelegram } from "@hooks/useTelegram"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -39,12 +40,22 @@ function DoctorProfile({ id }: IDoctorProfile) {
 		error,
 	} = useDoctorByID(USERNAME, PASSWORD, id)
 
+	const { tg } = useTelegram()
+
 	if (isError) {
 		return <div>{error.message}</div>
 	}
 
 	if (isLoading || !doctor) {
 		return <DoctorProfileSkeleton />
+	}
+
+	if (tg) {
+		tg.BottomButton.setText("Записаться")
+
+		tg.onEvent("mainButtonClicked", () => {
+			console.log("Кнопка нажата!")
+		})
 	}
 
 	return (
