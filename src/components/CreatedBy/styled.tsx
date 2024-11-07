@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const CreatedByWrapper = styled.p`
+export const CreatedByWrapper = styled.div`
 	color: var(--gray-dark-color);
 `
 

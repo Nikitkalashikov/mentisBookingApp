@@ -2,7 +2,6 @@ import styled from "styled-components"
 
 import { Tag } from "@components/Tag"
 import { Gallery } from "../../Gallery"
-import Wave1 from "@img/wave-1.svg"
 import { ButtonBooking } from "@components/Button/ButtonBooking"
 import { DoctorInfo } from "../DoctorInfo"
 import { Locations } from "@components/Locations"
@@ -52,22 +51,28 @@ export const DoctorProfileWave = styled.div`
 export const DoctorProfilePricesContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	margin-top: 16px;
 
 	.title {
 		color: var(--white-color);
-		margin-bottom: 4px;
-		padding-left: 12px;
+		margin-bottom: 10px;
 		font-size: 16px;
 		line-height: 24px;
-		font-weight: 500;
+		font-weight: 600;
+	}
+
+	& + & {
+		margin-top: 24px;
 	}
 `
 
 export const DoctorProfilePrices = styled.div`
-	padding: 6px 12px;
-	border-radius: 12px;
-	background-color: var(--white-color);
+	padding-top: 10px;
+	border-top: 1px solid var(--background-color);
+
+	p,
+	span {
+		color: var(--white-color);
+	}
 `
 
 export const DoctorProfileButtonBooking = styled(ButtonBooking)`
@@ -86,14 +91,19 @@ export const DoctorProfileBlockInner = styled.div`
 `
 
 export const DoctorProfileTypeWord = styled.div`
-	padding: 0 16px;
-	margin-top: -180px;
-	margin-bottom: 16px;
+	margin-top: 24px;
 	display: flex;
+	flex-direction: row;
 	width: fit-content;
-	gap: 4px;
-	flex-direction: column;
+	gap: 12px;
 	z-index: 10;
+
+	p {
+		color: #fff;
+		font-size: 13px;
+		padding: 0;
+		background: none;
+	}
 `
 
 export const DoctorProfileLocations = styled(Locations)`
@@ -117,20 +127,35 @@ export const DoctorProfileBlock = styled.div`
 		margin-bottom: 24px;
 	}
 
-	&.wave1 {
-		&:after {
-			position: absolute;
-			right: 0;
-			top: 0;
-			content: "";
-			width: 130%;
-			height: 180%;
-			background-image: url(${Wave1});
-		}
+	.wave1 {
+		position: absolute;
+		right: 0;
+		top: 0;
+		content: "";
+		width: 130%;
+		height: 180%;
 	}
 
-	&.info {
-		margin-top: 0;
+	&.middle {
+		margin-top: -232px;
+	}
+
+	&.gradient {
+		padding-top: 32px;
+		border-radius: 0 0 24px 24px;
+		background: linear-gradient(
+			180deg,
+			transparent 0%,
+			var(--primary-color) 30%,
+			var(--primary-color) 60%,
+			var(--primary-color) 90%,
+			var(--primary-color) 100%
+		);
+		box-shadow: none;
+
+		${DoctorProfileName} {
+			color: var(--white-color);
+		}
 	}
 
 	&.focus {

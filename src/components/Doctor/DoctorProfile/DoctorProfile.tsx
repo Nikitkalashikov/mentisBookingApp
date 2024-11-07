@@ -28,6 +28,7 @@ import OfflineIcon from "@icons/Offline"
 // import { Footer } from "../../Footer"
 import { Tag } from "@components/Tag"
 import { useTelegram } from "@hooks/useTelegram"
+import { WaveIcon } from "@icons/Wave"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -71,19 +72,7 @@ function DoctorProfile({ id }: IDoctorProfile) {
 					{<img src={doctor.thumbnail_url} alt={doctor.fio} />}
 				</DoctorProfileThumbnail>
 			)}
-			{doctor.type_work && (
-				<DoctorProfileTypeWord>
-					{doctor.type_work.map((type: { value: string; label: string }) => {
-						return (
-							<Tag key={type.value}>
-								{type.value == "online" ? <OnlineIcon /> : <OfflineIcon />}
-								{type.label}
-							</Tag>
-						)
-					})}
-				</DoctorProfileTypeWord>
-			)}
-			<DoctorProfileBlock className="focus info">
+			<DoctorProfileBlock className="gradient middle">
 				{doctor.fio && <DoctorProfileName>{doctor.fio}</DoctorProfileName>}
 				{(doctor.doctor_categories || doctor.experience) && (
 					<DoctorProfileInfo
@@ -98,14 +87,28 @@ function DoctorProfile({ id }: IDoctorProfile) {
 						addresses={doctor.clinics}
 					/>
 				)}
-				{doctor.prices &&
-					[doctor.prices].map(
+				{doctor.type_work && (
+					<DoctorProfileTypeWord>
+						{doctor.type_work.map((type: { value: string; label: string }) => {
+							return (
+								<Tag key={type.value}>
+									{type.value == "online" ? <OnlineIcon /> : <OfflineIcon />}
+									{type.label}
+								</Tag>
+							)
+						})}
+					</DoctorProfileTypeWord>
+				)}
+			</DoctorProfileBlock>
+			{doctor.prices && (
+				<DoctorProfileBlock className="focus">
+					{[doctor.prices].map(
 						(price: {
 							profile: string
 							first_pay: string
 							second_pay: string
 						}) => (
-							<DoctorProfilePricesContainer>
+							<DoctorProfilePricesContainer key={price.profile}>
 								{price.profile && <p className="title">{price.profile}</p>}
 								<DoctorProfilePrices>
 									<Prices>
@@ -120,10 +123,14 @@ function DoctorProfile({ id }: IDoctorProfile) {
 							</DoctorProfilePricesContainer>
 						)
 					)}
-			</DoctorProfileBlock>
+				</DoctorProfileBlock>
+			)}
 
 			{doctor.directions && (
-				<DoctorProfileBlock className="wave1">
+				<DoctorProfileBlock>
+					<div className="wave1">
+						<WaveIcon />
+					</div>
 					<DoctorProfileBlockInner>
 						<DoctorProfileTitle>Работает с запросами:</DoctorProfileTitle>
 						<DoctorProfileDirections>

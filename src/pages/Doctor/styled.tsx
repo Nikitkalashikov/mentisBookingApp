@@ -2,9 +2,7 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { Body } from "../../components/Body"
 
-export const DoctorPageBody = styled(Body)`
-	padding-bottom: 80px;
-`
+export const DoctorPageBody = styled(Body)``
 
 export const DoctorPageBackLink = styled(Link)`
 	margin-bottom: 16px;
