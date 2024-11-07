@@ -104,8 +104,8 @@ function FormBooking() {
 				id="formOrder"
 				sx={{
 					position: "absolute",
-					top: 16,
-					bottom: "auto",
+					top: 0,
+					bottom: 0,
 					left: 0,
 					right: 0,
 					width: "90%",
