@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { ButtonBooking } from "../../Button/ButtonBooking"
 import { DoctorInfo } from "../DoctorInfo"
+import { Locations } from "@components/Locations"
 
 export const DoctorCardWrapper = styled.div`
 	width: 100%;
@@ -17,6 +18,15 @@ export const DoctorCardWrapper = styled.div`
 		background-color: var(--primary-color);
 		transition: background-color 0.3s ease;
 	}
+`
+
+export const DoctorCardTypeWord = styled.div`
+	position: absolute;
+	left: 8px;
+	bottom: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 `
 
 export const DoctorCardLink = styled.div`
@@ -77,7 +87,7 @@ export const DoctorCardThumbnail = styled(Link)`
 `
 
 export const DoctorCardTitle = styled.p`
-	font-size: 20px;
+	font-size: 22px;
 	line-height: 28px;
 	font-weight: 500;
 `
@@ -87,6 +97,10 @@ export const DoctorCardPayment = styled.div`
 	display: flex;
 	justify-content: space-between;
 	flex-direction: row;
+`
+
+export const DoctorCardLocations = styled(Locations)`
+	margin-bottom: 16px;
 `
 
 export const DoctorCardPaymentItem = styled.div`

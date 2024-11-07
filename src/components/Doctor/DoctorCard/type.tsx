@@ -21,6 +21,14 @@ interface IDoctorCard {
 		url: string
 		alt: string
 	}[]
+	clinics: {
+		slug: string
+		title: string
+	}[]
+	type_work: {
+		value: string
+		label: string
+	}[]
 	directions?: { name: string; slug: string }[]
 }
 

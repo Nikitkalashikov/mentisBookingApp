@@ -18,7 +18,7 @@ function DoctorPage() {
 		<DoctorPageBody>
 			<Container>
 				<DoctorPageBackLink to={"/"}>
-					<ArrowIcon /> К списку врачей
+					<ArrowIcon /> Все врачи
 				</DoctorPageBackLink>
 				{id ? <DoctorProfile id={id} /> : <div>Нет id специалиста</div>}
 			</Container>

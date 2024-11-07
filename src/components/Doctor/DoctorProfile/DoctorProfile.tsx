@@ -14,6 +14,8 @@ import {
 	DoctorProfileInfo,
 	DoctorProfilePrices,
 	DoctorProfilePricesContainer,
+	DoctorProfileLocations,
+	DoctorProfileTypeWord,
 } from "./styled"
 
 import { IDoctorProfile } from "./type"
@@ -21,7 +23,10 @@ import { useDoctorByID } from "../../../hooks/useDoctorByID"
 import { DoctorProfileSkeleton } from "./DoctorProfileSkeleton"
 import { Price } from "../../Price"
 import { Prices } from "../../Price/Prices"
+import OnlineIcon from "@icons/Online"
+import OfflineIcon from "@icons/Offline"
 import { Footer } from "../../Footer"
+import { Tag } from "@components/Tag"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -49,13 +54,31 @@ function DoctorProfile({ id }: IDoctorProfile) {
 					{<img src={doctor.thumbnail_url} alt={doctor.fio} />}
 				</DoctorProfileThumbnail>
 			)}
-
+			{doctor.type_work && (
+				<DoctorProfileTypeWord>
+					{doctor.type_work.map((type: { value: string; label: string }) => {
+						return (
+							<Tag key={type.value}>
+								{type.value == "online" ? <OnlineIcon /> : <OfflineIcon />}
+								{type.label}
+							</Tag>
+						)
+					})}
+				</DoctorProfileTypeWord>
+			)}
 			<DoctorProfileBlock className="focus info">
 				{doctor.fio && <DoctorProfileName>{doctor.fio}</DoctorProfileName>}
 				{(doctor.doctor_categories || doctor.experience) && (
 					<DoctorProfileInfo
 						categories={doctor.doctor_categories ?? [{ name: "", slug: "" }]}
 						experience={doctor.experience ?? ""}
+					/>
+				)}
+
+				{doctor.clinics.length > 0 && (
+					<DoctorProfileLocations
+						title="Принимает в клиниках:"
+						addresses={doctor.clinics}
 					/>
 				)}
 				{doctor.prices &&

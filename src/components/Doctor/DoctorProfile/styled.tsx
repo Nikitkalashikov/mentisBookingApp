@@ -5,6 +5,7 @@ import { Gallery } from "../../Gallery"
 import Wave1 from "@img/wave-1.svg"
 import { ButtonBooking } from "@components/Button/ButtonBooking"
 import { DoctorInfo } from "../DoctorInfo"
+import { Locations } from "@components/Locations"
 
 export const DoctorProfileWrapper = styled.div`
 	display: flex;
@@ -31,8 +32,8 @@ export const DoctorProfileInfo = styled(DoctorInfo)`
 `
 
 export const DoctorProfileName = styled.p`
-	font-size: 26px;
-	line-height: 34px;
+	font-size: 24px;
+	line-height: 32px;
 	font-weight: 600;
 `
 
@@ -84,6 +85,26 @@ export const DoctorProfileBlockInner = styled.div`
 	z-index: 1;
 `
 
+export const DoctorProfileTypeWord = styled.div`
+	padding: 0 16px;
+	margin-top: -180px;
+	margin-bottom: 16px;
+	display: flex;
+	width: fit-content;
+	gap: 4px;
+	flex-direction: column;
+	z-index: 10;
+`
+
+export const DoctorProfileLocations = styled(Locations)`
+	margin-top: 16px;
+	color: var(--white-color);
+
+	p {
+		color: var(--gray-color);
+	}
+`
+
 export const DoctorProfileBlock = styled.div`
 	position: relative;
 	padding: 16px;
@@ -109,7 +130,7 @@ export const DoctorProfileBlock = styled.div`
 	}
 
 	&.info {
-		margin-top: -100px;
+		margin-top: 0;
 	}
 
 	&.focus {

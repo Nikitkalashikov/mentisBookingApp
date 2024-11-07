@@ -10,8 +10,13 @@ import {
 	DoctorCardThumbnail,
 	DoctorCardTitle,
 	DoctorCardInfo,
+	DoctorCardLocations,
+	DoctorCardTypeWord,
 } from "./styled"
 import { IDoctorCard } from "./type"
+import OfflineIcon from "@icons/Offline"
+import OnlineIcon from "@icons/Online"
+import { Tag } from "@components/Tag"
 
 function DoctorCard({
 	id,
@@ -19,6 +24,8 @@ function DoctorCard({
 	thumbnail_url,
 	doctor_categories,
 	prices,
+	type_work,
+	clinics,
 	experience,
 	...props
 }: IDoctorCard) {
@@ -27,6 +34,18 @@ function DoctorCard({
 		<DoctorCardWrapper {...props}>
 			<DoctorCardThumbnail to={`doctor/${id}`}>
 				{thumbnail_url && <img src={thumbnail_url} alt={fio} />}
+				{type_work && (
+					<DoctorCardTypeWord>
+						{type_work.map((type: { value: string; label: string }) => {
+							return (
+								<Tag key={type.value}>
+									{type.value == "online" ? <OnlineIcon /> : <OfflineIcon />}
+									{type.label}
+								</Tag>
+							)
+						})}
+					</DoctorCardTypeWord>
+				)}
 				<DoctorCardLink>
 					Подробнее
 					<ArrowIcon />
@@ -40,6 +59,14 @@ function DoctorCard({
 						experience={experience ?? ""}
 					/>
 				)}
+
+				{clinics.length > 0 && (
+					<DoctorCardLocations
+						title="Принимает в клиниках:"
+						addresses={clinics}
+					/>
+				)}
+
 				{prices_list && (
 					<Prices>
 						{prices_list.first_pay && (
