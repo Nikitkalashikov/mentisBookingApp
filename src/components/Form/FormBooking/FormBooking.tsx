@@ -11,6 +11,8 @@ import { RootState } from "@store/index"
 import { closeForm } from "@store/slices/formSlice"
 import { Modal } from "@mui/material"
 import { Box } from "@mui/material"
+import CloseIcon from "@icons/Close"
+import { FormBookClose } from "./styled"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -111,6 +113,9 @@ function FormBooking() {
 					padding: "24px",
 				}}
 			>
+				<FormBookClose onClick={formCloseHandle}>
+					<CloseIcon />
+				</FormBookClose>
 				<Form onSubmit={handleSubmit(onSubmit)}>
 					<FormHead>
 						<FormTitle>{title}</FormTitle>
