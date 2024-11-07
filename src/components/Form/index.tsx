@@ -1,4 +1,2 @@
-import { FormBooking } from "./FormBooking"
-import { FormContainer } from "./styled"
-
-export { FormBooking, FormContainer }
+export { FormBooking } from "./FormBooking"
+export { FormContainer } from "./styled"

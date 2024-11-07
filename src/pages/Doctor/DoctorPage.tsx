@@ -6,6 +6,7 @@ import { Container } from "../../components/Container"
 import { useParams } from "react-router-dom"
 import { DoctorProfile } from "@components/Doctor/DoctorProfile"
 import { useEffect } from "react"
+import { FormBooking } from "@components/Form"
 
 function DoctorPage() {
 	const { id } = useParams<{ id: string }>()
@@ -15,14 +16,17 @@ function DoctorPage() {
 	}, [])
 
 	return (
-		<DoctorPageBody>
-			<Container>
-				<DoctorPageBackLink to={"/"}>
-					<ArrowIcon /> Все врачи
-				</DoctorPageBackLink>
-				{id ? <DoctorProfile id={id} /> : <div>Нет id специалиста</div>}
-			</Container>
-		</DoctorPageBody>
+		<>
+			<DoctorPageBody>
+				<Container>
+					<DoctorPageBackLink to={"/"}>
+						<ArrowIcon /> Все врачи
+					</DoctorPageBackLink>
+					{id ? <DoctorProfile id={id} /> : <div>Нет id специалиста</div>}
+				</Container>
+			</DoctorPageBody>
+			<FormBooking />
+		</>
 	)
 }
 

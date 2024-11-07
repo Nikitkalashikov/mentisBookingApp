@@ -1,3 +1,1 @@
-import { FormBooking } from "./FormBooking"
-
-export { FormBooking }
+export { FormBooking } from "./FormBooking"

@@ -1,10 +1,4 @@
-interface IFormBooking {
-	desc?: string
-}
-
-interface IFormBookingInputs {
+export interface IFormBookingInputs {
 	name: string
 	tel: string
 }
-
-export type { IFormBooking, IFormBookingInputs }

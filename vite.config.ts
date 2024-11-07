@@ -14,6 +14,7 @@ export default defineConfig({
 			"@icons": resolve(__dirname, "src/assets/icons"),
 			"@img": resolve(__dirname, "src/assets/images"),
 			"@utils": resolve(__dirname, "src/utils"),
+			"@store": resolve(__dirname, "src/store"),
 		},
 	},
 })

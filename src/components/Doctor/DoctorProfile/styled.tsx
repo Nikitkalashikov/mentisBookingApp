@@ -69,7 +69,10 @@ export const DoctorProfilePrices = styled.div`
 	padding-top: 10px;
 	border-top: 1px solid var(--background-color);
 
-	p,
+	p {
+		color: var(--white-color);
+	}
+
 	span {
 		color: var(--white-color);
 	}

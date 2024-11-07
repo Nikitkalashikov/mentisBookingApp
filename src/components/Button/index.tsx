@@ -1,4 +1,2 @@
-import { Button } from "./Button"
-import { ButtonBooking } from "./ButtonBooking"
-
-export { Button, ButtonBooking }
+export { Button } from "./Button"
+export { ButtonBooking } from "./ButtonBooking"

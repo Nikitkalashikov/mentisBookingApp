@@ -12,11 +12,11 @@ const queryClient = new QueryClient()
 function App() {
 	const { tg } = useTelegram()
 
+	// tg.ready()
+
 	if (!tg.isExpanded) {
 		tg.expand()
 	}
-
-	tg.ready()
 
 	useAnalytics()
 

@@ -2,7 +2,6 @@ import {
 	DoctorProfileBlock,
 	DoctorProfileBlockContent,
 	DoctorProfileBlockInner,
-	// DoctorProfileButtonBooking,
 	DoctorProfileDirections,
 	DoctorProfileDirectionsItem,
 	DoctorProfileGallery,
@@ -25,31 +24,18 @@ import { Price } from "../../Price"
 import { Prices } from "../../Price/Prices"
 import OnlineIcon from "@icons/Online"
 import OfflineIcon from "@icons/Offline"
-// import { Footer } from "../../Footer"
 import { Tag } from "@components/Tag"
-import { useTelegram } from "@hooks/useTelegram"
 import { WaveIcon } from "@icons/Wave"
+import { useDispatch } from "react-redux"
+import { useTelegram } from "@hooks/useTelegram"
+import { openForm } from "@store/slices/formSlice"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
 
 function DoctorProfile({ id }: IDoctorProfile) {
-	const {
-		data: doctor,
-		isLoading,
-		isError,
-		error,
-	} = useDoctorByID(USERNAME, PASSWORD, id)
-
+	const dispatch = useDispatch()
 	const { tg } = useTelegram()
-
-	if (isError) {
-		return <div>{error.message}</div>
-	}
-
-	if (isLoading || !doctor) {
-		return <DoctorProfileSkeleton />
-	}
 
 	if (tg && tg.MainButton) {
 		tg.MainButton.show()
@@ -59,10 +45,23 @@ function DoctorProfile({ id }: IDoctorProfile) {
 			text_color: "#ffffff",
 		})
 		tg.MainButton.onClick(() => {
-			tg.showAlert("Кнопка нажата")
+			dispatch(openForm())
 		})
-	} else {
-		console.error("MainButton не доступен")
+	}
+
+	const {
+		data: doctor,
+		isLoading,
+		isError,
+		error,
+	} = useDoctorByID(USERNAME, PASSWORD, id)
+
+	if (isError) {
+		return <div>{error.message}</div>
+	}
+
+	if (isLoading || !doctor) {
+		return <DoctorProfileSkeleton />
 	}
 
 	return (
@@ -169,13 +168,6 @@ function DoctorProfile({ id }: IDoctorProfile) {
 					/>
 				</DoctorProfileGalleryWrapper>
 			)}
-			{/* {doctor.fio && (
-				<Footer>
-					<DoctorProfileButtonBooking desc={doctor.fio}>
-						Записаться
-					</DoctorProfileButtonBooking>
-				</Footer>
-			)} */}
 		</DoctorProfileWrapper>
 	)
 }

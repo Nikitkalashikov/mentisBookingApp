@@ -1,47 +1,33 @@
-import { useState } from "react"
+import { useDispatch } from "react-redux"
 import { Button } from "../Button"
 import { IButtonBooking } from "./type"
-import { Box, Modal } from "@mui/material"
-import { FormBooking, FormContainer } from "../../Form"
+import {
+	openForm,
+	setSubject,
+	setDescription,
+	setTitle,
+} from "@store/slices/formSlice"
 
-function ButtonBooking({ children, desc, ...props }: IButtonBooking) {
-	const [isModalOpen, setModalOpen] = useState<boolean>(false)
+function ButtonBooking({
+	formTitle,
+	formSubject,
+	formDescription,
+	children,
+	...props
+}: IButtonBooking) {
+	const dispatch = useDispatch()
 
-	const handleOpen = () => {
-		setModalOpen(true)
-	}
-
-	const handleClose = () => {
-		setModalOpen(false)
+	const openFormHandle = () => {
+		dispatch(openForm())
+		dispatch(setTitle(formTitle))
+		dispatch(setSubject(formSubject))
+		dispatch(setDescription(formDescription))
 	}
 
 	return (
-		<>
-			<Button onClick={handleOpen} {...props}>
-				{children ? children : "Записаться"}
-			</Button>
-			{isModalOpen && (
-				<Modal open={isModalOpen} onClose={handleClose}>
-					<Box
-						sx={{
-							position: "absolute",
-							top: 16,
-							bottom: "auto",
-							left: 0,
-							right: 0,
-							width: "90%",
-							maxWidth: 480,
-							height: "fit-content",
-							margin: "auto",
-						}}
-					>
-						<FormContainer>
-							<FormBooking desc={desc ?? ""} />
-						</FormContainer>
-					</Box>
-				</Modal>
-			)}
-		</>
+		<Button onClick={openFormHandle} {...props}>
+			{children ? children : "Записаться"}
+		</Button>
 	)
 }
 

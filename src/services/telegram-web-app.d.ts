@@ -27,6 +27,7 @@ interface Window {
 			expand: () => VoidFunction
 			setHeaderColor: () => VoidFunction
 			requestContact: () => VoidFunction
+			showConfirm: (message: string) => VoidFunction
 			showAlert: (message: string) => VoidFunction
 			MainButton: {
 				isActive: boolean

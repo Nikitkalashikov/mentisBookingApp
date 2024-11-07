@@ -36,10 +36,3 @@ export const FormContainer = styled.div`
 	border-radius: 24px;
 	background-color: var(--white-color);
 `
-
-export const FormMessage = styled.p`
-	margin-top: 24px;
-	text-align: center;
-	font-size: 16px;
-	line-height: 24px;
-`

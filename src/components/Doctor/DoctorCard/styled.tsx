@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import { ButtonBooking } from "../../Button/ButtonBooking"
+import { ButtonBooking } from "@components/Button"
 import { DoctorInfo } from "../DoctorInfo"
 import { Locations } from "@components/Locations"
 

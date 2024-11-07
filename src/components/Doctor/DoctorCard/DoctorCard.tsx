@@ -83,7 +83,13 @@ function DoctorCard({
 						)}
 					</Prices>
 				)}
-				<DoctorCardButton desc={fio}>Записаться</DoctorCardButton>
+				<DoctorCardButton
+					formSubject={`Новая запись на прием к ${fio}`}
+					formTitle="Записаться на прием"
+					formDescription={`Доктор: ${fio}`}
+				>
+					Записаться
+				</DoctorCardButton>
 			</DoctorCardBody>
 		</DoctorCardWrapper>
 	)

@@ -1,3 +1,4 @@
+import { FormBooking } from "@components/Form"
 import { Container } from "../../components/Container"
 import { DoctorList } from "../../components/Doctor"
 import { Filters } from "../../components/Filters"
@@ -17,6 +18,7 @@ function HomePage() {
 				</Container>
 			</HomePageBody>
 			<CreatedByWrapper />
+			<FormBooking />
 		</>
 	)
 }

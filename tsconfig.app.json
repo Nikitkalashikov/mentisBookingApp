@@ -14,7 +14,8 @@
 			"@hooks/*": ["src/hooks/*"],
 			"@utils/*": ["src/utils/*"],
 			"@icons/*": ["src/assets/icons/*"],
-			"@img/*": ["src/assets/images/*"]
+			"@img/*": ["src/assets/images/*"],
+			"@store/*": ["src/store/*"]
 		},
 
 		/* Bundler mode */
