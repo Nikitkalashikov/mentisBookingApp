@@ -50,18 +50,16 @@ function DoctorProfile({ id }: IDoctorProfile) {
 		return <DoctorProfileSkeleton />
 	}
 
-	if (tg) {
+	tg.ready()
+
+	if (tg && tg.BottomButton) {
 		tg.BottomButton.show()
-
-		tg.BottomButton.setParams({
-			text: "Записаться",
-			color: "#1597bb",
-			text_color: "#ffffff",
-		})
-
+		tg.BottomButton.setText("Продолжить")
 		tg.BottomButton.onClick(() => {
-			tg.showAlert("Кнопка нажата")
+			console.log("Кнопка нажата")
 		})
+	} else {
+		console.error("BottomButton не доступен")
 	}
 
 	return (
