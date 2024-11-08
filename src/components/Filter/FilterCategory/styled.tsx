@@ -9,6 +9,7 @@ export const FilterCategoryList = styled.div`
 
 export const FilterCategorySlider = styled(Swiper)`
 	width: 100%;
+	overflow: visible;
 `
 
 export const FilterCategorySlide = styled(SwiperSlide)`

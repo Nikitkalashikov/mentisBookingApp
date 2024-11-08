@@ -15,6 +15,7 @@ import {
 	DoctorProfilePricesContainer,
 	DoctorProfileLocations,
 	DoctorProfileTypeWord,
+	DoctorProfileIntro,
 } from "./styled"
 
 import { IDoctorProfile } from "./type"
@@ -66,39 +67,47 @@ function DoctorProfile({ id }: IDoctorProfile) {
 
 	return (
 		<DoctorProfileWrapper>
-			{doctor.thumbnail_url && (
-				<DoctorProfileThumbnail>
-					{<img src={doctor.thumbnail_url} alt={doctor.fio} />}
-				</DoctorProfileThumbnail>
-			)}
-			<DoctorProfileBlock className="gradient middle">
-				{doctor.fio && <DoctorProfileName>{doctor.fio}</DoctorProfileName>}
-				{(doctor.doctor_categories || doctor.experience) && (
-					<DoctorProfileInfo
-						categories={doctor.doctor_categories ?? [{ name: "", slug: "" }]}
-						experience={doctor.experience ?? ""}
-					/>
+			<DoctorProfileIntro>
+				{doctor.thumbnail_url && (
+					<DoctorProfileThumbnail>
+						{<img src={doctor.thumbnail_url} alt={doctor.fio} />}
+					</DoctorProfileThumbnail>
 				)}
+				<DoctorProfileBlock className="gradient fixed">
+					{doctor.fio && <DoctorProfileName>{doctor.fio}</DoctorProfileName>}
+					{(doctor.doctor_categories || doctor.experience) && (
+						<DoctorProfileInfo
+							categories={doctor.doctor_categories ?? [{ name: "", slug: "" }]}
+							experience={doctor.experience ?? ""}
+						/>
+					)}
 
-				{doctor.clinics.length > 0 && (
-					<DoctorProfileLocations
-						title="Принимает в клиниках:"
-						addresses={doctor.clinics}
-					/>
-				)}
-				{doctor.type_work && (
-					<DoctorProfileTypeWord>
-						{doctor.type_work.map((type: { value: string; label: string }) => {
-							return (
-								<Tag key={type.value}>
-									{type.value == "online" ? <OnlineIcon /> : <OfflineIcon />}
-									{type.label}
-								</Tag>
-							)
-						})}
-					</DoctorProfileTypeWord>
-				)}
-			</DoctorProfileBlock>
+					{doctor.clinics.length > 0 && (
+						<DoctorProfileLocations
+							title="Принимает в клиниках:"
+							addresses={doctor.clinics}
+						/>
+					)}
+					{doctor.type_work && (
+						<DoctorProfileTypeWord>
+							{doctor.type_work.map(
+								(type: { value: string; label: string }) => {
+									return (
+										<Tag key={type.value}>
+											{type.value == "online" ? (
+												<OnlineIcon />
+											) : (
+												<OfflineIcon />
+											)}
+											{type.label}
+										</Tag>
+									)
+								}
+							)}
+						</DoctorProfileTypeWord>
+					)}
+				</DoctorProfileBlock>
+			</DoctorProfileIntro>
 			{doctor.prices && (
 				<DoctorProfileBlock className="focus">
 					{[doctor.prices].map(

@@ -1,4 +1,4 @@
-import LogoIcon from "../../assets/icons/Logo"
+import LogoIcon from "@icons/Logo"
 import { LogoWrapper } from "./styled"
 
 function Logo() {

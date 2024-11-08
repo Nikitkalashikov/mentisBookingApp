@@ -11,9 +11,13 @@ export const DoctorProfileWrapper = styled.div`
 	flex-direction: column;
 `
 
-export const DoctorProfileThumbnail = styled.div`
+export const DoctorProfileIntro = styled.div`
 	position: relative;
 	margin-bottom: 24px;
+`
+
+export const DoctorProfileThumbnail = styled.div`
+	position: relative;
 	width: 100%;
 	height: 480px;
 	border-radius: 24px;
@@ -139,8 +143,10 @@ export const DoctorProfileBlock = styled.div`
 		height: 180%;
 	}
 
-	&.middle {
-		margin-top: -252px;
+	&.fixed {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
 	}
 
 	&.gradient {
