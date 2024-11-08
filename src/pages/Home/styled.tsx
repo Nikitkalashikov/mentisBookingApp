@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { CreatedBy } from "../../components/CreatedBy"
 import { Body } from "../../components/Body"
+import { Banner } from "@components/Banner"
 
 export const CreatedByWrapper = styled(CreatedBy)`
 	margin-top: 24px;
@@ -9,3 +10,7 @@ export const CreatedByWrapper = styled(CreatedBy)`
 `
 
 export const HomePageBody = styled(Body)``
+
+export const HomePageBanner = styled(Banner)`
+	margin-bottom: 24px;
+`
