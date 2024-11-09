@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit"
 import formReducer from "./slices/formSlice"
+import formDiagnosticSlice from "./slices/formDiagnosticSlice"
 
 export const store = configureStore({
 	reducer: {
 		form: formReducer,
+		formDiagnostic: formDiagnosticSlice,
 	},
 })
 

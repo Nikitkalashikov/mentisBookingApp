@@ -10,9 +10,9 @@ import {
 import { IBanner } from "./type"
 import ArrowIcon from "@icons/Arrow"
 
-function Banner({ title, desc, image, ...props }: IBanner) {
+function Banner({ title, desc, image, onClick, ...props }: IBanner) {
 	return (
-		<BannerWrapper {...props}>
+		<BannerWrapper onClick={onClick} {...props}>
 			{desc && <BannerDesc>{desc}</BannerDesc>}
 			<BannerTitle>{title}</BannerTitle>
 			{image && <BannerImage src={image} alt="Изображение баннера" />}

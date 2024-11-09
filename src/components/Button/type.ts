@@ -3,6 +3,7 @@ interface IButton {
 	onClick?: React.MouseEventHandler<HTMLButtonElement>
 	className?: string
 	onCLick?: () => void
+	disabled?: boolean
 }
 
 export type { IButton }

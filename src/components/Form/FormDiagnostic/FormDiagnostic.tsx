@@ -8,11 +8,28 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTelegram } from "@hooks/useTelegram"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@store/index"
-import { closeForm } from "@store/slices/formSlice"
-import { Modal } from "@mui/material"
+import { Container, Modal } from "@mui/material"
 import { Box } from "@mui/material"
 import CloseIcon from "@icons/Close"
-import { FormBookClose } from "./styled"
+import {
+	FormDiagnosticBackground,
+	FormDiagnosticClosed,
+	FormDiagnosticSlide,
+	FormDiagnosticSlideContent,
+	FormDiagnosticSlider,
+	FormDiagnosticSliderBottom,
+	FormDiagnosticSliderButton,
+	FormDiagnosticSliderContainer,
+	FormDiagnosticSliderNav,
+	FormDiagnosticTextarea,
+	FormDiagnosticTitle,
+} from "./styled"
+import { closeFormDiagnostic } from "@store/slices/formDiagnosticSlice"
+import { Navigation, EffectFade } from "swiper/modules"
+import { useState } from "react"
+import { WaveIcon } from "@icons/Wave"
+import "swiper/css/effect-fade"
+import { handleInputChange } from "@utils/helpers/handleInputChange"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -21,12 +38,37 @@ function FormDiagnostic() {
 	const { tg, user } = useTelegram()
 
 	const dispatch = useDispatch()
-	const { isOpen, title, subject, description, buttonText } = useSelector(
-		(state: RootState) => state.form
-	)
+
+	const { isOpen, title, subject, description, buttonText, questions } =
+		useSelector((state: RootState) => state.formDiagnostic)
+
+	const [currentSlide, setCurrentSlide] = useState(1)
+	const totalSlides = questions.length + 1
+
+	const [answers, setAnswers] = useState<{
+		[key: number]: { question: string; answer: string }
+	}>({})
+	const isCurrentSlideFilled =
+		answers[currentSlide]?.answer && answers[currentSlide].answer.trim() !== ""
+
+	const handleTextAreaChange = (
+		e: React.ChangeEvent<HTMLInputElement>,
+		index: number,
+		question: string
+	) => {
+		const input = handleInputChange(e)
+
+		setAnswers(prevAnswers => ({
+			...prevAnswers,
+			[index]: {
+				question: question,
+				answer: input,
+			},
+		}))
+	}
 
 	const formCloseHandle = () => {
-		dispatch(closeForm())
+		dispatch(closeFormDiagnostic())
 	}
 
 	const {
@@ -46,11 +88,17 @@ function FormDiagnostic() {
 		try {
 			const token = await getToken(USERNAME, PASSWORD)
 
+			const message = answers
+				? Object.values(answers)
+						.map(row => `<b>${row.question}:</b> ${row.answer}`)
+						.join("\n\n\n")
+				: description
+
 			const response = await sendEmail(token, {
 				subject: subject,
 				fio: formData.name,
 				tel: formData.tel,
-				message: description,
+				message: message,
 			})
 
 			if (response.status === true) {
@@ -58,39 +106,13 @@ function FormDiagnostic() {
 					tg.showConfirm(response.message)
 				}
 				reset()
-				dispatch(closeForm())
+				setAnswers({})
+				dispatch(closeFormDiagnostic())
 			}
 		} catch (error) {
 			console.error("Ошибка при отправке заявки", error)
 		}
 	}
-
-	function adjustForKeyboard() {
-		const originalHeight = window.innerHeight
-
-		const isKeyboardOpen = window.innerHeight < originalHeight
-		const formElement = document.getElementById("formOrder")
-
-		if (formElement) {
-			if (isKeyboardOpen) {
-				formElement.scrollIntoView({ behavior: "smooth", block: "center" })
-			} else {
-				formElement.style.transform = "translateY(0)"
-			}
-		}
-	}
-
-	function initKeyboardAdjustment() {
-		tg.onEvent("viewportChanged", adjustForKeyboard)
-
-		window.addEventListener("resize", adjustForKeyboard)
-		document.querySelectorAll("input").forEach(input => {
-			input.addEventListener("focus", adjustForKeyboard)
-			input.addEventListener("blur", adjustForKeyboard)
-		})
-	}
-
-	initKeyboardAdjustment()
 
 	if (!isOpen) return null
 
@@ -104,72 +126,125 @@ function FormDiagnostic() {
 					bottom: 0,
 					left: 0,
 					right: 0,
-					width: "90%",
-					maxWidth: 480,
-					height: "fit-content",
+					height: "100vh",
 					margin: "auto",
 					background: "#ffffff",
-					borderRadius: "24px",
-					padding: "24px",
+					padding: "80px 0 24px 0",
 				}}
 			>
-				<FormBookClose onClick={formCloseHandle}>
-					<CloseIcon />
-				</FormBookClose>
-				<Form onSubmit={handleSubmit(onSubmit)}>
-					<FormHead>
-						<FormTitle>{title}</FormTitle>
-						{description && <FormDesc>{description}</FormDesc>}
-					</FormHead>
-					<Controller
-						control={control}
-						name="name"
-						rules={{
-							minLength: {
-								value: 3,
-								message: "Имя должно содержаить больше 3 символов",
-							},
-							maxLength: {
-								value: 18,
-								message: "Поле не может содержать больше 18 символов",
-							},
-							pattern: {
-								value: /^[А-Яа-я]+(\s[А-Яа-я]+)?$/i,
-								message: "Поле может содержать одно или два слова (Кириллицей)",
-							},
-							required: "Введите имя",
-						}}
-						render={({ field }) => (
-							<FormInput
-								type="text"
-								error={errors.name?.message}
-								placeholder="Имя"
-								{...field}
-							/>
-						)}
-					/>
-					<Controller
-						control={control}
-						name="tel"
-						rules={{
-							required: "Введите телефон",
-							pattern: {
-								value: /^\+7\s?\(\d{3}\)\s?\d{3}-\d{2}-\d{2}$/,
-								message: "Введите корректный номер телефона",
-							},
-						}}
-						render={({ field }) => (
-							<FormInputPhone
-								type="tel"
-								error={errors.tel?.message}
-								placeholder="+7 (000) 000 00 00"
-								{...field}
-							/>
-						)}
-					/>
+				<Container>
+					<FormDiagnosticSliderContainer>
+						<FormDiagnosticClosed onClick={formCloseHandle}>
+							<CloseIcon />
+						</FormDiagnosticClosed>
 
-					<FormButton>{buttonText}</FormButton>
-				</Form>
+						<FormDiagnosticSlider
+							effect={"fade"}
+							modules={[EffectFade, Navigation]}
+							spaceBetween={0}
+							slidesPerView={1}
+							allowTouchMove={false}
+							navigation={{
+								nextEl: ".swiper-button-next",
+								prevEl: ".swiper-button-prev",
+							}}
+							onSlideChange={swiper => setCurrentSlide(swiper.activeIndex + 1)}
+						>
+							{questions.map(question => (
+								<FormDiagnosticSlide key={question.question}>
+									<FormDiagnosticSlideContent>
+										<FormDiagnosticTitle>
+											{question.question}
+										</FormDiagnosticTitle>
+										<FormDiagnosticTextarea
+											onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+												handleTextAreaChange(e, currentSlide, question.question)
+											}
+											placeholder={question.placeholder}
+										/>
+									</FormDiagnosticSlideContent>
+								</FormDiagnosticSlide>
+							))}
+							<FormDiagnosticSlide>
+								<Form onSubmit={handleSubmit(onSubmit)}>
+									<FormHead>
+										<FormTitle>{title}</FormTitle>
+										{description && <FormDesc>{description}</FormDesc>}
+									</FormHead>
+									<Controller
+										control={control}
+										name="name"
+										rules={{
+											minLength: {
+												value: 3,
+												message: "Имя должно содержаить больше 3 символов",
+											},
+											maxLength: {
+												value: 18,
+												message: "Поле не может содержать больше 18 символов",
+											},
+											pattern: {
+												value: /^[А-Яа-я]+(\s[А-Яа-я]+)?$/i,
+												message:
+													"Поле может содержать одно или два слова (Кириллицей)",
+											},
+											required: "Введите имя",
+										}}
+										render={({ field }) => (
+											<FormInput
+												type="text"
+												error={errors.name?.message}
+												placeholder="Имя"
+												{...field}
+											/>
+										)}
+									/>
+									<Controller
+										control={control}
+										name="tel"
+										rules={{
+											required: "Введите телефон",
+											pattern: {
+												value: /^\+7\s?\(\d{3}\)\s?\d{3}-\d{2}-\d{2}$/,
+												message: "Введите корректный номер телефона",
+											},
+										}}
+										render={({ field }) => (
+											<FormInputPhone
+												type="tel"
+												error={errors.tel?.message}
+												placeholder="+7 (000) 000 00 00"
+												{...field}
+											/>
+										)}
+									/>
+
+									<FormButton>{buttonText}</FormButton>
+								</Form>
+							</FormDiagnosticSlide>
+						</FormDiagnosticSlider>
+						<FormDiagnosticSliderBottom>
+							<FormDiagnosticSliderNav>
+								<FormDiagnosticSliderButton className="swiper-button-prev">
+									Предыдущий
+								</FormDiagnosticSliderButton>
+								<FormDiagnosticSliderButton
+									className="swiper-button-next"
+									disabled={!isCurrentSlideFilled}
+								>
+									Следующий
+								</FormDiagnosticSliderButton>
+							</FormDiagnosticSliderNav>
+
+							<div className="slide-step">
+								Шаг {currentSlide} из {totalSlides}
+							</div>
+						</FormDiagnosticSliderBottom>
+						<FormDiagnosticBackground>
+							<WaveIcon />
+						</FormDiagnosticBackground>
+					</FormDiagnosticSliderContainer>
+				</Container>
 			</Box>
 		</Modal>
 	)

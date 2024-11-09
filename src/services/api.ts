@@ -44,7 +44,12 @@ export const getDoctorsCategories = async (token: string) => {
 
 export const sendEmail = async (
 	token: string,
-	emailData: { subject: string; fio: string; tel: string; message: string }
+	emailData: {
+		subject: string
+		fio: string
+		tel: string
+		message: string
+	}
 ) => {
 	const formData = new FormData()
 	formData.append("subject", emailData.subject)

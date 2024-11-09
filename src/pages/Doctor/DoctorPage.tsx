@@ -22,7 +22,7 @@ function DoctorPage() {
 					<DoctorPageBackLink to={"/"}>
 						<ArrowIcon /> Все врачи
 					</DoctorPageBackLink>
-					{id ? <DoctorProfile id={id} /> : <div>Нет id специалиста</div>}
+					{id ? <DoctorProfile id={id} /> : <div>Специалист не найден</div>}
 				</Container>
 			</DoctorPageBody>
 			<FormBooking />

@@ -108,7 +108,8 @@ function DoctorProfile({ id }: IDoctorProfile) {
 					)}
 				</DoctorProfileBlock>
 			</DoctorProfileIntro>
-			{doctor.prices && (
+
+			{doctor.prices.first_pay && (
 				<DoctorProfileBlock className="focus">
 					{[doctor.prices].map(
 						(price: {
