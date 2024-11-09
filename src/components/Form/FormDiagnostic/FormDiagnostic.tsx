@@ -20,7 +20,9 @@ import {
 	FormDiagnosticSliderBottom,
 	FormDiagnosticSliderButton,
 	FormDiagnosticSliderContainer,
+	FormDiagnosticSliderHead,
 	FormDiagnosticSliderNav,
+	FormDiagnosticSliderSteps,
 	FormDiagnosticTextarea,
 	FormDiagnosticTitle,
 } from "./styled"
@@ -107,6 +109,7 @@ function FormDiagnostic() {
 				}
 				reset()
 				setAnswers({})
+				setCurrentSlide(1)
 				dispatch(closeFormDiagnostic())
 			}
 		} catch (error) {
@@ -129,14 +132,19 @@ function FormDiagnostic() {
 					height: "100vh",
 					margin: "auto",
 					background: "#ffffff",
-					padding: "80px 0 24px 0",
+					padding: "24px 0 24px 0",
 				}}
 			>
 				<Container>
 					<FormDiagnosticSliderContainer>
-						<FormDiagnosticClosed onClick={formCloseHandle}>
-							<CloseIcon />
-						</FormDiagnosticClosed>
+						<FormDiagnosticSliderHead>
+							<FormDiagnosticSliderSteps>
+								Шаг {currentSlide} из {totalSlides}
+							</FormDiagnosticSliderSteps>
+							<FormDiagnosticClosed onClick={formCloseHandle}>
+								<CloseIcon />
+							</FormDiagnosticClosed>
+						</FormDiagnosticSliderHead>
 
 						<FormDiagnosticSlider
 							effect={"fade"}
@@ -223,23 +231,21 @@ function FormDiagnostic() {
 								</Form>
 							</FormDiagnosticSlide>
 						</FormDiagnosticSlider>
-						<FormDiagnosticSliderBottom>
-							<FormDiagnosticSliderNav>
-								<FormDiagnosticSliderButton className="swiper-button-prev">
-									Предыдущий
-								</FormDiagnosticSliderButton>
-								<FormDiagnosticSliderButton
-									className="swiper-button-next"
-									disabled={!isCurrentSlideFilled}
-								>
-									Следующий
-								</FormDiagnosticSliderButton>
-							</FormDiagnosticSliderNav>
-
-							<div className="slide-step">
-								Шаг {currentSlide} из {totalSlides}
-							</div>
-						</FormDiagnosticSliderBottom>
+						{totalSlides > currentSlide && (
+							<FormDiagnosticSliderBottom>
+								<FormDiagnosticSliderNav>
+									<FormDiagnosticSliderButton className="swiper-button-prev">
+										Предыдущий
+									</FormDiagnosticSliderButton>
+									<FormDiagnosticSliderButton
+										className="swiper-button-next"
+										disabled={!isCurrentSlideFilled}
+									>
+										Следующий
+									</FormDiagnosticSliderButton>
+								</FormDiagnosticSliderNav>
+							</FormDiagnosticSliderBottom>
+						)}
 						<FormDiagnosticBackground>
 							<WaveIcon />
 						</FormDiagnosticBackground>

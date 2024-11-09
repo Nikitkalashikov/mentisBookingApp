@@ -5,14 +5,9 @@ import { FormTextarea } from "../FormTextarea"
 import { Button } from "@components/Button"
 
 export const FormDiagnosticClosed = styled.div`
-	position: absolute;
-	top: 24px;
-	right: 24px;
 	cursor: pointer;
 	width: 24px;
 	height: 24px;
-	margin-left: auto;
-	margin-right: 0;
 	z-index: 1;
 
 	svg {
@@ -29,7 +24,28 @@ export const FormDiagnosticTitle = styled.p`
 `
 
 export const FormDiagnosticTextarea = styled(FormTextarea)`
-	height: 260px;
+	height: 240px;
+`
+
+export const FormDiagnosticSliderSteps = styled.div`
+	font-size: 16px;
+	line-height: 24px;
+	margin-left: -24px;
+	padding-left: 24px;
+	padding-right: 8px;
+	padding-top: 6px;
+	padding-top: 6px;
+	border-radius: 0 4px 4px 0;
+	color: var(--white-color);
+	background-color: var(--thirdy-color);
+`
+
+export const FormDiagnosticSliderHead = styled.div`
+	margin-bottom: 24px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 `
 
 export const FormDiagnosticSlider = styled(Swiper)`
@@ -39,7 +55,7 @@ export const FormDiagnosticSlider = styled(Swiper)`
 export const FormDiagnosticSlideContent = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 24px;
+	gap: 16px;
 `
 
 export const FormDiagnosticSlide = styled(SwiperSlide)`
@@ -72,7 +88,7 @@ export const FormDiagnosticBackground = styled.div`
 `
 
 export const FormDiagnosticSliderBottom = styled.div`
-	margin-top: 32px;
+	margin-top: 24px;
 	display: flex;
 	flex-direction: row;
 	gap: 32px;
@@ -81,6 +97,7 @@ export const FormDiagnosticSliderBottom = styled.div`
 
 export const FormDiagnosticSliderNav = styled.div`
 	display: flex;
+	width: 100%;
 	align-items: center;
 	flex-direction: row;
 	gap: 12px;
@@ -88,7 +105,7 @@ export const FormDiagnosticSliderNav = styled.div`
 
 export const FormDiagnosticSliderButton = styled(Button)`
 	position: relative;
-	width: fit-content;
+	width: 50%;
 	height: auto;
 	top: 0;
 	margin-top: auto;
