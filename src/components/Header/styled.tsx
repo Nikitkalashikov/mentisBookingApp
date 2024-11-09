@@ -8,6 +8,7 @@ export const HeaderWrapper = styled.div`
 
 export const HeaderContainer = styled(Container)`
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: space-between;
 	align-items: center;
 `

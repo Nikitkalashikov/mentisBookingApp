@@ -1,3 +1,4 @@
+import { Clinics } from "@components/Clinics"
 import { Logo } from "../Logo"
 import { HeaderContainer, HeaderWrapper } from "./styled"
 
@@ -6,6 +7,7 @@ function Header() {
 		<HeaderWrapper>
 			<HeaderContainer>
 				<Logo />
+				<Clinics />
 			</HeaderContainer>
 		</HeaderWrapper>
 	)
