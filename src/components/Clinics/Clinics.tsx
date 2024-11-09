@@ -1,3 +1,4 @@
+import LocationIcon from "@icons/Location"
 import { CitiesWrapper } from "./styled"
 
 function Clinics() {
@@ -12,6 +13,12 @@ function Clinics() {
 		},
 	]
 
-	return <CitiesWrapper placeholder="Все клиники" options={clinics} />
+	return (
+		<CitiesWrapper
+			icon={<LocationIcon />}
+			placeholder="Все клиники"
+			options={clinics}
+		/>
+	)
 }
 export { Clinics }

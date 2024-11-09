@@ -7,6 +7,17 @@ export const DropdownValue = styled.div`
 	align-items: center;
 	padding: 4px 12px;
 `
+export const DropdownLocation = styled.div`
+	margin-right: 4px;
+	width: 18px;
+	height: 18px;
+
+	svg {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+`
 
 export const DropdownWrapper = styled.div`
 	position: relative;
@@ -48,7 +59,7 @@ export const DropdownOptions = styled.div`
 	opacity: 0;
 	height: 0;
 	// transition: opacity 0.5s ease, height 1s ease;
-	padding: 6px;
+	padding: 6px 8px;
 	background: var(--white-color);
 	border-radius: 6px;
 	z-index: 50;
@@ -64,4 +75,12 @@ export const DropdownOption = styled.div`
 	display: flex;
 	flex-direction: column;
 	transition: 0.5s ease;
+	padding: 2px 4px;
+	font-size: 16px;
+	line-height: 24px;
+	border-radius: 2px;
+
+	&.active {
+		background-color: var(--secondary-color);
+	}
 `
