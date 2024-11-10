@@ -29,6 +29,7 @@ function DoctorList() {
 	if (isError) {
 		return <div>{error?.message}</div>
 	}
+
 	if (isLoading || !doctors) {
 		return <DoctorListSkeleton />
 	}
@@ -41,10 +42,10 @@ function DoctorList() {
 			: true
 
 		const matchesClinic =
-			getClinic.value === "all"
+			getClinic.slug === "all"
 				? true
 				: doctor.clinics?.some(
-						(clinic: { slug: string }) => clinic.slug === getClinic.value
+						(clinic: { slug: string }) => clinic.slug === getClinic.slug
 				  )
 
 		return matchesCategory && matchesClinic

@@ -45,7 +45,7 @@ const initialState: FormState = {
 }
 
 const formDiagnosticSlice = createSlice({
-	name: "form",
+	name: "formDiagnostic",
 	initialState,
 	reducers: {
 		openFormDiagnostic(state) {

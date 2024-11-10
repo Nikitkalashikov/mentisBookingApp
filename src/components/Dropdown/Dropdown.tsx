@@ -10,7 +10,7 @@ import {
 import { IDropdown } from "./type"
 import { useState } from "react"
 
-function Dropdown({ icon, current, options, onChange, ...props }: IDropdown) {
+function Dropdown({ icon, current, options, onClick, ...props }: IDropdown) {
 	const [isOpen, setIsOpen] = useState(false)
 
 	const handleClick = () => {
@@ -18,7 +18,7 @@ function Dropdown({ icon, current, options, onChange, ...props }: IDropdown) {
 	}
 
 	const handleChange = (e: React.MouseEvent<HTMLDivElement>) => {
-		onChange(e)
+		onClick(e)
 		setIsOpen(false)
 	}
 
@@ -37,8 +37,8 @@ function Dropdown({ icon, current, options, onChange, ...props }: IDropdown) {
 						<DropdownOption
 							key={option.title}
 							onClick={handleChange}
-							data-value={option.value}
-							className={current.value == option.value ? "active" : ""}
+							data-value={option.slug}
+							className={current.slug == option.slug ? "active" : ""}
 						>
 							{option.title}
 						</DropdownOption>

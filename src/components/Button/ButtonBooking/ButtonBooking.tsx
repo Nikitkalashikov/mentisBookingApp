@@ -13,6 +13,7 @@ function ButtonBooking({
 	formSubject,
 	formDescription,
 	children,
+	onClick,
 	...props
 }: IButtonBooking) {
 	const dispatch = useDispatch()
@@ -22,6 +23,7 @@ function ButtonBooking({
 		dispatch(setTitle(formTitle))
 		dispatch(setSubject(formSubject))
 		dispatch(setDescription(formDescription))
+		onClick()
 	}
 
 	return (

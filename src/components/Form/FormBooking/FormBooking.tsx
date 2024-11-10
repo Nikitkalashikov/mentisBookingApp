@@ -13,6 +13,8 @@ import { Modal } from "@mui/material"
 import { Box } from "@mui/material"
 import CloseIcon from "@icons/Close"
 import { FormBookClose } from "./styled"
+import { DoctorDropdownClinics } from "@components/Doctor"
+import { useState } from "react"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -24,6 +26,7 @@ function FormBooking() {
 	const { isOpen, title, subject, description, buttonText } = useSelector(
 		(state: RootState) => state.form
 	)
+	const [activeClinic, setActiveClinic] = useState("")
 
 	const formCloseHandle = () => {
 		dispatch(closeForm())
@@ -50,6 +53,7 @@ function FormBooking() {
 				subject: subject,
 				fio: formData.name,
 				tel: formData.tel,
+				clinic: activeClinic,
 				message: description,
 			})
 
@@ -167,6 +171,8 @@ function FormBooking() {
 							/>
 						)}
 					/>
+
+					<DoctorDropdownClinics onChange={setActiveClinic} />
 
 					<FormButton>{buttonText}</FormButton>
 				</Form>

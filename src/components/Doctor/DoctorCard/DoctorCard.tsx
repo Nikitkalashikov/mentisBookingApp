@@ -17,6 +17,8 @@ import { IDoctorCard } from "./type"
 import OfflineIcon from "@icons/Offline"
 import OnlineIcon from "@icons/Online"
 import { Tag } from "@components/Tag"
+import { useDispatch } from "react-redux"
+import { setDoctorClinics } from "@store/slices/doctorSlice"
 
 function DoctorCard({
 	id,
@@ -30,6 +32,12 @@ function DoctorCard({
 	...props
 }: IDoctorCard) {
 	const prices_list = getMinMax(prices)
+	const dispatch = useDispatch()
+
+	const handleFormOpenButton = () => {
+		dispatch(setDoctorClinics({ clinics }))
+	}
+
 	return (
 		<DoctorCardWrapper {...props}>
 			<DoctorCardThumbnail to={`doctor/${id}`}>
@@ -87,6 +95,7 @@ function DoctorCard({
 					formSubject={`Новая запись на прием к ${fio}`}
 					formTitle="Записаться на прием"
 					formDescription={`Доктор: ${fio}`}
+					onClick={handleFormOpenButton}
 				>
 					Записаться
 				</DoctorCardButton>

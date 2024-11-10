@@ -2,16 +2,15 @@ import { useQuery } from "@tanstack/react-query"
 import { useToken } from "./useToken"
 import { getDoctorByID } from "@services/api"
 
-export const useDoctorByID = (
-	username: string,
-	password: string,
-	id: string
-) => {
+export const useDoctorByID = (id: string) => {
+	const USERNAME = import.meta.env.MENTIS_USERNAME
+	const PASSWORD = import.meta.env.MENTIS_PASSWORD
+
 	const {
 		data: token,
 		isLoading: tokenLoading,
 		isError: tokenError,
-	} = useToken(username, password)
+	} = useToken(USERNAME, PASSWORD)
 
 	return useQuery({
 		queryKey: ["doctor", id],

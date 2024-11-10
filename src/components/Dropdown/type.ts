@@ -1,16 +1,16 @@
 import React from "react"
 
 export interface IOption {
-	value: string
 	title: string
+	slug: string
 }
 
 export interface IDropdown {
 	icon?: React.ReactNode
 	current: {
 		title: string
-		value: string
+		slug: string
 	}
 	options: IOption[]
-	onChange: (e: React.MouseEvent<HTMLDivElement>) => void
+	onClick: (e: React.MouseEvent<HTMLDivElement>) => void
 }

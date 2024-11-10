@@ -58,13 +58,16 @@ export const DropdownOptions = styled.div`
 	top: calc(100% + 6px);
 	opacity: 0;
 	height: 0;
-	padding: 6px 8px;
+	padding: 0;
+	visibility: hidden;
 	background: var(--white-color);
 	border-radius: 6px;
 	z-index: 50;
 
 	&.active {
+		padding: 6px 8px;
 		opacity: 1;
+		visibility: visible;
 		height: fit-content;
 		transition: opacity 0.5s ease, height 1s ease;
 	}

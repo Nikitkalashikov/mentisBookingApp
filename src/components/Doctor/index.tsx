@@ -1,6 +1,4 @@
-import { DoctorCard } from "./DoctorCard"
-import { DoctorList } from "./DoctorList"
-import { IDoctorCard } from "./DoctorCard"
-
-export type { IDoctorCard }
-export { DoctorList, DoctorCard }
+export { DoctorCard } from "./DoctorCard"
+export { DoctorList } from "./DoctorList"
+export { DoctorDropdownClinics } from "./DoctorDropdownClinics"
+export type { IDoctorCard } from "./DoctorCard"

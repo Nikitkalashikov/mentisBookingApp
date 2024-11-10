@@ -2,7 +2,7 @@ import { InputMask } from "@react-input/mask"
 import styled from "styled-components"
 
 export const InputField = styled.input`
-	padding: 16px;
+	padding: 12px 16px;
 	font-size: 18px;
 	line-height: 26px;
 	border-radius: 8px;
@@ -14,7 +14,7 @@ export const InputField = styled.input`
 `
 
 export const InputPhoneField = styled(InputMask)`
-	padding: 16px;
+	padding: 12px 16px;
 	font-size: 18px;
 	line-height: 26px;
 	border-radius: 8px;

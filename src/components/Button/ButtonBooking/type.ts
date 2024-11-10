@@ -3,4 +3,5 @@ export interface IButtonBooking {
 	formSubject: string
 	formDescription: string
 	children?: React.ReactNode
+	onClick: () => void
 }

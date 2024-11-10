@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const FormInputWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 16px;
+	margin-bottom: 8px;
 
 	&:last-of-type {
 		margin-bottom: 0;

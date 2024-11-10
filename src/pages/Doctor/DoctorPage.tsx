@@ -1,7 +1,7 @@
 import { DoctorPageBackLink, DoctorPageBody } from "./styled"
 
 import ArrowIcon from "../../assets/icons/Arrow"
-import { Container } from "../../components/Container"
+import { Container } from "@components/Container"
 
 import { useParams } from "react-router-dom"
 import { DoctorProfile } from "@components/Doctor/DoctorProfile"
@@ -14,6 +14,10 @@ function DoctorPage() {
 	useEffect(() => {
 		window.scrollTo(0, 0)
 	}, [])
+
+	if (!id) {
+		return <div>ID специалиста не найден</div>
+	}
 
 	return (
 		<>

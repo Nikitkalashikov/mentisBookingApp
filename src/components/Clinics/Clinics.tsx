@@ -12,11 +12,11 @@ function Clinics() {
 	const dispatch = useDispatch()
 
 	const handleChange = (e: React.MouseEvent<HTMLDivElement>) => {
-		const value = e.currentTarget.dataset.value
+		const slug = e.currentTarget.dataset.value
 		const title = e.currentTarget.textContent
 
-		if (title && value) {
-			dispatch(setClinic({ title, value }))
+		if (title && slug) {
+			dispatch(setClinic({ title, slug }))
 		}
 	}
 
@@ -30,7 +30,7 @@ function Clinics() {
 
 	return (
 		<CitiesWrapper
-			onChange={handleChange}
+			onClick={handleChange}
 			icon={<LocationIcon />}
 			current={getClinic}
 			options={clinics}

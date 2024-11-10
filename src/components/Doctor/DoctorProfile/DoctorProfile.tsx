@@ -31,9 +31,6 @@ import { useDispatch } from "react-redux"
 import { useTelegram } from "@hooks/useTelegram"
 import { openForm } from "@store/slices/formSlice"
 
-const USERNAME = import.meta.env.MENTIS_USERNAME
-const PASSWORD = import.meta.env.MENTIS_PASSWORD
-
 function DoctorProfile({ id }: IDoctorProfile) {
 	const dispatch = useDispatch()
 	const { tg } = useTelegram()
@@ -50,12 +47,7 @@ function DoctorProfile({ id }: IDoctorProfile) {
 		})
 	}
 
-	const {
-		data: doctor,
-		isLoading,
-		isError,
-		error,
-	} = useDoctorByID(USERNAME, PASSWORD, id)
+	const { data: doctor, isLoading, isError, error } = useDoctorByID(id)
 
 	if (isError) {
 		return <div>{error.message}</div>

@@ -1,25 +1,25 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 interface ClinicsState {
-	value: string
+	slug: string
 	title: string
 }
 
 const initialState: ClinicsState = {
 	title: "Все клиники",
-	value: "all",
+	slug: "all",
 }
 
 const clinicSlice = createSlice({
-	name: "form",
+	name: "clinics",
 	initialState,
 	reducers: {
 		getClinic(state) {
-			return { title: state.title, value: state.value }
+			return state
 		},
-		setClinic(state, action: PayloadAction<{ title: string; value: string }>) {
+		setClinic(state, action: PayloadAction<{ title: string; slug: string }>) {
 			state.title = action.payload.title
-			state.value = action.payload.value
+			state.slug = action.payload.slug
 		},
 	},
 })

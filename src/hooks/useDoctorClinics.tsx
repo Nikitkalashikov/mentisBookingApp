@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query"
 import { useToken } from "./useToken"
-import { getClinics } from "@services/api"
+import { getDoctorByID } from "@services/api"
 
-export const useClinics = () => {
+export const useDoctorClinics = (id: string) => {
 	const USERNAME = import.meta.env.MENTIS_USERNAME
 	const PASSWORD = import.meta.env.MENTIS_PASSWORD
 
@@ -13,24 +13,19 @@ export const useClinics = () => {
 	} = useToken(USERNAME, PASSWORD)
 
 	return useQuery({
-		queryKey: ["clinics"],
+		queryKey: ["doctor", id],
 		queryFn: async () => {
 			if (!token || tokenError) throw new Error("Token is not available")
 
-			const clinics = await getClinics(token)
+			const doctor = await getDoctorByID(token, id)
 
-			return [
-				{ title: "Все клиники", slug: "all" },
-				...clinics.map(
-					(clinic: { title: { rendered: string }; slug: string }) => ({
-						title: clinic.title.rendered,
-						slug: clinic.slug,
-					})
-				),
-			]
+			return doctor.map((row: { title: string; slug: string }) => ({
+				title: row.title,
+				value: row.slug,
+			}))
 		},
 		staleTime: 1000 * 60 * 30,
 		enabled: !!token && !tokenLoading,
-		retry: 2,
+		retry: 1,
 	})
 }

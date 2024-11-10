@@ -62,6 +62,7 @@ export const sendEmail = async (
 		subject: string
 		fio: string
 		tel: string
+		clinic: string
 		message: string
 	}
 ) => {
@@ -69,6 +70,7 @@ export const sendEmail = async (
 	formData.append("subject", emailData.subject)
 	formData.append("fio", emailData.fio)
 	formData.append("tel", emailData.tel)
+	formData.append("clinic", emailData.clinic)
 	formData.append("message", emailData.message)
 	formData.append("url", "https://t.me/StatusMentisBot/clinic")
 
