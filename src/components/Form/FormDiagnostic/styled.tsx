@@ -24,7 +24,7 @@ export const FormDiagnosticTitle = styled.p`
 `
 
 export const FormDiagnosticTextarea = styled(FormTextarea)`
-	height: 240px;
+	height: 180px;
 `
 
 export const FormDiagnosticSliderSteps = styled.div`
@@ -88,7 +88,7 @@ export const FormDiagnosticBackground = styled.div`
 `
 
 export const FormDiagnosticSliderBottom = styled.div`
-	margin-top: 24px;
+	margin-top: 12px;
 	display: flex;
 	flex-direction: row;
 	gap: 32px;

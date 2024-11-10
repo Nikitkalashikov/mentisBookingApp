@@ -147,6 +147,7 @@ function FormDiagnostic() {
 						</FormDiagnosticSliderHead>
 
 						<FormDiagnosticSlider
+							autoHeight={true}
 							effect={"fade"}
 							modules={[EffectFade, Navigation]}
 							spaceBetween={0}
