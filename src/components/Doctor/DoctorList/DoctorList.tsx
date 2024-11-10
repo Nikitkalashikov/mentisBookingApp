@@ -4,6 +4,8 @@ import { DoctorListSkeleton } from "./DoctorListSkeleton"
 import { useFilter } from "../../../hooks/useFilter"
 import { useDoctors } from "../../../hooks/useDoctors"
 import { useTelegram } from "@hooks/useTelegram"
+import { useSelector } from "react-redux"
+import { RootState } from "@store/index"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -18,6 +20,7 @@ function DoctorList() {
 
 	const { category } = useFilter()
 	const { tg } = useTelegram()
+	const getClinic = useSelector((state: RootState) => state.clinic)
 
 	if (tg && tg.MainButton && tg.MainButton.isVisible) {
 		tg.MainButton.hide()
@@ -36,7 +39,15 @@ function DoctorList() {
 					(cat: { name: string; slug: string }) => cat.name === category
 			  )
 			: true
-		return matchesCategory
+
+		const matchesClinic =
+			getClinic.value === "all"
+				? true
+				: doctor.clinics?.some(
+						(clinic: { slug: string }) => clinic.slug === getClinic.value
+				  )
+
+		return matchesCategory && matchesClinic
 	})
 
 	return (

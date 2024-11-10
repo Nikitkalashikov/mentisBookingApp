@@ -10,45 +10,37 @@ import {
 import { IDropdown } from "./type"
 import { useState } from "react"
 
-function Dropdown({ icon, placeholder, options, ...props }: IDropdown) {
+function Dropdown({ icon, current, options, onChange, ...props }: IDropdown) {
 	const [isOpen, setIsOpen] = useState(false)
-	const [current, setCurrent] = useState(placeholder)
 
 	const handleClick = () => {
 		setIsOpen(isOpen => !isOpen)
 	}
 
-	const handleChange = () => {
-		// const value = e.target.setCurrent(value)
-
-		setCurrent("")
+	const handleChange = (e: React.MouseEvent<HTMLDivElement>) => {
+		onChange(e)
+		setIsOpen(false)
 	}
 
 	return (
 		<DropdownWrapper {...props}>
 			<DropdownValue onClick={handleClick}>
 				{icon && <DropdownLocation>{icon}</DropdownLocation>}
-				{current}
+				{current.title}
 				<DropdownArrow className={isOpen ? "active" : ""}>
 					<ArrowDownIcon />
 				</DropdownArrow>
 			</DropdownValue>
 			<DropdownOptions className={isOpen ? "active" : ""}>
-				<DropdownOption
-					data-value="all"
-					onClick={handleChange}
-					className="active"
-				>
-					{placeholder}
-				</DropdownOption>
 				{options.map(option => {
 					return (
 						<DropdownOption
-							key={option.slug}
+							key={option.title}
 							onClick={handleChange}
-							data-value={option.slug}
+							data-value={option.value}
+							className={current.value == option.value ? "active" : ""}
 						>
-							{option.value}
+							{option.title}
 						</DropdownOption>
 					)
 				})}

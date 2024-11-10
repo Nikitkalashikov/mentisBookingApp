@@ -33,6 +33,7 @@ jobs:
           MENTIS_USERNAME: ${{ secrets.MENTIS_USERNAME }}
           MENTIS_PASSWORD: ${{ secrets.MENTIS_PASSWORD }}
           MENTIS_GOOGLESHEETS: ${{ secrets.MENTIS_GOOGLESHEETS }}
+          MENTIS_GET_CLINICS_URL: ${{ secrets.MENTIS_GET_CLINICS_URL }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         run: yarn build
 

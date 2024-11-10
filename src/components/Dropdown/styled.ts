@@ -58,7 +58,6 @@ export const DropdownOptions = styled.div`
 	top: calc(100% + 6px);
 	opacity: 0;
 	height: 0;
-	// transition: opacity 0.5s ease, height 1s ease;
 	padding: 6px 8px;
 	background: var(--white-color);
 	border-radius: 6px;
@@ -76,11 +75,15 @@ export const DropdownOption = styled.div`
 	flex-direction: column;
 	transition: 0.5s ease;
 	padding: 2px 4px;
+	cursor: pointer;
+	transition: 0.5s ease;
 	font-size: 16px;
 	line-height: 24px;
 	border-radius: 2px;
 
-	&.active {
+	&.active,
+	&:hover {
+		transition: 0.5s ease;
 		background-color: var(--secondary-color);
 	}
 `
