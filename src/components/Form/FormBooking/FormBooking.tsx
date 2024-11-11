@@ -114,7 +114,7 @@ function FormBooking() {
 					margin: "auto",
 					background: "#ffffff",
 					borderRadius: "24px",
-					padding: "24px",
+					padding: "16px",
 				}}
 			>
 				<FormBookClose onClick={formCloseHandle}>
