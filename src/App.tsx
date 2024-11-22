@@ -18,7 +18,7 @@ function App() {
 			tg.expand()
 		}
 
-		tg.addToHomeScreen()
+		// tg.addToHomeScreen()
 	}, [])
 
 	useAnalytics()
