@@ -6,17 +6,20 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { FilterProvider } from "./utils/providers"
 import { useTelegram } from "@hooks/useTelegram"
 import { useAnalytics } from "@hooks/useAnalytics"
+import { useEffect } from "react"
 
 const queryClient = new QueryClient()
 
 function App() {
-	const { tg } = useTelegram()
+	useEffect(() => {
+		const { tg } = useTelegram()
+		tg.ready()
+		if (!tg.isExpanded) {
+			tg.expand()
+		}
 
-	// tg.ready()
-
-	if (!tg.isExpanded) {
-		tg.expand()
-	}
+		tg.addToHomeScreen()
+	}, [])
 
 	useAnalytics()
 

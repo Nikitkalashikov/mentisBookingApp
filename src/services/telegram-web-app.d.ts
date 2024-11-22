@@ -47,6 +47,7 @@ interface Window {
 				getItem: (key: string, callback: (value: string | null) => void) => void
 				setItem: (key: string, value: string, callback?: () => void) => void
 			}
+			addToHomeScreen: () => VoidFunction
 			onEvent(
 				eventType: "contactRequested" | "viewportChanged",
 				eventHandler: (eventData: unknown) => void
