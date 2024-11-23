@@ -4,6 +4,7 @@ import { useTelegram } from "@hooks/useTelegram"
 import { useEffect } from "react"
 
 export const ButtonAddHomeIcon = ({
+	className,
 	title = "Добавить",
 	...props
 }: IButtonAddHomeIcon) => {
@@ -14,9 +15,7 @@ export const ButtonAddHomeIcon = ({
 	}, [])
 
 	const addHandler = () => {
-		console.log("test")
 		tg.checkHomeScreenStatus(status => {
-			console.log(status)
 			if (status === "added") {
 				tg.showAlert(`Закреплено на главном экране: ${status}`)
 			} else if (status === "missed") {
@@ -26,7 +25,7 @@ export const ButtonAddHomeIcon = ({
 	}
 
 	return (
-		<Button onClick={addHandler} {...props}>
+		<Button className={className} onClick={addHandler} {...props}>
 			{title}
 		</Button>
 	)

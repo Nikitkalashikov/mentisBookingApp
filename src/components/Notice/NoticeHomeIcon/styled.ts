@@ -1,4 +1,4 @@
-import { Button } from "@share/Button"
+import { ButtonAddHomeIcon } from "@components/Button/ButtonAddHomeIcon"
 import { Notice } from "@share/Notice"
 import styled from "styled-components"
 
@@ -26,7 +26,7 @@ export const NoticeHomeIconLabel = styled.div`
 	line-height: var(--size-5);
 `
 
-export const NoticeHomeIconButton = styled(Button)`
+export const NoticeHomeIconButton = styled(ButtonAddHomeIcon)`
 	height: auto;
 `
 

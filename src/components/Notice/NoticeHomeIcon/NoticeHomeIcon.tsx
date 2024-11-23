@@ -18,9 +18,7 @@ export const NoticeHomeIcon = ({ ...props }) => {
 					{user && user.first_name ? `${user.first_name}, д` : "Д"}
 					обавьте иконку приложения на&nbsp;главный&nbsp;экран
 				</NoticeHomeIconLabel>
-				<NoticeHomeIconButton className="white small">
-					Добавить
-				</NoticeHomeIconButton>
+				<NoticeHomeIconButton title="Добавить" className="white small" />
 			</NoticeHomeIconBody>
 			<NoticeHomeIconBg>
 				<Wave2Icon />
