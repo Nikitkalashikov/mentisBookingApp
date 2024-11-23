@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Button } from "../../Button"
+import { Button } from "@share/Button"
 import { Swiper, SwiperSlide } from "swiper/react"
 
 export const FilterCategoryList = styled.div`

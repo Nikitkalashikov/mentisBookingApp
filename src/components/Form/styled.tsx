@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Button } from "../Button"
+import { Button } from "@share/Button"
 
 export const FormHtml = styled.form`
 	display: flex;

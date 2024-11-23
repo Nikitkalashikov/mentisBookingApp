@@ -7,18 +7,19 @@ import { FilterProvider } from "./utils/providers"
 import { useTelegram } from "@hooks/useTelegram"
 import { useAnalytics } from "@hooks/useAnalytics"
 import { useEffect } from "react"
+import { ErrorPage } from "@pages/ErrorPage"
 
 const queryClient = new QueryClient()
 
 function App() {
+	const { tg } = useTelegram()
+
 	useEffect(() => {
-		const { tg } = useTelegram()
 		tg.ready()
+
 		if (!tg.isExpanded) {
 			tg.expand()
 		}
-
-		// tg.addToHomeScreen()
 	}, [])
 
 	useAnalytics()
@@ -29,7 +30,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/doctor/:id" element={<DoctorPage />} />
-					<Route path="*" element={<h1>404 - Страница не найдена</h1>} />
+					<Route path="*" element={<ErrorPage />} />
 				</Routes>
 			</FilterProvider>
 		</QueryClientProvider>

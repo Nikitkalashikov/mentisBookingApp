@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { Button } from "../Button"
+import { Button } from "@share/Button"
 import { IButtonBooking } from "./type"
 import {
 	openForm,

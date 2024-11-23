@@ -16,12 +16,30 @@
 
 	--fourthy-color: #f7f8fa;
 
+	--focus-color: #d3d9de;
+
 	--text-color: #122f4a;
 
 	--gray-color: #f8f8f8;
 	--gray-dark-color: #a3a2a2;
 
 	--error-color: #b92525;
+
+	--size-1: 4px;
+	--size-2: 8px;
+	--size-3: 12px;
+	--size-4: 16px;
+	--size-5: 20px;
+	--size-6: 24px;
+	--size-7: 28px;
+	--size-8: 32px;
+	--size-9: 36px;
+	--size-10: 40px;
+	--size-11: 44px;
+	--size-12: 48px;
+	--size-13: 52px;
+	--size-14: 56px;
+	--size-15: 60px;
 }
 
 html {

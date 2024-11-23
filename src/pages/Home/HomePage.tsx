@@ -3,7 +3,12 @@ import { Container } from "@components/Container"
 import { DoctorList } from "@components/Doctor"
 import { Filters } from "@components/Filters"
 import { Header } from "@components/Header"
-import { CreatedByWrapper, HomePageBanner, HomePageBody } from "./styled"
+import {
+	CreatedByWrapper,
+	HomePageBanner,
+	HomePageBody,
+	HomePageNotice,
+} from "./styled"
 import manager from "@img/Manager.png"
 import { openFormDiagnostic } from "@store/slices/formDiagnosticSlice"
 import { useDispatch } from "react-redux"
@@ -25,10 +30,11 @@ function HomePage() {
 					title="Предварительную консультацию"
 					image={manager}
 				/>
-				<Filters />
+				<HomePageNotice />
 			</Container>
 			<HomePageBody>
 				<Container>
+					<Filters />
 					<DoctorList />
 				</Container>
 			</HomePageBody>

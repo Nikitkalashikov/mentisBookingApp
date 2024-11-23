@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { Swiper } from "swiper/react"
 import { SwiperSlide } from "swiper/react"
 import { FormTextarea } from "../FormTextarea"
-import { Button } from "@components/Button"
+import { Button } from "@share/Button"
 
 export const FormDiagnosticClosed = styled.div`
 	cursor: pointer;

@@ -64,6 +64,7 @@ export const BannerBg = styled.div`
 	height: 100%;
 	top: 0;
 	left: 0;
+	overflow: hidden;
 
 	svg {
 		width: 100%;

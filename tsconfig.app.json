@@ -15,7 +15,8 @@
 			"@utils/*": ["src/utils/*"],
 			"@icons/*": ["src/assets/icons/*"],
 			"@img/*": ["src/assets/images/*"],
-			"@store/*": ["src/store/*"]
+			"@store/*": ["src/store/*"],
+			"@share/*": ["src/share/*"]
 		},
 
 		/* Bundler mode */

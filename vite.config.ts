@@ -15,6 +15,7 @@ export default defineConfig({
 			"@img": resolve(__dirname, "src/assets/images"),
 			"@utils": resolve(__dirname, "src/utils"),
 			"@store": resolve(__dirname, "src/store"),
+			"@share": resolve(__dirname, "src/share"),
 		},
 	},
 })
