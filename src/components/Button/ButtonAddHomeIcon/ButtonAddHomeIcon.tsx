@@ -16,6 +16,7 @@ export const ButtonAddHomeIcon = ({
 
 	const addHandler = () => {
 		tg.checkHomeScreenStatus(status => {
+			tg.showAlert(`stats: ${status}`)
 			if (status === "unsupported") {
 				tg.showAlert(
 					`Ваша версия приложения не подерживает данную функцию. Обновите телеграм до версии не ниже 8.0`
