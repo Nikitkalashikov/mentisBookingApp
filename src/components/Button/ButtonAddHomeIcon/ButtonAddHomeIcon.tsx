@@ -15,9 +15,7 @@ export const ButtonAddHomeIcon = ({
 	}, [])
 
 	const addHandler = () => {
-		console.log("test")
 		tg.checkHomeScreenStatus(status => {
-			console.log(status)
 			if (status === "added") {
 				tg.showAlert(`Закреплено на главном экране: ${status}`)
 			} else if (status === "missed") {
