@@ -16,7 +16,11 @@ export const ButtonAddHomeIcon = ({
 
 	const addHandler = () => {
 		tg.checkHomeScreenStatus(status => {
-			if (status === "added") {
+			if (status === "unsupported") {
+				tg.showAlert(
+					`Ваша версия приложения не подерживает данную функцию. Обновите телеграм до версии не ниже 8.0`
+				)
+			} else if (status === "added") {
 				tg.showAlert(`Закреплено на главном экране: ${status}`)
 			} else if (status === "missed") {
 				tg.addToHomeScreen()
