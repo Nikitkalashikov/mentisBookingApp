@@ -9,7 +9,11 @@ import {
 import { useTelegram } from "@hooks/useTelegram"
 
 export const NoticeHomeIcon = ({ ...props }) => {
-	const { user } = useTelegram()
+	const { tg, user } = useTelegram()
+
+	const version = parseInt(tg.version)
+
+	if (version < 8) return
 
 	return (
 		<NoticeHomeIconWrapp {...props}>

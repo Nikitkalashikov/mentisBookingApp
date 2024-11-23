@@ -23,6 +23,7 @@ interface Window {
 				bg_color: string
 				header_bg_color: string
 			}
+			version: string
 			ready: () => VoidFunction
 			expand: () => VoidFunction
 			setHeaderColor: () => VoidFunction
