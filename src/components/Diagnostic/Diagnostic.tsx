@@ -36,7 +36,6 @@ import { FormInputPhone } from "@components/Form/FormIpnut"
 import { FormInput } from "@components/Form/FormIpnut"
 import { WaveIcon } from "@icons/Wave"
 import { Form } from "@components/Form/Form"
-import { Button } from "@share/Button"
 import { Swiper as SwiperType } from "swiper"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
