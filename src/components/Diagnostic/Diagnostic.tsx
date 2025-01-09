@@ -18,7 +18,7 @@ import { useSelector } from "react-redux"
 import { useTelegram } from "@hooks/useTelegram"
 import { useDispatch } from "react-redux"
 import { RootState } from "@store/index"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { handleInputChange } from "@utils/helpers/handleInputChange"
 import { sendEmail } from "@services/api"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
@@ -36,6 +36,8 @@ import { FormInputPhone } from "@components/Form/FormIpnut"
 import { FormInput } from "@components/Form/FormIpnut"
 import { WaveIcon } from "@icons/Wave"
 import { Form } from "@components/Form/Form"
+import { Button } from "@share/Button"
+import { Swiper as SwiperType } from "swiper"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -76,6 +78,14 @@ function Diagnostic({ isCloseHandle = false }: IDiagnostic) {
 				answer: input,
 			},
 		}))
+	}
+
+	const swiperRef = useRef<SwiperType | null>(null)
+
+	const setActiveSlide = (index: number) => {
+		if (swiperRef.current) {
+			swiperRef.current.slideTo(index)
+		}
 	}
 
 	const formCloseHandle = () => {
@@ -119,6 +129,7 @@ function Diagnostic({ isCloseHandle = false }: IDiagnostic) {
 				reset()
 				setAnswers({})
 				setCurrentSlide(1)
+				setActiveSlide(1)
 				dispatch(closeFormDiagnostic())
 			}
 		} catch (error) {
@@ -140,7 +151,6 @@ function Diagnostic({ isCloseHandle = false }: IDiagnostic) {
 					</FormDiagnosticClosed>
 				)}
 			</FormDiagnosticSliderHead>
-
 			<FormDiagnosticSlider
 				autoHeight={true}
 				effect={"fade"}
@@ -148,7 +158,7 @@ function Diagnostic({ isCloseHandle = false }: IDiagnostic) {
 				spaceBetween={0}
 				slidesPerView={1}
 				allowTouchMove={false}
-				initialSlide={currentSlide - 1}
+				onSwiper={swiper => (swiperRef.current = swiper)}
 				navigation={{
 					nextEl: ".swiper-button-next",
 					prevEl: ".swiper-button-prev",
