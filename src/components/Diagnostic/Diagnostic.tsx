@@ -148,6 +148,7 @@ function Diagnostic({ isCloseHandle = false }: IDiagnostic) {
 				spaceBetween={0}
 				slidesPerView={1}
 				allowTouchMove={false}
+				initialSlide={currentSlide - 1}
 				navigation={{
 					nextEl: ".swiper-button-next",
 					prevEl: ".swiper-button-prev",
