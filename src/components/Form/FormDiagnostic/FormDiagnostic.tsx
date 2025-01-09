@@ -8,8 +8,6 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { useTelegram } from "@hooks/useTelegram"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@store/index"
-import { Container, Modal } from "@mui/material"
-import { Box } from "@mui/material"
 import CloseIcon from "@icons/Close"
 import {
 	FormDiagnosticBackground,
@@ -32,6 +30,7 @@ import { useState } from "react"
 import { WaveIcon } from "@icons/Wave"
 import "swiper/css/effect-fade"
 import { handleInputChange } from "@utils/helpers/handleInputChange"
+import { Container } from "@components/Container"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -120,10 +119,11 @@ function FormDiagnostic() {
 	if (!isOpen) return null
 
 	return (
-		<Modal open={isOpen} onClose={formCloseHandle}>
-			<Box
+		// <div open={isOpen} onClose={formCloseHandle}>
+		<div>
+			<div
 				id="formOrder"
-				sx={{
+				style={{
 					position: "absolute",
 					top: 0,
 					bottom: 0,
@@ -252,8 +252,8 @@ function FormDiagnostic() {
 						</FormDiagnosticBackground>
 					</FormDiagnosticSliderContainer>
 				</Container>
-			</Box>
-		</Modal>
+			</div>
+		</div>
 	)
 }
 

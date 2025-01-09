@@ -9,8 +9,6 @@ import { useTelegram } from "@hooks/useTelegram"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@store/index"
 import { closeForm } from "@store/slices/formSlice"
-import { Modal } from "@mui/material"
-import { Box } from "@mui/material"
 import CloseIcon from "@icons/Close"
 import { FormBookClose } from "./styled"
 import { DoctorDropdownClinics } from "@components/Doctor"
@@ -99,10 +97,11 @@ function FormBooking() {
 	if (!isOpen) return null
 
 	return (
-		<Modal open={isOpen} onClose={formCloseHandle}>
-			<Box
+		// <div open={isOpen} onClose={formCloseHandle}>
+		<div>
+			<div
 				id="formOrder"
-				sx={{
+				style={{
 					position: "absolute",
 					top: 0,
 					bottom: 0,
@@ -176,8 +175,8 @@ function FormBooking() {
 
 					<FormButton>{buttonText}</FormButton>
 				</Form>
-			</Box>
-		</Modal>
+			</div>
+		</div>
 	)
 }
 

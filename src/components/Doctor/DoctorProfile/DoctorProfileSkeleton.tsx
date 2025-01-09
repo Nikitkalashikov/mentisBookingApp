@@ -1,11 +1,10 @@
-import { Skeleton } from "@mui/material"
+import Skeleton from "react-loading-skeleton"
 
 function DoctorProfileSkeleton() {
 	return (
 		<>
-			<Skeleton variant="rounded" width="100%" height={520} />
+			<Skeleton width="100%" height={520} />
 			<Skeleton
-				variant="rounded"
 				width="100%"
 				height={56}
 				style={{
@@ -14,7 +13,6 @@ function DoctorProfileSkeleton() {
 				}}
 			/>
 			<Skeleton
-				variant="rounded"
 				width="100%"
 				height={300}
 				style={{
@@ -22,7 +20,6 @@ function DoctorProfileSkeleton() {
 				}}
 			/>
 			<Skeleton
-				variant="rounded"
 				width="100%"
 				height={300}
 				style={{
@@ -30,14 +27,13 @@ function DoctorProfileSkeleton() {
 				}}
 			/>
 			<Skeleton
-				variant="rounded"
 				width="100%"
 				height={34}
 				style={{
 					marginBottom: "24px",
 				}}
 			/>
-			<Skeleton variant="rounded" width="100%" height={192} />
+			<Skeleton width="100%" height={192} />
 		</>
 	)
 }

@@ -1,35 +1,15 @@
-import { Skeleton } from "@mui/material"
+import Skeleton from "react-loading-skeleton"
 import { DoctorCardBody, DoctorCardWrapper } from "./styled"
 
 function DoctorCardSkeleton({ ...props }) {
 	return (
 		<DoctorCardWrapper {...props}>
-			<Skeleton variant="rounded" width="100%" height={380} />
+			<Skeleton width="100%" height={380} />
 			<DoctorCardBody>
-				<Skeleton
-					variant="rounded"
-					width="100%"
-					height={28}
-					sx={{ marginTop: "16px" }}
-				/>
-				<Skeleton
-					variant="rounded"
-					width="100%"
-					height={24}
-					sx={{ marginTop: "8px" }}
-				/>
-				<Skeleton
-					variant="rounded"
-					width="100%"
-					height={54}
-					sx={{ marginTop: "16px" }}
-				/>
-				<Skeleton
-					variant="rounded"
-					width="100%"
-					height={44}
-					sx={{ marginTop: "14px" }}
-				/>
+				<Skeleton width="100%" height={28} style={{ marginTop: "16px" }} />
+				<Skeleton width="100%" height={24} style={{ marginTop: "8px" }} />
+				<Skeleton width="100%" height={54} style={{ marginTop: "16px" }} />
+				<Skeleton width="100%" height={44} style={{ marginTop: "14px" }} />
 			</DoctorCardBody>
 		</DoctorCardWrapper>
 	)

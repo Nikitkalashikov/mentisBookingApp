@@ -1,6 +1,5 @@
-import { Skeleton } from "@mui/material"
-import { useDoctorsCategories } from "../../../hooks/useDoctorCategories"
-import { useFilter } from "../../../hooks/useFilter"
+import { useDoctorsCategories } from "@hooks/useDoctorCategories"
+import { useFilter } from "@hooks/useFilter"
 import {
 	FilterCategoryButton,
 	FilterCategoryList,
@@ -9,6 +8,7 @@ import {
 } from "./styled"
 
 import "swiper/swiper-bundle.css"
+import Skeleton from "react-loading-skeleton"
 
 const USERNAME = import.meta.env.MENTIS_USERNAME
 const PASSWORD = import.meta.env.MENTIS_PASSWORD
@@ -33,13 +33,12 @@ function FilterCategory() {
 	if (isLoading || !doctorsCategories) {
 		return (
 			<Skeleton
-				variant="rounded"
 				style={{
 					marginBottom: "6px",
 				}}
 				width="100%"
 				height={44}
-			></Skeleton>
+			/>
 		)
 	}
 

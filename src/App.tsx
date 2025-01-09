@@ -8,6 +8,7 @@ import { useTelegram } from "@hooks/useTelegram"
 import { useAnalytics } from "@hooks/useAnalytics"
 import { useEffect } from "react"
 import { ErrorPage } from "@pages/ErrorPage"
+import { DiagnosticPage } from "@pages/DiagnosticPage"
 
 const queryClient = new QueryClient()
 
@@ -30,6 +31,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/doctor/:id" element={<DoctorPage />} />
+					<Route path="/diagnostic" element={<DiagnosticPage />} />
 					<Route path="*" element={<ErrorPage />} />
 				</Routes>
 			</FilterProvider>

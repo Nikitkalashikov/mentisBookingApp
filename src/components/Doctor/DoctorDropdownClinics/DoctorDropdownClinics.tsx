@@ -1,11 +1,11 @@
 import LocationIcon from "@icons/Location"
 import { DoctorDropdownWrapper } from "./styled"
-import { Skeleton } from "@mui/material"
 import { useSelector } from "react-redux"
 import { RootState } from "@store/index"
 import { getDoctorClinics } from "@store/slices/doctorSlice"
 import { IDoctorDropdownClinics } from "./type"
 import { useState } from "react"
+import Skeleton from "react-loading-skeleton"
 
 function DoctorDropdownClinics({ onChange, ...props }: IDoctorDropdownClinics) {
 	const currentClinic = useSelector((state: RootState) => state.clinic)
@@ -40,7 +40,7 @@ function DoctorDropdownClinics({ onChange, ...props }: IDoctorDropdownClinics) {
 		) || clinics[0]
 
 	if (!current || clinics.length === 0) {
-		return <Skeleton variant="rounded" width="100%" height="32px" />
+		return <Skeleton width="100%" height="32px" />
 	}
 
 	return (

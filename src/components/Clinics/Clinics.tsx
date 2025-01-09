@@ -1,10 +1,10 @@
 import LocationIcon from "@icons/Location"
 import { CitiesWrapper } from "./styled"
 import { useClinics } from "@hooks/useClinics"
-import { Skeleton } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
 import { setClinic } from "@store/slices/clinicSlice"
 import { RootState } from "@store/index"
+import Skeleton from "react-loading-skeleton"
 
 function Clinics() {
 	const { data: clinics, isLoading, isError, error } = useClinics()
@@ -25,7 +25,7 @@ function Clinics() {
 	}
 
 	if (isLoading || !clinics) {
-		return <Skeleton variant="rounded" width="160px" height="32px" />
+		return <Skeleton width="160px" height="32px" />
 	}
 
 	return (
