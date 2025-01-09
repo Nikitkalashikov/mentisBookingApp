@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Swiper } from "swiper/react"
 import { SwiperSlide } from "swiper/react"
-import { FormTextarea } from "../FormTextarea"
+import { FormTextarea } from "@components/Form/FormTextarea"
 import { Button } from "@share/Button"
 
 export const FormDiagnosticClosed = styled.div`

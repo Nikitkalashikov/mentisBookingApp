@@ -1,12 +1,13 @@
 import { Container } from "@components/Container"
-import { Title } from "./styled"
-import { FormDiagnostic } from "@components/Form/FormDiagnostic"
+import { SubTitle, Title } from "./styled"
+import { Diagnostic } from "@components/Diagnostic"
 
 function DiagnosticPage() {
 	return (
 		<Container>
-			<Title>Предварительная консультация</Title>
-			<FormDiagnostic />
+			<SubTitle>Пройдите бесплатно</SubTitle>
+			<Title>Предварительную консультацию</Title>
+			<Diagnostic />
 		</Container>
 	)
 }

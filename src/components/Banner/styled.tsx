@@ -11,7 +11,7 @@ export const BannerLink = styled.div`
 	font-size: 16px;
 	transition: 0.5s ease;
 	line-height: 20px;
-	border-radius: 4px 4px 4px 16px;
+	border-radius: 4px 4px 4px 12px;
 	background-color: var(--fourthy-color);
 
 	svg {
