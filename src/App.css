@@ -62,6 +62,7 @@ body {
 	height: 100%;
 	min-height: 100vh;
 	display: flex;
+	overflow-x: hidden;
 	flex-direction: column;
 	box-sizing: border-box;
 }

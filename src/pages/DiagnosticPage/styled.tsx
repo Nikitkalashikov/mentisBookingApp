@@ -17,7 +17,9 @@ export const SubTitle = styled.p`
 `
 
 export const PageContainer = styled.div`
+	position: relative;
 	width: 100%;
 	overflow: hidden;
 	height: 100%;
+	flex: 1;
 `
