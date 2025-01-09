@@ -9,6 +9,7 @@ export const DoctorCardWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	background-color: var(--white-color);
+	line-height: 0;
 	border-radius: 24px;
 	overflow: hidden;
 	box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);

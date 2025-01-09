@@ -6,6 +6,7 @@ import { getDoctorClinics } from "@store/slices/doctorSlice"
 import { IDoctorDropdownClinics } from "./type"
 import { useState } from "react"
 import Skeleton from "react-loading-skeleton"
+import "react-loading-skeleton/dist/skeleton.css"
 
 function DoctorDropdownClinics({ onChange, ...props }: IDoctorDropdownClinics) {
 	const currentClinic = useSelector((state: RootState) => state.clinic)

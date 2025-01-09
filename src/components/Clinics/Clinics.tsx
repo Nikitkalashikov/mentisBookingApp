@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { setClinic } from "@store/slices/clinicSlice"
 import { RootState } from "@store/index"
 import Skeleton from "react-loading-skeleton"
+import "react-loading-skeleton/dist/skeleton.css"
 
 function Clinics() {
 	const { data: clinics, isLoading, isError, error } = useClinics()
