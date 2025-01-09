@@ -15,3 +15,9 @@ export const SubTitle = styled.p`
 	line-height: var(--size-6);
 	color: var(--gray-dark-color);
 `
+
+export const PageContainer = styled.div`
+	width: 100%;
+	overflow: hidden;
+	height: 100%;
+`
