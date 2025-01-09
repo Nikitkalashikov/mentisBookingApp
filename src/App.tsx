@@ -32,6 +32,7 @@ function App() {
 					<Route path="/" element={<HomePage />} />
 					<Route path="/doctor/:id" element={<DoctorPage />} />
 					<Route path="/diagnostic" element={<DiagnosticPage />} />
+					<Route path="/clinic/diagnostic" element={<DiagnosticPage />} />
 					<Route path="*" element={<ErrorPage />} />
 				</Routes>
 			</FilterProvider>
