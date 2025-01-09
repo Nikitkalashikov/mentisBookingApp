@@ -98,7 +98,19 @@ function FormBooking() {
 
 	return (
 		// <div open={isOpen} onClose={formCloseHandle}>
-		<div>
+		<div
+			style={{
+				position: "fixed",
+				left: 0,
+				top: 0,
+				bottom: 0,
+				right: 0,
+				width: "100%",
+				height: "100%",
+				background: "rgba(0, 0, 0, 0.2)",
+				zIndex: 100,
+			}}
+		>
 			<div
 				id="formOrder"
 				style={{
