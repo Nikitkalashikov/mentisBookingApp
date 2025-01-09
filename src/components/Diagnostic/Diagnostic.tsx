@@ -81,9 +81,10 @@ function Diagnostic({ isCloseHandle = false }: IDiagnostic) {
 
 	const swiperRef = useRef<SwiperType | null>(null)
 
-	const setActiveSlide = (index: number) => {
+	const resetSwiper = () => {
 		if (swiperRef.current) {
-			swiperRef.current.slideTo(index)
+			swiperRef.current.slideTo(0, 0, false)
+			swiperRef.current.update()
 		}
 	}
 
@@ -128,7 +129,7 @@ function Diagnostic({ isCloseHandle = false }: IDiagnostic) {
 				reset()
 				setAnswers({})
 				setCurrentSlide(1)
-				setActiveSlide(0)
+				resetSwiper()
 				dispatch(closeFormDiagnostic())
 			}
 		} catch (error) {
@@ -151,7 +152,7 @@ function Diagnostic({ isCloseHandle = false }: IDiagnostic) {
 				)}
 			</FormDiagnosticSliderHead>
 			<FormDiagnosticSlider
-				autoHeight={true}
+				autoHeight={false}
 				effect={"fade"}
 				modules={[EffectFade, Navigation]}
 				spaceBetween={0}
