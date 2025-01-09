@@ -1,5 +1,5 @@
 import "./App.css"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useNavigate } from "react-router-dom"
 import { DoctorPage } from "./pages/Doctor/DoctorPage"
 import { HomePage } from "./pages/Home"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
@@ -13,6 +13,7 @@ import { DiagnosticPage } from "@pages/DiagnosticPage"
 const queryClient = new QueryClient()
 
 function App() {
+	const navigate = useNavigate()
 	const { tg } = useTelegram()
 
 	useEffect(() => {
@@ -23,6 +24,15 @@ function App() {
 		}
 	}, [])
 
+	useEffect(() => {
+		const urlParams = new URLSearchParams(window.location.search)
+		const startPath = urlParams.get("start")
+
+		if (startPath) {
+			navigate(startPath, { replace: true })
+		}
+	}, [navigate])
+
 	useAnalytics()
 
 	return (
@@ -32,7 +42,6 @@ function App() {
 					<Route path="/" element={<HomePage />} />
 					<Route path="/doctor/:id" element={<DoctorPage />} />
 					<Route path="/diagnostic" element={<DiagnosticPage />} />
-					<Route path="/clinic/diagnostic" element={<DiagnosticPage />} />
 					<Route path="*" element={<ErrorPage />} />
 				</Routes>
 			</FilterProvider>
