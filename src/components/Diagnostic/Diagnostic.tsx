@@ -128,7 +128,7 @@ function Diagnostic({ isCloseHandle = false }: IDiagnostic) {
 				reset()
 				setAnswers({})
 				setCurrentSlide(1)
-				setActiveSlide(1)
+				setActiveSlide(0)
 				dispatch(closeFormDiagnostic())
 			}
 		} catch (error) {
