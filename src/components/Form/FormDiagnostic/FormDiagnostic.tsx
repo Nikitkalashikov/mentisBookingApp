@@ -1,12 +1,21 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@store/index"
 
 import "swiper/css/effect-fade"
 import { Container } from "@components/Container"
 import { Diagnostic } from "@components/Diagnostic"
+import CloseIcon from "@icons/Close"
+import { closeFormDiagnostic } from "@store/slices/formDiagnosticSlice"
+import { FormDiagnosticClosed } from "./styled"
 
 function FormDiagnostic() {
 	const { isOpen } = useSelector((state: RootState) => state.formDiagnostic)
+
+	const dispatch = useDispatch()
+
+	const formCloseHandle = () => {
+		dispatch(closeFormDiagnostic())
+	}
 
 	if (!isOpen) return null
 
@@ -29,7 +38,10 @@ function FormDiagnostic() {
 				}}
 			>
 				<Container>
-					<Diagnostic isCloseHandle={true} />
+					<FormDiagnosticClosed onClick={formCloseHandle}>
+						<CloseIcon />
+					</FormDiagnosticClosed>
+					<Diagnostic />
 				</Container>
 			</div>
 		</div>

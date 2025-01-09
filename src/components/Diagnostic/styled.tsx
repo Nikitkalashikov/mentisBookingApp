@@ -4,19 +4,6 @@ import { SwiperSlide } from "swiper/react"
 import { FormTextarea } from "@components/Form/FormTextarea"
 import { Button } from "@share/Button"
 
-export const FormDiagnosticClosed = styled.div`
-	cursor: pointer;
-	width: 24px;
-	height: 24px;
-	z-index: 1;
-
-	svg {
-		width: 100%;
-		height: 100%;
-		object-fit: contain;
-	}
-`
-
 export const FormDiagnosticTitle = styled.p`
 	font-size: 22px;
 	line-height: 28px;
@@ -50,6 +37,7 @@ export const FormDiagnosticSliderHead = styled.div`
 
 export const FormDiagnosticSlider = styled(Swiper)`
 	width: 100%;
+	overflow: visible;
 `
 
 export const FormDiagnosticSlideContent = styled.div`
@@ -103,7 +91,7 @@ export const FormDiagnosticSliderNav = styled.div`
 	gap: 12px;
 `
 
-export const FormDiagnosticSliderButton = styled(Button)`
+export const FormDiagnosticButton = styled(Button)`
 	position: relative;
 	width: 50%;
 	height: auto;
@@ -112,6 +100,8 @@ export const FormDiagnosticSliderButton = styled(Button)`
 	left: auto;
 	right: auto;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	flex-direction: row;
 
 	&:after {
