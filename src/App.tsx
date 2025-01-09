@@ -26,7 +26,7 @@ function App() {
 
 	useEffect(() => {
 		const urlParams = new URLSearchParams(window.location.search)
-		const startPath = urlParams.get("start")
+		const startPath = urlParams.get("tgWebAppStartParam")
 
 		if (startPath) {
 			navigate(startPath, { replace: true })
