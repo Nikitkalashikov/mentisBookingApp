@@ -13,6 +13,8 @@ import manager from "@img/Manager.png"
 import { openFormDiagnostic } from "@store/slices/formDiagnosticSlice"
 import { useDispatch } from "react-redux"
 
+import { addToHomeScreen } from "@telegram-apps/sdk"
+
 function HomePage() {
 	const dispatch = useDispatch()
 
@@ -30,7 +32,7 @@ function HomePage() {
 					title="Предварительную консультацию"
 					image={manager}
 				/>
-				<HomePageNotice />
+				{addToHomeScreen.isAvailable() && <HomePageNotice />}
 			</Container>
 			<HomePageBody>
 				<Container>
