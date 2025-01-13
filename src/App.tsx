@@ -9,6 +9,7 @@ import { useAnalytics } from "@hooks/useAnalytics"
 import { useEffect } from "react"
 import { ErrorPage } from "@pages/ErrorPage"
 import { DiagnosticPage } from "@pages/DiagnosticPage"
+import { viewport } from "@telegram-apps/sdk-react"
 
 const queryClient = new QueryClient()
 
@@ -19,8 +20,8 @@ function App() {
 	useEffect(() => {
 		tg.ready()
 
-		if (!tg.isExpanded) {
-			tg.expand()
+		if (viewport.expand.isAvailable()) {
+			viewport.expand()
 		}
 	}, [])
 
